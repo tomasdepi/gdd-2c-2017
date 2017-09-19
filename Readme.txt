@@ -5,8 +5,8 @@ Integrantes:
 	(Responsable)
 	Apellido: Papazian
 	Nombre: Lila
-	Legajo:
-	Curso:
+	Legajo:152735-6
+	Curso: K3522
 
 	Apellido: De Pietro
 	Nombre: Tomas
