@@ -73,7 +73,7 @@ namespace PagoAgilFrba.Repository
             while (funcionalidades.Read())
             {
                 Funcionalidad func = new Funcionalidad();
-                func.id = (int)funcionalidades["func_id"];
+                func.posee = (string)funcionalidades["tieneFunc"].ToString() == "1" ? true : false;
                 func.nombre = (string)funcionalidades["func_nombre"];
                 listaFuncionalidades.Add(func);
             }
@@ -83,7 +83,7 @@ namespace PagoAgilFrba.Repository
             return listaFuncionalidades;
         }
 
-        public void guardarNuevoRol(string nombreRol, List<Funcionalidad> funcs)
+        public int guardarNuevoRol(string nombreRol, List<Funcionalidad> funcs)
         {
             var query = "INSERT INTO PIZZA.Rol (rol_nombre, rol_habilitado) values (@nombre, 1)";
             this.Command = new SqlCommand(query, this.Connector);
@@ -100,17 +100,48 @@ namespace PagoAgilFrba.Repository
             int idRol = (int)funcionalidades["rol_id"];
             this.Connector.Close();
 
+            this.agregarFuncionalidades(idRol, funcs);
+
+            return idRol;
+        }
+
+        public void actualizarHabilitado(bool habilitado, int rolId)
+        {
+            var query = "UPDATE PIZZA.Rol set rol_habilitado = @habilitado WHERE rol_id = @rol_id";
+            this.Command = new SqlCommand(query, this.Connector);
+            this.Command.Parameters.Add("@habilitado", SqlDbType.TinyInt).Value = habilitado;
+            this.Command.Parameters.Add("@rol_id", SqlDbType.Int).Value = rolId;
+
+            this.Connector.Open();
+            Command.ExecuteNonQuery();
+            this.Connector.Close();
+
+        }
+
+        public void eliminarFuncionalidades(int rolId)
+        {
+            var query = "DELETE FROM PIZZA.Rol_por_funcionalidad WHERE rolFunc_rol = @rol_id";
+            this.Command = new SqlCommand(query, this.Connector);
+            this.Command.Parameters.Add("@rol_id", SqlDbType.Int).Value = rolId;
+
+            this.Connector.Open();
+            Command.ExecuteNonQuery();
+            this.Connector.Close();
+        }
+
+        public void agregarFuncionalidades(int rolId, List<Funcionalidad> lista)
+        {
             string values = "";
-            foreach(Funcionalidad f in funcs)
+            foreach (Funcionalidad f in lista)
             {
-                values += "(" + idRol + "," + f.id + "),";
+                values += "(" + rolId + "," + f.id + "),";
             }
             values = values.Remove(values.Count() - 1);
 
             this.Connector.Open();
-            query = "INSERT INTO PIZZA.Rol_por_funcionalidad VALUES "+values;
+            var query = "INSERT INTO PIZZA.Rol_por_funcionalidad (rolFunc_rol, rolFunc_func) VALUES " + values;
             this.Command = new SqlCommand(query, this.Connector);
-            //Command.ExecuteNonQuery();
+            Command.ExecuteNonQuery();
             this.Connector.Close();
 
         }

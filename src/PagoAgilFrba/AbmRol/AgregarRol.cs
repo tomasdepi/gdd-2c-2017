@@ -15,10 +15,13 @@ namespace PagoAgilFrba.AbmRol
     public partial class AgregarRol : Form
     {
         List<Funcionalidad> funcs;
+        ListadoRoles padre;
 
-        public AgregarRol()
+        public AgregarRol(ListadoRoles formPadre)
         {
+            this.padre = formPadre;
             InitializeComponent();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -28,7 +31,7 @@ namespace PagoAgilFrba.AbmRol
             foreach (DataGridViewRow row in gridFuncionalidades.Rows)
             {
                 DataGridViewCheckBoxCell checkbox = (DataGridViewCheckBoxCell)row.Cells[0];
-                if (checkbox.Selected)
+                if (checkbox.Value != checkbox.TrueValue && i < funcs.Count)
                 {
                     Funcionalidad f = funcs[i];
                     funcsAAgregar.Add(f);
@@ -36,16 +39,30 @@ namespace PagoAgilFrba.AbmRol
                 i++;
             }
 
+            if(txtNombreRol.Text == "")
+            {
+                MessageBox.Show("Debe ingresar un nombre para el rol", "Error", MessageBoxButtons.OK);
+                return;
+            }
+
             if(funcsAAgregar.Count() == 0)
             {
-                //poner message box
-            }else
-                new RepoRol().guardarNuevoRol(txtNombreRol.Text, funcsAAgregar);
+                MessageBox.Show("Debe seleccionar al menos una funcionalidad", "Error", MessageBoxButtons.OK);
+            }
+            else
+            {
+                int idRol = new RepoRol().guardarNuevoRol(txtNombreRol.Text, funcsAAgregar);
+                MessageBox.Show("Rol creado con exito", "Nuevo Rol", MessageBoxButtons.OK);
+                padre.agregarRol(idRol, txtNombreRol.Text, true);
+                padre.listAddRol(idRol, txtNombreRol.Text, true);
+                this.Close();
+            }
+               
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void cargarFuncionalidades()

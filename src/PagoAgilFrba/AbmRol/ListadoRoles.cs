@@ -14,6 +14,8 @@ namespace PagoAgilFrba.AbmRol
 {
     public partial class ListadoRoles : Form
     {
+        RepoRol repo;
+        List<Rol> roles;
         public ListadoRoles()
         {
             InitializeComponent();
@@ -21,37 +23,68 @@ namespace PagoAgilFrba.AbmRol
 
         private void ListadoRoles_Load(object sender, EventArgs e)
         {
+            repo = new RepoRol();
             cargarRoles();
         }
 
         private void cargarRoles()
         {
-            RepoRol repo = new RepoRol();
-            List<Rol> roles = repo.getRoles();
+            
+            roles = repo.getRoles();
 
             foreach (Rol rol in roles)
             {
-                DataGridViewRow row = new DataGridViewRow();
-                DataGridViewCell nombre = new DataGridViewTextBoxCell();
-                DataGridViewCell habilitado = new DataGridViewTextBoxCell();
-
-                nombre.Value = rol.nombre;
-                habilitado.Value = rol.habilitado ? "Si" : "No";
-              
-                row.Cells.Add(nombre);
-                row.Cells.Add(habilitado);
-
-                nombre.ReadOnly = true;
-                habilitado.ReadOnly = true;
-
-                gridViewRoles.Rows.Add(row);
+                agregarRol(rol.id, rol.nombre, rol.habilitado);
             }
+        }
+
+        public void agregarRol(int id, string rol, bool hab)
+        {
+            DataGridViewRow row = new DataGridViewRow();
+            DataGridViewCell nombre = new DataGridViewTextBoxCell();
+            DataGridViewCell habilitado = new DataGridViewTextBoxCell();
+
+            nombre.Value = rol;
+            habilitado.Value = hab ? "Si" : "No";
+
+            row.Cells.Add(nombre);
+            row.Cells.Add(habilitado);
+
+            nombre.ReadOnly = true;
+            habilitado.ReadOnly = true;
+
+            gridViewRoles.Rows.Add(row);
+        }
+
+        public void listAddRol(int id, string nombre, bool habilitado)
+        {
+            Rol rol = new Rol();
+            rol.id = id; rol.nombre = nombre; rol.habilitado = habilitado;
+            roles.Add(rol);
         }
 
         private void btnAgregarRol_Click(object sender, EventArgs e)
         {
-            var agregarRol = new AgregarRol { StartPosition = FormStartPosition.CenterParent };
+            var agregarRol = new AgregarRol(this) { StartPosition = FormStartPosition.CenterParent };
             agregarRol.ShowDialog();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            int index = gridViewRoles.CurrentRow.Index;
+            Rol rol = roles[index];
+            var editarRol = new EditarRol(rol, this) { StartPosition = FormStartPosition.CenterParent };
+            editarRol.ShowDialog();
+        }
+
+        public void actualizarHabilitado(int rolId)
+        {
+            int rowIndex = roles.FindIndex(x => x.id == rolId);
+            DataGridViewRow row = gridViewRoles.Rows[rowIndex];
+            if ((string)row.Cells[1].Value == "Si")
+                row.Cells[1].Value = "No";
+            else
+                row.Cells[1].Value = "Si";
         }
     }
 }

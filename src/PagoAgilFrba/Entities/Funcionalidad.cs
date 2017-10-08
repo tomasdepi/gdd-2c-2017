@@ -10,5 +10,6 @@ namespace PagoAgilFrba.Entities
     {
         public int id { get; set; }
         public string nombre { get; set; }
+        public bool posee { get; set; }
     }
 }

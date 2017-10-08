@@ -94,16 +94,16 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 46);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(116, 13);
+            this.label2.Size = new System.Drawing.Size(66, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Nombre Funcionalidad:";
+            this.label2.Text = "Nombre Rol:";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // txtNombreRol
             // 
-            this.txtNombreRol.Location = new System.Drawing.Point(134, 43);
+            this.txtNombreRol.Location = new System.Drawing.Point(86, 43);
             this.txtNombreRol.Name = "txtNombreRol";
-            this.txtNombreRol.Size = new System.Drawing.Size(218, 20);
+            this.txtNombreRol.Size = new System.Drawing.Size(266, 20);
             this.txtNombreRol.TabIndex = 5;
             // 
             // AgregarRol

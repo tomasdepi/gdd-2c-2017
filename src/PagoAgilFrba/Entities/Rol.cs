@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PagoAgilFrba.Entities
 {
-    class Rol
+    public class Rol
     {
         public int id { get; set; }
         public string nombre { get; set; }
