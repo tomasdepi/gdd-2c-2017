@@ -19,6 +19,7 @@ namespace PagoAgilFrba.Repository
             var query = "SELECT rol_id, rol_nombre, rol_habilitado FROM [PIZZA].[Rol]";
             this.Command = new SqlCommand(query, this.Connector);
 
+
             this.Connector.Open();
             SqlDataReader roles = Command.ExecuteReader();
 

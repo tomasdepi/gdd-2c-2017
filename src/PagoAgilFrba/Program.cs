@@ -1,4 +1,5 @@
-﻿using PagoAgilFrba.AbmRol;
+﻿using PagoAgilFrba.AbmCliente;
+using PagoAgilFrba.AbmRol;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace PagoAgilFrba
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ListadoRoles());
+            Application.Run(new ListadoClientes());
         }
     }
 }
