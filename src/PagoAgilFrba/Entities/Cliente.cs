@@ -15,7 +15,7 @@ namespace PagoAgilFrba.Entities
         public string mail { get; set; }
         public string direccion { get; set; }
         public string codigoPostal { get; set; }
-        public string fechaNac { get; set; }
+        public DateTime fechaNac { get; set; }
         public bool habilitado { get; set; }
     }
 }

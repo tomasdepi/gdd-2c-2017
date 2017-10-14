@@ -13,8 +13,8 @@ namespace PagoAgilFrba.Repository
     {
         public void altaCliente(Cliente cliente)
         {
-            var query = "INSERT INTO PIZZA.Cliente (clie_dni, clie_nombre, clie_apellido, clie_telefono, clie_mail, clie_direccion, clie_codPostal, clie_fechaNac) ";
-            query += "VALUES (@dni, @nombre, @apellido, @telefono, @mail, @direccion, @codigoPostal, @fechaNac)";
+            var query = "INSERT INTO PIZZA.Cliente (clie_dni, clie_nombre, clie_apellido, clie_telefono, clie_mail, clie_direccion, clie_codPostal, clie_fechaNac, clie_habilitado) ";
+            query += "VALUES (@dni, @nombre, @apellido, @telefono, @mail, @direccion, @codigoPostal, @fechaNac, 1)";
 
             this.Command = new SqlCommand(query, this.Connector);
 
@@ -25,7 +25,7 @@ namespace PagoAgilFrba.Repository
             this.Command.Parameters.Add("@mail", SqlDbType.VarChar).Value = cliente.mail;
             this.Command.Parameters.Add("@direccion", SqlDbType.VarChar).Value = cliente.direccion;
             this.Command.Parameters.Add("@codigoPostal", SqlDbType.VarChar).Value = cliente.codigoPostal;
-            this.Command.Parameters.Add("@fechaNac", SqlDbType.VarChar).Value = cliente.fechaNac;
+            this.Command.Parameters.Add("@fechaNac", SqlDbType.Date).Value = cliente.fechaNac;
 
             this.Connector.Open();
             this.Command.ExecuteNonQuery();
@@ -44,15 +44,15 @@ namespace PagoAgilFrba.Repository
             this.Connector.Close();
         }
 
-        public List<Cliente> getClientes(int dni, string nombre, string apellido)
+        public List<Cliente> getClientes(string dni, string nombre, string apellido)
         {
             List<Cliente> listaClientes = new List<Cliente>();
 
-            var query = "SELECT * FROM PIZZA.Cliente WHERE clie_dni like '%@dni%' AND clie_nombre like '%@nombre%' AND clie_apellido like '%@apellido%'";
+            var query = "SELECT * FROM PIZZA.Cliente WHERE clie_dni like '%"+dni+"%' AND clie_nombre like '%"+nombre+"%' AND clie_apellido like '%"+apellido+"%'";
             this.Command = new SqlCommand(query, this.Connector);
-            this.Command.Parameters.Add("@dni", SqlDbType.Int).Value = dni;
-            this.Command.Parameters.Add("@nombre", SqlDbType.VarChar).Value = nombre;
-            this.Command.Parameters.Add("@apellido", SqlDbType.VarChar).Value = apellido;
+            //this.Command.Parameters.Add("@dni", SqlDbType.VarChar).Value = dni;
+            //this.Command.Parameters.Add("@nombre", SqlDbType.VarChar).Value = nombre;
+            //this.Command.Parameters.Add("@apellido", SqlDbType.VarChar).Value = apellido;
 
             this.Connector.Open();
             SqlDataReader clientes = Command.ExecuteReader();
@@ -67,6 +67,26 @@ namespace PagoAgilFrba.Repository
             return listaClientes;
         }
 
+        public Cliente getCliente(int dni)
+        {
+            Cliente clie = new Cliente();
+
+            var query = "SELECT * FROM PIZZA.Cliente WHERE clie_dni = @dni";
+            this.Command = new SqlCommand(query, this.Connector);
+            this.Command.Parameters.Add("@dni", SqlDbType.Int).Value = dni;
+
+            this.Connector.Open();
+            SqlDataReader clienteDb = Command.ExecuteReader();
+
+            clienteDb.Read();
+            
+            clie = crearCliente(clienteDb);
+
+            this.Connector.Close();
+
+            return clie;
+        }
+
         public Cliente crearCliente(SqlDataReader cliente)
         {
             Cliente clie = new Cliente();
@@ -76,9 +96,9 @@ namespace PagoAgilFrba.Repository
             clie.direccion = cliente["clie_direccion"].ToString();
             clie.mail = cliente["clie_mail"].ToString();
             clie.codigoPostal = cliente["clie_codPostal"].ToString();
-            clie.fechaNac = cliente["clie_fechaNac"].ToString();
-            clie.telefono = (int)cliente["clie_telefono"];
-            clie.habilitado = (int)cliente["dni"] == 1 ? true : false  ;
+            clie.fechaNac = Convert.ToDateTime(cliente["clie_fechaNac"].ToString());
+            clie.telefono = Int32.Parse(cliente["clie_telefono"].ToString());
+            clie.habilitado = cliente["clie_habilitado"].ToString() == "1" ? true : false  ;
 
             return clie;
         }
@@ -95,6 +115,7 @@ namespace PagoAgilFrba.Repository
             this.Command.Parameters.Add("@fecNac", SqlDbType.VarChar).Value = clie.fechaNac;
             this.Command.Parameters.Add("@codPostal", SqlDbType.VarChar).Value = clie.codigoPostal;
             this.Command.Parameters.Add("@telefono", SqlDbType.Int).Value = clie.telefono;
+            this.Command.Parameters.Add("@fechaNac", SqlDbType.Date).Value = clie.fechaNac;
 
             this.Connector.Open();
             this.Command.ExecuteNonQuery();

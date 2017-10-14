@@ -24,10 +24,11 @@ namespace PagoAgilFrba.AbmCliente
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            gridListadoClientes.Rows.Clear();
             var nombre = txtNombre.Text;
             var apellido = txtApellido.Text;
-            int dni = int.Parse(txtDni.Text);
+            var dni = txtDni.Text;
+
+            gridListadoClientes.Rows.Clear();
 
             List<Cliente> clientes = repo.getClientes(dni, nombre, apellido);
 
@@ -46,12 +47,12 @@ namespace PagoAgilFrba.AbmCliente
                 mailCell.Value = clie.mail;
                 direccionCell.Value = clie.direccion;
                 dniCell.Value = clie.dni;
-                habilitadoCell.Value = clie.habilitado;
+                habilitadoCell.Value = clie.habilitado ? "Si" : "No";
+                row.Cells.Add(dniCell);
                 row.Cells.Add(nombreCell);
                 row.Cells.Add(apellidoCell);
                 row.Cells.Add(mailCell);
                 row.Cells.Add(direccionCell);
-                row.Cells.Add(dniCell);
                 row.Cells.Add(habilitadoCell);
 
                 gridListadoClientes.Rows.Add(row);
@@ -70,24 +71,49 @@ namespace PagoAgilFrba.AbmCliente
 
         private void txtHabilitar_Click(object sender, EventArgs e)
         {
-            int dni = (int)gridListadoClientes.SelectedRows[0].Cells[0].Value;
-            int habilitado = (int)gridListadoClientes.SelectedRows[0].Cells[5].Value;
-
-            if(habilitado == 1)
+            if (gridListadoClientes.SelectedRows.Count == 0)
             {
-                gridListadoClientes.SelectedRows[0].Cells[5].Value = 0;
+                MessageBox.Show("Debe seleccion a un cliente", "Error", MessageBoxButtons.OK);
+                return;
+            }
+
+            int dni = (int)gridListadoClientes.SelectedRows[0].Cells[0].Value;
+            bool habilitado = gridListadoClientes.SelectedRows[0].Cells[5].Value.ToString() == "Si" ? true : false;
+
+            repo.setHabilitacionCliente(dni, habilitado);
+
+            if(habilitado)
+            {
+                gridListadoClientes.SelectedRows[0].Cells[5].Value = "No";
                 repo.setHabilitacionCliente(dni, false);
             }
             else
             {
-                gridListadoClientes.SelectedRows[0].Cells[5].Value = 1;
+                gridListadoClientes.SelectedRows[0].Cells[5].Value = "Si";
                 repo.setHabilitacionCliente(dni, true);
             }
+
+            MessageBox.Show("Cambio exitoso.", "Actualizado", MessageBoxButtons.OK);
         }
 
         private void txtEditar_Click(object sender, EventArgs e)
         {
+            if (gridListadoClientes.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Debe seleccion a un cliente", "Error", MessageBoxButtons.OK);
+                return;
+            }
+
             int dni = (int)gridListadoClientes.SelectedRows[0].Cells[0].Value;
+
+            var editarCliente = new EditarCliente(dni) { StartPosition = FormStartPosition.CenterParent };
+            editarCliente.ShowDialog();
+        }
+
+        private void btnAltaCliente_Click(object sender, EventArgs e)
+        {
+            var altaCliente = new AltaCliente() { StartPosition = FormStartPosition.CenterParent };
+            altaCliente.ShowDialog();
         }
     }
 }
