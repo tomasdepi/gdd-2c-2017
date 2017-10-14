@@ -42,6 +42,7 @@ CREATE TABLE [pizza].[Empresa](
 GO
 CREATE TABLE [pizza].[Devolucion](
 	[dev_id] [int] NOT NULL,
+	[dev_factura] [int] NOT NULL,
 	[dev_tipoEntidad] [varchar](40) NOT NULL,
 	[dev_fecha] [datetime] NULL,
 	[dev_motivo] [varchar](150) NOT NULL,
@@ -66,11 +67,10 @@ CREATE TABLE [pizza].[Rendicion](
 	[rend_id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
-GO
-
 
 GO
 CREATE TABLE [pizza].[Factura_por_rendicion](
+	[factRend_id] [int] NOT NULL IDENTITY(1,1),
 	[factRend_factura] [int] NOT NULL,
 	[factRend_rendicion] [int] NOT NULL
  CONSTRAINT [PK_Factura_por_rendicion] PRIMARY KEY CLUSTERED 
@@ -105,10 +105,21 @@ CREATE TABLE [pizza].[Item_factura](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+GO
+CREATE TABLE [pizza].[Factura_por_pago](
+	[factPago_id] [int] NOT NULL IDENTITY(1,1),
+	[factPago_pago] [varchar](50) NOT NULL,
+	[factPago_factura] [int] NOT NULL
+ CONSTRAINT [PK_Factura_por_pago] PRIMARY KEY CLUSTERED 
+(
+	[factPago_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
 
 GO
 CREATE TABLE [pizza].[Pago](
 	[pago_id] [int] NOT NULL IDENTITY(1,1),
+	[pago_clie] [int] NOT NULL,
 	[pago_importeTotal] [int] NOT NULL,
 	[pago_anulado] [tinyint] NULL,
 	[pago_sucursal] [int] NOT NULL,
@@ -120,7 +131,6 @@ CREATE TABLE [pizza].[Pago](
 	[pago_id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
-GO
 
 GO
 CREATE TABLE [pizza].[Sucursal](
@@ -136,11 +146,12 @@ CREATE TABLE [pizza].[Sucursal](
 
 GO
 CREATE TABLE [pizza].[User_por_sucursal](
+	[usrSuc_id] [int] NOT NULL IDENTITY(1,1),
 	[usrSuc_usuario] [varchar](50) NOT NULL,
 	[usrSuc_sucursal] [int] NOT NULL
  CONSTRAINT [PK_User_por_sucursal] PRIMARY KEY CLUSTERED 
 (
-	[usrSuc_usuario], [usrSuc_sucursal] ASC
+	[usrSuc_id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
@@ -158,11 +169,12 @@ CREATE TABLE [pizza].[Usuario](
 
 GO
 CREATE TABLE [pizza].[Rol_por_usuario](
+	[rolUsr_id] [int] NOT NULL IDENTITY(1,1),
 	[rolUsr_rol] [int] NOT NULL,
 	[rolUsr_usuario] [varchar](150) NOT NULL,
  CONSTRAINT [PK_Rol_por_usuario] PRIMARY KEY CLUSTERED 
 (
-	[rolUsr_rol], [rolUsr_usuario] ASC
+	[rolUsr_id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
@@ -179,11 +191,12 @@ CREATE TABLE [pizza].[Rol](
 
 GO
 CREATE TABLE [pizza].[Rol_por_funcionalidad](
+	[rolFunc_id] [int] NOT NULL IDENTITY(1,1),
 	[rolFunc_rol] [int] NOT NULL,
 	[rolFunc_func] [int] NOT NULL
  CONSTRAINT [PK_Rol_por_Funcionalidad] PRIMARY KEY CLUSTERED 
 (
-	[rolFunc_rol], [rolFunc_func] ASC
+	[rolFunc_id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
@@ -241,8 +254,8 @@ CREATE PROCEDURE [pizza].[Migracion_pago]
 AS
 BEGIN
 	SET IDENTITY_INSERT [pizza].[Pago] ON
-	INSERT INTO PIZZA.Pago(pago_id, pago_factura, pago_fecha, pago_sucursal, pago_importeTotal, pago_anulado, pago_formaPago)
-	SELECT DISTINCT Pago_nro, Nro_factura, Pago_fecha, Sucursal_codigo_postal, Total, 0, FormaPagoDescripcion from gd_esquema.Maestra where Pago_nro is not null
+	INSERT INTO PIZZA.Pago(pago_id, pago_factura, pago_fecha, pago_sucursal, pago_importeTotal, pago_anulado, pago_formaPago, pago_clie)
+	SELECT DISTINCT Pago_nro, Nro_factura, Pago_fecha, Sucursal_codigo_postal, Total, 0, FormaPagoDescripcion, [Cliente-Dni] from gd_esquema.Maestra where Pago_nro is not null
 	SET IDENTITY_INSERT [pizza].[Pago] OFF
 
 END
