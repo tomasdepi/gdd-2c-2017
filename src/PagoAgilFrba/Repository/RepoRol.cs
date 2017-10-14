@@ -64,7 +64,7 @@ namespace PagoAgilFrba.Repository
         {
             List<Funcionalidad> listaFuncionalidades = new List<Funcionalidad>();
 
-            var query = "select func_nombre, (select 1 from PIZZA.Rol_por_funcionalidad rf join PIZZA.Rol r on r.rol_id=rf.rolFunc_rol where rf.rolFunc_func=f.func_id and r.rol_nombre=@rol) tieneFunc from PIZZA.Funcionalidad f";
+            var query = "select func_id, func_nombre, (select 1 from PIZZA.Rol_por_funcionalidad rf join PIZZA.Rol r on r.rol_id=rf.rolFunc_rol where rf.rolFunc_func=f.func_id and r.rol_nombre=@rol) tieneFunc from PIZZA.Funcionalidad f";
             this.Command = new SqlCommand(query, this.Connector);
             this.Command.Parameters.Add("@rol", SqlDbType.VarChar).Value = rol;
 
@@ -74,6 +74,7 @@ namespace PagoAgilFrba.Repository
             while (funcionalidades.Read())
             {
                 Funcionalidad func = new Funcionalidad();
+                func.id = (int)funcionalidades["func_id"];
                 func.posee = (string)funcionalidades["tieneFunc"].ToString() == "1" ? true : false;
                 func.nombre = (string)funcionalidades["func_nombre"];
                 listaFuncionalidades.Add(func);

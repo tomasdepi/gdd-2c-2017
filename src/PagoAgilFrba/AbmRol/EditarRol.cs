@@ -82,7 +82,7 @@ namespace PagoAgilFrba.AbmRol
             foreach (DataGridViewRow row in gridFuncionalidades.Rows)
             {
                 DataGridViewCheckBoxCell checkbox = (DataGridViewCheckBoxCell)row.Cells[0];
-                if (checkbox.Value != checkbox.TrueValue && i < funcs.Count)
+                if (Convert.ToBoolean(checkbox.Value) && i < funcs.Count)
                 {
                     Funcionalidad f = funcs[i];
                     funcsAAgregar.Add(f);
@@ -93,6 +93,7 @@ namespace PagoAgilFrba.AbmRol
             repo.agregarFuncionalidades(rol.id, funcsAAgregar);
 
             MessageBox.Show("Rol actualizado con exito", "Exito", MessageBoxButtons.OK);
+            this.Close();
         }
     }
 }
