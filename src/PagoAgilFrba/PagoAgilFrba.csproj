@@ -69,11 +69,17 @@
     <Compile Include="AbmEmpresa\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmFactura\Form1.cs">
+    <Compile Include="AbmFactura\AltaFactura.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmFactura\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AbmFactura\AltaFactura.Designer.cs">
+      <DependentUpon>AltaFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmFactura\AltaItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmFactura\AltaItem.Designer.cs">
+      <DependentUpon>AltaItem.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmRol\AgregarRol.cs">
       <SubType>Form</SubType>
@@ -100,7 +106,9 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\Cliente.cs" />
+    <Compile Include="Entities\Factura.cs" />
     <Compile Include="Entities\Funcionalidad.cs" />
+    <Compile Include="Entities\ItemFactura.cs" />
     <Compile Include="Entities\Rol.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -129,6 +137,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Repository\RepoCliente.cs" />
+    <Compile Include="Repository\RepoFactura.cs" />
     <Compile Include="Repository\RepoRol.cs" />
     <Compile Include="Repository\Repository.cs" />
     <EmbeddedResource Include="AbmCliente\AltaCliente.resx">
@@ -139,6 +148,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmCliente\ListadoClientes.resx">
       <DependentUpon>ListadoClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmFactura\AltaFactura.resx">
+      <DependentUpon>AltaFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmFactura\AltaItem.resx">
+      <DependentUpon>AltaItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\AgregarRol.resx">
       <DependentUpon>AgregarRol.cs</DependentUpon>
