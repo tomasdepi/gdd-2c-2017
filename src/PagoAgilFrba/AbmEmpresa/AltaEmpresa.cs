@@ -35,7 +35,7 @@ namespace PagoAgilFrba.AbmEmpresa
 
             txtId.KeyPress += new KeyPressEventHandler(keypressed);
             txtCuit.KeyPress += new KeyPressEventHandler(keypressed);
-            txtNombre.KeyPress += new KeyPressEventHandler(keypressed);
+            txtId.KeyPress += new KeyPressEventHandler(keypressed);
         }
 
         private void alertNotAllFieldsCompleted()
@@ -48,7 +48,7 @@ namespace PagoAgilFrba.AbmEmpresa
             Empresa empr = new Empresa();
             if (txtId.Text == "") { alertNotAllFieldsCompleted(); return; } else empr.id = Int32.Parse(txtId.Text);
             if (txtCuit.Text == "") { alertNotAllFieldsCompleted(); return; } else empr.cuit = txtCuit.Text;
-            if (txtNombre.Text == "") { alertNotAllFieldsCompleted(); return; } else empr.nombre = txtNombre.Text;
+            if (txtId.Text == "") { alertNotAllFieldsCompleted(); return; } else empr.nombre = txtId.Text;
             if (txtDireccion.Text == "") { alertNotAllFieldsCompleted(); return; } else empr.direccion = txtDireccion.Text;
             if (txtRubro.Text == "") { alertNotAllFieldsCompleted(); return; } else empr.rubro = txtRubro.Text;
             if (dateFechaRend.Text == "") { alertNotAllFieldsCompleted(); return; } else empr.fechaRendicion = dateFechaRend.Value.Date;
