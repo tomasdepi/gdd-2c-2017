@@ -67,7 +67,5 @@ namespace PagoAgilFrba.AbmEmpresa
                 e.Handled = true;
             }
         }
-
-
     }
 }
