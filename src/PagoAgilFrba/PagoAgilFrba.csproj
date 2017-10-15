@@ -63,11 +63,11 @@
     <Compile Include="AbmCliente\ListadoClientes.Designer.cs">
       <DependentUpon>ListadoClientes.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmEmpresa\Form1.cs">
+    <Compile Include="AbmEmpresa\AltaEmpresa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmEmpresa\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AbmEmpresa\AltaEmpresa.Designer.cs">
+      <DependentUpon>AltaEmpresa.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmFactura\AltaFactura.cs">
       <SubType>Form</SubType>
@@ -106,6 +106,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\Cliente.cs" />
+    <Compile Include="Entities\Empresa.cs" />
     <Compile Include="Entities\Factura.cs" />
     <Compile Include="Entities\Funcionalidad.cs" />
     <Compile Include="Entities\ItemFactura.cs" />
@@ -137,6 +138,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Repository\RepoCliente.cs" />
+    <Compile Include="Repository\RepoEmpresa.cs" />
     <Compile Include="Repository\RepoFactura.cs" />
     <Compile Include="Repository\RepoRol.cs" />
     <Compile Include="Repository\Repository.cs" />
