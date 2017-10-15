@@ -41,15 +41,55 @@ namespace PagoAgilFrba.Repository
             var query = "INSERT INTO PIZZA.Item_factura (item_numFacutura, item_cantidad, item_monto) ";
             query += "VALUES (@numero, @cantidad, @monto)";
 
+            this.Command = new SqlCommand(query, this.Connector);
             this.Command.Parameters.Add("@numero", SqlDbType.Int).Value = item.numFactura;
             this.Command.Parameters.Add("@cantidad", SqlDbType.Int).Value = item.cantidad;
             this.Command.Parameters.Add("@monto", SqlDbType.Int).Value = item.monto;
 
-            this.Command = new SqlCommand(query, this.Connector);
             this.Connector.Open();
             this.Command.ExecuteNonQuery();
             this.Connector.Close();
         }
 
+        public List<Factura> getFacturas(string numFactura, string cliente, int pago)
+        {
+            List<Factura> facts = new List<Factura>();
+
+            var query = "SELECT fact_num, fact_cliente, fact_empresa, fact_pagada FROM PIZZA.Factura ";
+            query += "WHERE fact_num LIKE '%@numFactura%' AND fact_cliente LIKE '%@cliente%' ";
+
+            if(pago == 1) //pagada
+                query += "AND fact_pagada = 1";
+            if (pago == 2) // no pagada
+                query += "AND fact_pagada = 0";
+
+            this.Command = new SqlCommand(query, this.Connector);
+            this.Command.Parameters.Add("@numFactura", SqlDbType.Int).Value = numFactura;
+            this.Command.Parameters.Add("@cliente", SqlDbType.Int).Value = cliente;
+
+            this.Connector.Open();
+
+            SqlDataReader facturas = Command.ExecuteReader();
+
+            while (facturas.Read())
+            {
+                facts.Add(crearFactura(facturas));
+            }
+
+            this.Connector.Close();
+
+            return facts;
+        }
+
+        private Factura crearFactura(SqlDataReader data)
+        {
+            Factura factura = new Factura();
+            factura.numero = Int32.Parse(data["fact_numero"].ToString());
+            factura.cliente = Int32.Parse(data["fact_cliente"].ToString());
+            factura.empresa = data["fact_empresa"].ToString();
+            factura.pagada = Convert.ToBoolean(data["fact_pagada"].ToString());
+
+            return factura;
+        }
     }
 }

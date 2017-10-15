@@ -81,6 +81,12 @@
     <Compile Include="AbmFactura\AltaItem.Designer.cs">
       <DependentUpon>AltaItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmFactura\ListadoFacturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmFactura\ListadoFacturas.Designer.cs">
+      <DependentUpon>ListadoFacturas.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmRol\AgregarRol.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,11 +157,17 @@
     <EmbeddedResource Include="AbmCliente\ListadoClientes.resx">
       <DependentUpon>ListadoClientes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AbmEmpresa\AltaEmpresa.resx">
+      <DependentUpon>AltaEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmFactura\AltaFactura.resx">
       <DependentUpon>AltaFactura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmFactura\AltaItem.resx">
       <DependentUpon>AltaItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmFactura\ListadoFacturas.resx">
+      <DependentUpon>ListadoFacturas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\AgregarRol.resx">
       <DependentUpon>AgregarRol.cs</DependentUpon>
