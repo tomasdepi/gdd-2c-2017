@@ -52,6 +52,10 @@ namespace PagoAgilFrba.AbmFactura
                 MessageBox.Show("Esa Factura ya esta paga, no puede modificarse", "Error", MessageBoxButtons.OK);
                 return;
             }
+            else
+            {
+                DataGridViewRow row = gridFacturas.SelectedRows[0];
+            }
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
