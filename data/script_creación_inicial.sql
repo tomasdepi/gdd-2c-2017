@@ -124,7 +124,6 @@ CREATE TABLE [pizza].[Pago](
 	[pago_anulado] [tinyint] NULL,
 	[pago_sucursal] [int] NOT NULL,
 	[pago_fecha] [datetime] NOT NULL,
-	[pago_factura] [int] NOT NULL,
 	[pago_formaPago] [varchar](100) NOT NULL
  CONSTRAINT [PK_Pago] PRIMARY KEY CLUSTERED 
 (
@@ -254,9 +253,12 @@ CREATE PROCEDURE [pizza].[Migracion_pago]
 AS
 BEGIN
 	SET IDENTITY_INSERT [pizza].[Pago] ON
-	INSERT INTO PIZZA.Pago(pago_id, pago_factura, pago_fecha, pago_sucursal, pago_importeTotal, pago_anulado, pago_formaPago, pago_clie)
-	SELECT DISTINCT Pago_nro, Nro_factura, Pago_fecha, Sucursal_codigo_postal, Total, 0, FormaPagoDescripcion, [Cliente-Dni] from gd_esquema.Maestra where Pago_nro is not null
+	INSERT INTO PIZZA.Pago(pago_id, pago_fecha, pago_sucursal, pago_importeTotal, pago_anulado, pago_formaPago, pago_clie)
+	SELECT DISTINCT Pago_nro, Pago_fecha, Sucursal_codigo_postal, Total, 0, FormaPagoDescripcion, [Cliente-Dni] from gd_esquema.Maestra where Pago_nro is not null
 	SET IDENTITY_INSERT [pizza].[Pago] OFF
+
+	INSERT INTO PIZZA.Factura_por_pago (factPago_pago, factPago_factura)
+	SELECT DISTINCT Pago_nro, Nro_Factura from gd_esquema.Maestra where Pago_nro is not null and Nro_Factura is not null
 
 END
 
