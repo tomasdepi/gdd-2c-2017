@@ -26,6 +26,7 @@ namespace PagoAgilFrba.AbmFactura
         private void ListadoFacturas_Load(object sender, EventArgs e)
         {
             gridFacturas.MultiSelect = false;
+            comboPago.SelectedIndex = 0;
         }
 
         private void txtCancelar_Click(object sender, EventArgs e)
@@ -54,12 +55,24 @@ namespace PagoAgilFrba.AbmFactura
             }
             else
             {
-                DataGridViewRow row = gridFacturas.SelectedRows[0];
+                int numFactura = Int32.Parse(gridFacturas.SelectedRows[0].Cells[0].Value.ToString());
+
+                var editarFactura = new EditarFactura(numFactura) { StartPosition = FormStartPosition.CenterParent };
+                editarFactura.ShowDialog();
             }
+
+            
+        }
+
+        public void setCliente(string dni)
+        {
+            txtCliente.Text = dni;
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            gridFacturas.Rows.Clear();
+
             string cliente = txtCliente.Text;
             string numFactura = txtNumFactura.Text;
             int pago = comboPago.SelectedIndex;
@@ -75,7 +88,7 @@ namespace PagoAgilFrba.AbmFactura
                 cellCliente.Value = fact.cliente;
                 cellNumFactura.Value = fact.numero;
                 cellEmpresa.Value = fact.empresa;
-                cellPagado.Value = fact.pagada;
+                cellPagado.Value = fact.pagada ? "Si" : "No";
 
                 DataGridViewRow row = new DataGridViewRow();
                 row.Cells.Add(cellNumFactura);

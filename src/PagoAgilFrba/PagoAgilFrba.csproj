@@ -81,6 +81,12 @@
     <Compile Include="AbmFactura\AltaItem.Designer.cs">
       <DependentUpon>AltaItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmFactura\EditarFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmFactura\EditarFactura.Designer.cs">
+      <DependentUpon>EditarFactura.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmFactura\ListadoFacturas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +160,13 @@
     <Compile Include="Repository\RepoFactura.cs" />
     <Compile Include="Repository\RepoRol.cs" />
     <Compile Include="Repository\Repository.cs" />
+    <Compile Include="Utilities\buscaClientes.cs" />
+    <Compile Include="Utilities\BuscadorCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\BuscadorCliente.Designer.cs">
+      <DependentUpon>BuscadorCliente.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AbmCliente\AltaCliente.resx">
       <DependentUpon>AltaCliente.cs</DependentUpon>
     </EmbeddedResource>
@@ -171,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmFactura\AltaItem.resx">
       <DependentUpon>AltaItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmFactura\EditarFactura.resx">
+      <DependentUpon>EditarFactura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmFactura\ListadoFacturas.resx">
       <DependentUpon>ListadoFacturas.cs</DependentUpon>
@@ -198,6 +214,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RegistroPago\RegistroPago.resx">
       <DependentUpon>RegistroPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\BuscadorCliente.resx">
+      <DependentUpon>BuscadorCliente.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

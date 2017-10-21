@@ -27,11 +27,18 @@ namespace PagoAgilFrba.AbmFactura
 
         private void txtAgregar_Click(object sender, EventArgs e)
         {
+
+            if(txtMonto.Text == "" || txtCantidad.Text == "")
+            {
+                MessageBox.Show("Debe completar todos los campos", "Error", MessageBoxButtons.OK);
+                return;
+            }
+
             var monto = Int32.Parse(txtMonto.Text);
             var cantidad = Int32.Parse(txtCantidad.Text);
 
             formPadre.agregarItem(monto, cantidad);
-
+            this.Close();
         }
 
         private void keypressed(object sender, KeyPressEventArgs e)

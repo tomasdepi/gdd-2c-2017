@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagoAgilFrba.Utilities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,6 +27,17 @@ namespace PagoAgilFrba.RegistroPago
         {
             var altaRegistroPag = new AltaRegistroPago() { StartPosition = FormStartPosition.CenterParent };
             altaRegistroPag.ShowDialog();
+        }
+
+        private void btnSelectCliente_Click(object sender, EventArgs e)
+        {
+            var selectCliente = new BuscadorCliente(this) { StartPosition = FormStartPosition.CenterParent };
+            selectCliente.ShowDialog();
+        }
+
+        public void setCliente(string dni)
+        {
+            txtCliente.Text = dni;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace PagoAgilFrba.Repository
 
             this.Command = new SqlCommand(query, this.Connector);
 
-            this.Command.Parameters.Add("@dni", SqlDbType.Int).Value = factura.numero;
+            this.Command.Parameters.Add("@numero", SqlDbType.Int).Value = factura.numero;
             this.Command.Parameters.Add("@cliente", SqlDbType.Int).Value = factura.cliente;
             this.Command.Parameters.Add("@empresa", SqlDbType.VarChar).Value = factura.empresa;
             this.Command.Parameters.Add("@alta", SqlDbType.Date).Value = factura.alta;
@@ -56,7 +56,7 @@ namespace PagoAgilFrba.Repository
             List<Factura> facts = new List<Factura>();
 
             var query = "SELECT fact_numero, fact_cliente, fact_empresa, fact_pagada FROM PIZZA.Factura ";
-            query += "WHERE fact_numero LIKE '%@numFactura%' AND fact_cliente LIKE '%@cliente%' ";
+            query += "WHERE fact_numero LIKE '%"+numFactura+"' AND fact_cliente LIKE '%"+cliente+"%' ";
 
             if(pago == 1) //pagada
                 query += "AND fact_pagada = 1";
@@ -64,8 +64,8 @@ namespace PagoAgilFrba.Repository
                 query += "AND fact_pagada = 0";
 
             this.Command = new SqlCommand(query, this.Connector);
-            this.Command.Parameters.Add("@numFactura", SqlDbType.VarChar).Value = numFactura;
-            this.Command.Parameters.Add("@cliente", SqlDbType.VarChar).Value = cliente;
+           // this.Command.Parameters.Add("@numFactura", SqlDbType.VarChar).Value = numFactura;
+            //this.Command.Parameters.Add("@cliente", SqlDbType.VarChar).Value = cliente;
 
             this.Connector.Open();
 
@@ -87,9 +87,64 @@ namespace PagoAgilFrba.Repository
             factura.numero = Int32.Parse(data["fact_numero"].ToString());
             factura.cliente = Int32.Parse(data["fact_cliente"].ToString());
             factura.empresa = data["fact_empresa"].ToString();
-            factura.pagada = Convert.ToBoolean(data["fact_pagada"].ToString());
+            factura.pagada = data["fact_pagada"].ToString() == "1" ? true : false;
 
             return factura;
+        }
+
+        public Factura getFactura(int numFactura)
+        {
+            Factura factura = new Factura();
+
+            var query = "SELECT TOP 1 * FROM PIZZA.Factura WHERE fact_numero = @numFactura ";
+
+            this.Command = new SqlCommand(query, this.Connector);
+            this.Command.Parameters.Add("@numFactura", SqlDbType.Int).Value = numFactura;
+
+            this.Connector.Open();
+
+            SqlDataReader facturaReader = Command.ExecuteReader();
+
+            facturaReader.Read();
+
+            factura = crearFactura(facturaReader);
+
+            this.Connector.Close();
+
+
+            return factura;
+        }
+
+        public List<ItemFactura> getItems(int numFactura)
+        {
+            List<ItemFactura> items = new List<ItemFactura>();
+
+            var query = "SELECT item_monto, item_cantidad FROM PIZZA.Item_factura WHERE item_numFacutura = @numFactura";
+
+            this.Command = new SqlCommand(query, this.Connector);
+            this.Command.Parameters.Add("@numFactura", SqlDbType.Int).Value = numFactura;
+
+            this.Connector.Open();
+
+            SqlDataReader itemReader = Command.ExecuteReader();
+
+            while (itemReader.Read())
+            {
+                ItemFactura item = new ItemFactura();
+                item.monto = Int32.Parse(itemReader["item_monto"].ToString());
+                item.cantidad = Int32.Parse(itemReader["item_cantidad"].ToString());
+                items.Add(item);
+            }
+
+            this.Connector.Close();
+
+
+            return items;
+        }
+
+        public void deleteItems(int numFactura)
+        {
+
         }
     }
 }

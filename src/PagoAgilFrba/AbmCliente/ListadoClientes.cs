@@ -1,4 +1,5 @@
-﻿using PagoAgilFrba.Entities;
+﻿using PagoAgilFrba.AbmFactura;
+using PagoAgilFrba.Entities;
 using PagoAgilFrba.Repository;
 using System;
 using System.Collections.Generic;
@@ -15,11 +16,12 @@ namespace PagoAgilFrba.AbmCliente
     public partial class ListadoClientes : Form
     {
         RepoCliente repo;
-
-        public ListadoClientes()
+        
+        public ListadoClientes(ListadoFacturas formPadre)
         {
             InitializeComponent();
             this.repo = new RepoCliente();
+            
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)

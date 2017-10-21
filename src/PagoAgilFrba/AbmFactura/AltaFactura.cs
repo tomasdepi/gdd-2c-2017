@@ -1,5 +1,6 @@
 ﻿using PagoAgilFrba.Entities;
 using PagoAgilFrba.Repository;
+using PagoAgilFrba.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,16 +38,32 @@ namespace PagoAgilFrba.AbmFactura
             DataGridViewRow row = new DataGridViewRow();
             row.Cells.Add(cellMonto);
             row.Cells.Add(cellCantidad);
+
+            gridItems.Rows.Add(row);
         }
 
         private void btnAgregarItem_Click(object sender, EventArgs e)
         {
-            AltaItem altaItem = new AltaItem(this);
-            altaItem.ShowDialog();
+            if (txtMonto.Text == "" || txtCantidad.Text == "")
+            {
+                MessageBox.Show("Debe completar todos los campos", "Error", MessageBoxButtons.OK);
+                return;
+            }
+
+            var monto = Int32.Parse(txtMonto.Text);
+            var cantidad = Int32.Parse(txtCantidad.Text);
+
+            agregarItem(monto, cantidad);
         }
 
         private void txtAceptar_Click(object sender, EventArgs e)
         {
+            if(gridItems.Rows.Count <= 0)
+            {
+                MessageBox.Show("Debe agregar al menos un item", "Error", MessageBoxButtons.OK);
+                return;
+            }
+
             Factura fact = new Factura();
             List <ItemFactura> items = new List<ItemFactura>();
             fact.numero = Int32.Parse(txtNumFactura.Text);
@@ -57,6 +74,8 @@ namespace PagoAgilFrba.AbmFactura
 
             foreach(DataGridViewRow row in gridItems.Rows)
             {
+                if (row.IsNewRow) continue;
+
                 ItemFactura i = new ItemFactura();
                 i.cantidad = Int32.Parse(row.Cells[0].Value.ToString());
                 i.monto = Int32.Parse(row.Cells[1].Value.ToString());
@@ -65,6 +84,21 @@ namespace PagoAgilFrba.AbmFactura
 
             repo.altaFactura(fact, items);
             MessageBox.Show("Factura cargada con exito", "Exito", MessageBoxButtons.OK);
+        }
+
+        private void AltaFactura_Load(object sender, EventArgs e)
+        {
+            txtMonto.KeyPress += onlyNumbers;
+            txtCantidad.KeyPress += onlyNumbers;
+        }
+
+        private void onlyNumbers(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

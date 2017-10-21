@@ -105,6 +105,7 @@
             // 
             this.txtCliente.Location = new System.Drawing.Point(72, 16);
             this.txtCliente.Name = "txtCliente";
+            this.txtCliente.ReadOnly = true;
             this.txtCliente.Size = new System.Drawing.Size(141, 20);
             this.txtCliente.TabIndex = 5;
             // 
@@ -116,6 +117,7 @@
             this.btnSelectCliente.TabIndex = 6;
             this.btnSelectCliente.Text = "Seleccionar";
             this.btnSelectCliente.UseVisualStyleBackColor = true;
+            this.btnSelectCliente.Click += new System.EventHandler(this.btnSelectCliente_Click);
             // 
             // RegistroPago
             // 

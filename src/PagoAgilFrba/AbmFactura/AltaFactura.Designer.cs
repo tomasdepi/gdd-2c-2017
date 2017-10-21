@@ -44,14 +44,18 @@
             this.gridItems = new System.Windows.Forms.DataGridView();
             this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtMonto = new System.Windows.Forms.TextBox();
+            this.txtCantidad = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridItems)).BeginInit();
             this.SuspendLayout();
             // 
             // txtCancelar
             // 
-            this.txtCancelar.Location = new System.Drawing.Point(195, 206);
+            this.txtCancelar.Location = new System.Drawing.Point(83, 264);
             this.txtCancelar.Name = "txtCancelar";
-            this.txtCancelar.Size = new System.Drawing.Size(124, 23);
+            this.txtCancelar.Size = new System.Drawing.Size(139, 23);
             this.txtCancelar.TabIndex = 0;
             this.txtCancelar.Text = "Cancelar";
             this.txtCancelar.UseVisualStyleBackColor = true;
@@ -59,9 +63,9 @@
             // 
             // txtAceptar
             // 
-            this.txtAceptar.Location = new System.Drawing.Point(43, 206);
+            this.txtAceptar.Location = new System.Drawing.Point(83, 235);
             this.txtAceptar.Name = "txtAceptar";
-            this.txtAceptar.Size = new System.Drawing.Size(124, 23);
+            this.txtAceptar.Size = new System.Drawing.Size(139, 23);
             this.txtAceptar.TabIndex = 1;
             this.txtAceptar.Text = "Aceptar";
             this.txtAceptar.UseVisualStyleBackColor = true;
@@ -69,7 +73,7 @@
             // 
             // btnAgregarItem
             // 
-            this.btnAgregarItem.Location = new System.Drawing.Point(420, 207);
+            this.btnAgregarItem.Location = new System.Drawing.Point(415, 280);
             this.btnAgregarItem.Name = "btnAgregarItem";
             this.btnAgregarItem.Size = new System.Drawing.Size(124, 23);
             this.btnAgregarItem.TabIndex = 2;
@@ -180,11 +184,47 @@
             this.monto.Name = "monto";
             this.monto.ReadOnly = true;
             // 
+            // txtMonto
+            // 
+            this.txtMonto.Location = new System.Drawing.Point(466, 213);
+            this.txtMonto.Name = "txtMonto";
+            this.txtMonto.Size = new System.Drawing.Size(100, 20);
+            this.txtMonto.TabIndex = 14;
+            // 
+            // txtCantidad
+            // 
+            this.txtCantidad.Location = new System.Drawing.Point(466, 242);
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Size = new System.Drawing.Size(100, 20);
+            this.txtCantidad.TabIndex = 15;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(393, 216);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(52, 13);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Cantidad:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(393, 245);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(40, 13);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Monto:";
+            // 
             // AltaFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(634, 248);
+            this.ClientSize = new System.Drawing.Size(634, 316);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtCantidad);
+            this.Controls.Add(this.txtMonto);
             this.Controls.Add(this.gridItems);
             this.Controls.Add(this.dateVencimiento);
             this.Controls.Add(this.dateAlta);
@@ -201,6 +241,7 @@
             this.Controls.Add(this.txtCancelar);
             this.Name = "AltaFactura";
             this.Text = "Alta Factura";
+            this.Load += new System.EventHandler(this.AltaFactura_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridItems)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -225,5 +266,9 @@
         private System.Windows.Forms.DataGridView gridItems;
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn monto;
+        private System.Windows.Forms.TextBox txtMonto;
+        private System.Windows.Forms.TextBox txtCantidad;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }
