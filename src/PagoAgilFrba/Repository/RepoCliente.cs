@@ -122,6 +122,24 @@ namespace PagoAgilFrba.Repository
             this.Connector.Close();
 
         }
+
+        public bool checkExistingMail(string mail)
+        {
+            var sql = "SELECT 1 exist FROM PIZZA.Cliente WHERE clie_mail = @mail";
+
+            this.Command = new SqlCommand(sql, this.Connector);
+            this.Command.Parameters.Add("@mail", SqlDbType.VarChar).Value = mail;
+
+            this.Connector.Open();
+
+            SqlDataReader dataReader = Command.ExecuteReader();
+
+            bool exists = dataReader.HasRows;
+
+            this.Connector.Close();
+
+            return exists;
+        }
     }
 }
 

@@ -45,7 +45,31 @@ namespace PagoAgilFrba.AbmCliente
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+
             Cliente clie = new Cliente();
+
+            if (txtMail.Text == "")
+            {
+                alertNotAllFieldsCompleted();
+                return;
+            }
+            else
+            {
+
+                if (!verificarMail(txtMail.Text))
+                {
+                    MessageBox.Show("El mail ingresado no es valido", "Error", MessageBoxButtons.OK);
+                    return;
+                }
+
+                clie.mail = txtMail.Text;
+                if (repo.checkExistingMail(clie.mail))
+                {
+                    MessageBox.Show("Ya existe un cliente con ese mail", "Error", MessageBoxButtons.OK);
+                    return;
+                }
+            }
+            
             if (txtNombre.Text == "") { alertNotAllFieldsCompleted(); return; } else clie.nombre = txtNombre.Text;
             if (txtApellido.Text == "") { alertNotAllFieldsCompleted(); return; } else clie.apellido = txtApellido.Text;
             if (txtTelefono.Text == "") { alertNotAllFieldsCompleted(); return; } else clie.telefono = Int32.Parse(txtTelefono.Text);
@@ -53,10 +77,8 @@ namespace PagoAgilFrba.AbmCliente
             if (txtDni.Text == "") { alertNotAllFieldsCompleted(); return; } else clie.dni = Int32.Parse(txtDni.Text);
             if (txtCodigoPostal.Text == "") { alertNotAllFieldsCompleted(); return; } else clie.codigoPostal = txtCodigoPostal.Text;
             if (dateFechaNac.Text == "") { alertNotAllFieldsCompleted(); return; } else clie.fechaNac = dateFechaNac.Value.Date;
-            if (txtMail.Text == "") { alertNotAllFieldsCompleted(); return; } else clie.mail = txtMail.Text;
-            if (!verificarMail(txtMail.Text)) {
-                MessageBox.Show("El mail ingresado no es valido", "Error", MessageBoxButtons.OK);
-                return; }
+           
+            
 
             repo.altaCliente(clie);
 
