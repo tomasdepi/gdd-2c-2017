@@ -32,8 +32,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.lblImporte = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.lblComision = new System.Windows.Forms.Label();
+            this.upDownPorcentajeComision = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.lblCantFacturas = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -47,7 +47,7 @@
             this.btnBuscarFacturas = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownPorcentajeComision)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridFacturas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,9 +72,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(20, 52);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Importe:";
+            this.label2.Text = "Comision:";
             // 
             // label3
             // 
@@ -85,21 +85,22 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "Porcentaje Comision:";
             // 
-            // lblImporte
+            // lblComision
             // 
-            this.lblImporte.AutoSize = true;
-            this.lblImporte.Location = new System.Drawing.Point(134, 52);
-            this.lblImporte.Name = "lblImporte";
-            this.lblImporte.Size = new System.Drawing.Size(16, 13);
-            this.lblImporte.TabIndex = 4;
-            this.lblImporte.Text = "---";
+            this.lblComision.AutoSize = true;
+            this.lblComision.Location = new System.Drawing.Point(134, 52);
+            this.lblComision.Name = "lblComision";
+            this.lblComision.Size = new System.Drawing.Size(16, 13);
+            this.lblComision.TabIndex = 4;
+            this.lblComision.Text = "---";
             // 
-            // numericUpDown1
+            // upDownPorcentajeComision
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(137, 83);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 5;
+            this.upDownPorcentajeComision.Location = new System.Drawing.Point(137, 83);
+            this.upDownPorcentajeComision.Name = "upDownPorcentajeComision";
+            this.upDownPorcentajeComision.Size = new System.Drawing.Size(120, 20);
+            this.upDownPorcentajeComision.TabIndex = 5;
+            this.upDownPorcentajeComision.ValueChanged += new System.EventHandler(this.upDownPorcentajeComision_ValueChanged);
             // 
             // label4
             // 
@@ -144,6 +145,7 @@
             this.btnSelectEmpresa.TabIndex = 10;
             this.btnSelectEmpresa.Text = "Seleccionar";
             this.btnSelectEmpresa.UseVisualStyleBackColor = true;
+            this.btnSelectEmpresa.Click += new System.EventHandler(this.btnSelectEmpresa_Click);
             // 
             // label6
             // 
@@ -194,6 +196,7 @@
             this.btnBuscarFacturas.TabIndex = 14;
             this.btnBuscarFacturas.Text = "Buscar Facturas para el Mes";
             this.btnBuscarFacturas.UseVisualStyleBackColor = true;
+            this.btnBuscarFacturas.Click += new System.EventHandler(this.btnBuscarFacturas_Click);
             // 
             // btnAceptar
             // 
@@ -203,6 +206,7 @@
             this.btnAceptar.TabIndex = 15;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnCancelar
             // 
@@ -230,15 +234,15 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lblCantFacturas);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.lblImporte);
+            this.Controls.Add(this.upDownPorcentajeComision);
+            this.Controls.Add(this.lblComision);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dateFechaRendicion);
             this.Name = "RendicionPago";
             this.Text = "Rendicion Facturas";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upDownPorcentajeComision)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridFacturas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -251,8 +255,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lblImporte;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label lblComision;
+        private System.Windows.Forms.NumericUpDown upDownPorcentajeComision;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblCantFacturas;
         private System.Windows.Forms.Label label5;
