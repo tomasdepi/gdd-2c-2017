@@ -12,7 +12,7 @@ namespace PagoAgilFrba.Repository
     public class RepoFactura : Repo
     {
 
-        public void altaFactura(Factura factura, List<ItemFactura> items)
+        public void altaFactura(Factura factura)
         {
             var query = "INSERT INTO PIZZA.Factura (fact_numero, fact_cliente, fact_empresa, fact_alta, fact_vencimiento, fact_pagada) ";
             query += "VALUES (@numero, @cliente, @empresa, @alta, @vencimiento, 0)";
@@ -28,12 +28,31 @@ namespace PagoAgilFrba.Repository
             this.Connector.Open();
             this.Command.ExecuteNonQuery();
             this.Connector.Close();
+        }
 
-            foreach(ItemFactura item in items)
+        public void updateFactura(Factura factura)
+        {
+            var query = "UPDATE PIZZA.Factura SET fact_cliente=@cliente, fact_empresa=@empresa, fact_alta=@alta, fact_vencimiento=@vencimiento WHERE fact_numero=@numero";
+
+            this.Command = new SqlCommand(query, this.Connector);
+
+            this.Command.Parameters.Add("@numero", SqlDbType.Int).Value = factura.numero;
+            this.Command.Parameters.Add("@cliente", SqlDbType.Int).Value = factura.cliente;
+            this.Command.Parameters.Add("@empresa", SqlDbType.VarChar).Value = factura.empresa;
+            this.Command.Parameters.Add("@alta", SqlDbType.Date).Value = factura.alta;
+            this.Command.Parameters.Add("@vencimiento", SqlDbType.Date).Value = factura.vencimiento;
+
+            this.Connector.Open();
+            this.Command.ExecuteNonQuery();
+            this.Connector.Close();
+        }
+
+        public void altaItems(List<ItemFactura> items, int numFactura)
+        {
+            foreach (ItemFactura item in items)
             {
-                altaItemFactura(factura.numero, item);
+                altaItemFactura(numFactura, item);
             }
-
         }
 
         private void altaItemFactura(int numFactura, ItemFactura item)
@@ -144,7 +163,13 @@ namespace PagoAgilFrba.Repository
 
         public void deleteItems(int numFactura)
         {
+            var query = "DELETE FROM PIZZA.Item_factura WHERE item_numFacutura = @numFactura";
+            this.Command = new SqlCommand(query, this.Connector);
+            this.Command.Parameters.Add("@numFactura", SqlDbType.Int).Value = numFactura;
 
+            this.Connector.Open();
+            this.Command.ExecuteNonQuery();
+            this.Connector.Close();
         }
     }
 }

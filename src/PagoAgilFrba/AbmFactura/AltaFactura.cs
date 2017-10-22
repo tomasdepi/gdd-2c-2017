@@ -82,8 +82,10 @@ namespace PagoAgilFrba.AbmFactura
                 items.Add(i);
             }
 
-            repo.altaFactura(fact, items);
+            repo.altaFactura(fact);
+            repo.altaItems(items, fact.numero);
             MessageBox.Show("Factura cargada con exito", "Exito", MessageBoxButtons.OK);
+            this.Close();
         }
 
         private void AltaFactura_Load(object sender, EventArgs e)
@@ -99,6 +101,25 @@ namespace PagoAgilFrba.AbmFactura
             {
                 e.Handled = true;
             }
+        }
+
+        private void btnSelectCliente_Click(object sender, EventArgs e)
+        {
+            BuscadorEntidad buscador = new BuscadorEntidad();
+            buscador.lanzarBuscadorCliente();
+            txtCliente.Text = buscador.dni.ToString();
+        }
+
+        private void txtNumFactura_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnSelectEmpesa_Click(object sender, EventArgs e)
+        {
+            BuscadorEntidad buscador = new BuscadorEntidad();
+            buscador.lanzarBuscadorEmpresa();
+            txtEmpresa.Text = buscador.cuit.ToString();
         }
     }
 }

@@ -49,6 +49,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.txtMonto = new System.Windows.Forms.TextBox();
+            this.btnSeleccionarCliente = new System.Windows.Forms.Button();
+            this.btnSeleccionarEmpresa = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridItems)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,14 +95,16 @@
             // 
             this.txtEmpresa.Location = new System.Drawing.Point(123, 49);
             this.txtEmpresa.Name = "txtEmpresa";
-            this.txtEmpresa.Size = new System.Drawing.Size(200, 20);
+            this.txtEmpresa.ReadOnly = true;
+            this.txtEmpresa.Size = new System.Drawing.Size(101, 20);
             this.txtEmpresa.TabIndex = 23;
             // 
             // txtCliente
             // 
             this.txtCliente.Location = new System.Drawing.Point(123, 12);
             this.txtCliente.Name = "txtCliente";
-            this.txtCliente.Size = new System.Drawing.Size(200, 20);
+            this.txtCliente.ReadOnly = true;
+            this.txtCliente.Size = new System.Drawing.Size(101, 20);
             this.txtCliente.TabIndex = 22;
             // 
             // label5
@@ -166,6 +170,7 @@
             this.txtAceptar.TabIndex = 15;
             this.txtAceptar.Text = "Aceptar";
             this.txtAceptar.UseVisualStyleBackColor = true;
+            this.txtAceptar.Click += new System.EventHandler(this.txtAceptar_Click);
             // 
             // txtCancelar
             // 
@@ -228,11 +233,33 @@
             this.txtMonto.Size = new System.Drawing.Size(100, 20);
             this.txtMonto.TabIndex = 30;
             // 
+            // btnSeleccionarCliente
+            // 
+            this.btnSeleccionarCliente.Location = new System.Drawing.Point(248, 10);
+            this.btnSeleccionarCliente.Name = "btnSeleccionarCliente";
+            this.btnSeleccionarCliente.Size = new System.Drawing.Size(75, 23);
+            this.btnSeleccionarCliente.TabIndex = 34;
+            this.btnSeleccionarCliente.Text = "Seleccionar";
+            this.btnSeleccionarCliente.UseVisualStyleBackColor = true;
+            this.btnSeleccionarCliente.Click += new System.EventHandler(this.btnSeleccionarCliente_Click);
+            // 
+            // btnSeleccionarEmpresa
+            // 
+            this.btnSeleccionarEmpresa.Location = new System.Drawing.Point(248, 49);
+            this.btnSeleccionarEmpresa.Name = "btnSeleccionarEmpresa";
+            this.btnSeleccionarEmpresa.Size = new System.Drawing.Size(75, 23);
+            this.btnSeleccionarEmpresa.TabIndex = 35;
+            this.btnSeleccionarEmpresa.Text = "Seleccionar";
+            this.btnSeleccionarEmpresa.UseVisualStyleBackColor = true;
+            this.btnSeleccionarEmpresa.Click += new System.EventHandler(this.btnSeleccionarEmpresa_Click);
+            // 
             // EditarFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(640, 313);
+            this.Controls.Add(this.btnSeleccionarEmpresa);
+            this.Controls.Add(this.btnSeleccionarCliente);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtCantidad);
@@ -284,5 +311,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.TextBox txtMonto;
+        private System.Windows.Forms.Button btnSeleccionarCliente;
+        private System.Windows.Forms.Button btnSeleccionarEmpresa;
     }
 }

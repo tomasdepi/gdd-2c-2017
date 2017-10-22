@@ -31,8 +31,11 @@ namespace PagoAgilFrba.RegistroPago
 
         private void btnSelectCliente_Click(object sender, EventArgs e)
         {
-            var selectCliente = new BuscadorCliente(this) { StartPosition = FormStartPosition.CenterParent };
-            selectCliente.ShowDialog();
+            BuscadorEntidad buscador = new BuscadorEntidad();
+            buscador.lanzarBuscadorCliente();
+            setCliente(buscador.dni.ToString());
+            //var selectCliente = new BuscadorCliente(this) { StartPosition = FormStartPosition.CenterParent };
+            //selectCliente.ShowDialog();
         }
 
         public void setCliente(string dni)

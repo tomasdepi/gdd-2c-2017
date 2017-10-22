@@ -36,8 +36,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtCliente = new System.Windows.Forms.TextBox();
-            this.txtEmpresa = new System.Windows.Forms.TextBox();
             this.txtNumFactura = new System.Windows.Forms.TextBox();
             this.dateAlta = new System.Windows.Forms.DateTimePicker();
             this.dateVencimiento = new System.Windows.Forms.DateTimePicker();
@@ -48,6 +46,10 @@
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.txtEmpresa = new System.Windows.Forms.TextBox();
+            this.txtCliente = new System.Windows.Forms.TextBox();
+            this.btnSelectCliente = new System.Windows.Forms.Button();
+            this.btnSelectEmpesa = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridItems)).BeginInit();
             this.SuspendLayout();
             // 
@@ -126,26 +128,13 @@
             this.label5.TabIndex = 7;
             this.label5.Text = "Fecha Vencimiento:";
             // 
-            // txtCliente
-            // 
-            this.txtCliente.Location = new System.Drawing.Point(119, 20);
-            this.txtCliente.Name = "txtCliente";
-            this.txtCliente.Size = new System.Drawing.Size(200, 20);
-            this.txtCliente.TabIndex = 8;
-            // 
-            // txtEmpresa
-            // 
-            this.txtEmpresa.Location = new System.Drawing.Point(119, 57);
-            this.txtEmpresa.Name = "txtEmpresa";
-            this.txtEmpresa.Size = new System.Drawing.Size(200, 20);
-            this.txtEmpresa.TabIndex = 9;
-            // 
             // txtNumFactura
             // 
             this.txtNumFactura.Location = new System.Drawing.Point(119, 96);
             this.txtNumFactura.Name = "txtNumFactura";
             this.txtNumFactura.Size = new System.Drawing.Size(200, 20);
             this.txtNumFactura.TabIndex = 10;
+            this.txtNumFactura.TextChanged += new System.EventHandler(this.txtNumFactura_TextChanged);
             // 
             // dateAlta
             // 
@@ -216,11 +205,49 @@
             this.label7.TabIndex = 17;
             this.label7.Text = "Monto:";
             // 
+            // txtEmpresa
+            // 
+            this.txtEmpresa.Location = new System.Drawing.Point(119, 57);
+            this.txtEmpresa.Name = "txtEmpresa";
+            this.txtEmpresa.ReadOnly = true;
+            this.txtEmpresa.Size = new System.Drawing.Size(103, 20);
+            this.txtEmpresa.TabIndex = 9;
+            // 
+            // txtCliente
+            // 
+            this.txtCliente.Location = new System.Drawing.Point(119, 20);
+            this.txtCliente.Name = "txtCliente";
+            this.txtCliente.ReadOnly = true;
+            this.txtCliente.Size = new System.Drawing.Size(103, 20);
+            this.txtCliente.TabIndex = 8;
+            // 
+            // btnSelectCliente
+            // 
+            this.btnSelectCliente.Location = new System.Drawing.Point(244, 18);
+            this.btnSelectCliente.Name = "btnSelectCliente";
+            this.btnSelectCliente.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectCliente.TabIndex = 18;
+            this.btnSelectCliente.Text = "Seleccionar";
+            this.btnSelectCliente.UseVisualStyleBackColor = true;
+            this.btnSelectCliente.Click += new System.EventHandler(this.btnSelectCliente_Click);
+            // 
+            // btnSelectEmpesa
+            // 
+            this.btnSelectEmpesa.Location = new System.Drawing.Point(244, 55);
+            this.btnSelectEmpesa.Name = "btnSelectEmpesa";
+            this.btnSelectEmpesa.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectEmpesa.TabIndex = 19;
+            this.btnSelectEmpesa.Text = "Seleccionar";
+            this.btnSelectEmpesa.UseVisualStyleBackColor = true;
+            this.btnSelectEmpesa.Click += new System.EventHandler(this.btnSelectEmpesa_Click);
+            // 
             // AltaFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(634, 316);
+            this.Controls.Add(this.btnSelectEmpesa);
+            this.Controls.Add(this.btnSelectCliente);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtCantidad);
@@ -258,8 +285,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtCliente;
-        private System.Windows.Forms.TextBox txtEmpresa;
         private System.Windows.Forms.TextBox txtNumFactura;
         private System.Windows.Forms.DateTimePicker dateAlta;
         private System.Windows.Forms.DateTimePicker dateVencimiento;
@@ -270,5 +295,9 @@
         private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtEmpresa;
+        private System.Windows.Forms.TextBox txtCliente;
+        private System.Windows.Forms.Button btnSelectCliente;
+        private System.Windows.Forms.Button btnSelectEmpesa;
     }
 }

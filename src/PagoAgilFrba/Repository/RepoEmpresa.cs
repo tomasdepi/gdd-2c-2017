@@ -43,11 +43,11 @@ namespace PagoAgilFrba.Repository
 
         }
 
-        public List<Empresa> getEmpresas(int id, string cuit, string nombre)
+        public List<Empresa> getEmpresas(string cuit, string nombre)
         {
             List<Empresa> listaEmpresas = new List<Empresa>();
 
-            var query = "SELECT * FROM PIZZA.Empresa WHERE emp_id LIKE '%" + id + "%' AND emp_cuit LIKE '%" + cuit + "%' AND emp_nombre LIKE '%" + nombre + "%'";
+            var query = "SELECT * FROM PIZZA.Empresa WHERE emp_cuit LIKE '%" + cuit + "%' AND emp_nombre LIKE '%" + nombre + "%'";
             this.Command = new SqlCommand(query, this.Connector);
 
             this.Connector.Open();
@@ -92,7 +92,7 @@ namespace PagoAgilFrba.Repository
             empr.nombre = empresa["emp_nombre"].ToString();
             empr.direccion = empresa["emp_direccion"].ToString();
             empr.rubro = empresa["emp_rubro"].ToString();
-            empr.fechaRendicion = Convert.ToDateTime(empresa["emp_fechaRendicion"].ToString());
+            //empr.fechaRendicion = Convert.ToDateTime(empresa["emp_fechaRendicion"].ToString());
             empr.habilitado = empresa["emp_habilitado"].ToString() == "1" ? true : false;
 
             return empr;

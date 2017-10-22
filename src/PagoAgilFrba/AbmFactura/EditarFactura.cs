@@ -1,5 +1,6 @@
 ﻿using PagoAgilFrba.Entities;
 using PagoAgilFrba.Repository;
+using PagoAgilFrba.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -49,6 +50,9 @@ namespace PagoAgilFrba.AbmFactura
             Factura factura = repo.getFactura(this.numFactura);
             txtCliente.Text = factura.cliente.ToString();
             txtEmpresa.Text = factura.empresa;
+
+            MessageBox.Show("Factura Actualizada!!", "Exito", MessageBoxButtons.OK);
+            this.Close();
         }
 
         private void txtCancelar_Click(object sender, EventArgs e)
@@ -91,6 +95,48 @@ namespace PagoAgilFrba.AbmFactura
             row.Cells.Add(cellCantidad);
 
             gridItems.Rows.Add(row);
+        }
+
+        private void btnSeleccionarCliente_Click(object sender, EventArgs e)
+        {
+            BuscadorEntidad buscador = new BuscadorEntidad();
+            buscador.lanzarBuscadorCliente();
+            if (!buscador.dni.Equals(0))
+                txtCliente.Text = buscador.dni.ToString();
+        }
+
+        private void btnSeleccionarEmpresa_Click(object sender, EventArgs e)
+        {
+            BuscadorEntidad buscador = new BuscadorEntidad();
+            buscador.lanzarBuscadorEmpresa();
+            if(!buscador.cuit.Equals(""))
+              txtEmpresa.Text = buscador.cuit.ToString();
+        }
+
+        private void txtAceptar_Click(object sender, EventArgs e)
+        {
+            repo.deleteItems(this.numFactura);
+
+            Factura fact = new Factura();
+            List<ItemFactura> items = new List<ItemFactura>();
+
+            foreach (DataGridViewRow row in gridItems.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                ItemFactura i = new ItemFactura();
+                i.cantidad = Int32.Parse(row.Cells[0].Value.ToString());
+                i.monto = Int32.Parse(row.Cells[1].Value.ToString());
+                items.Add(i);
+            }
+
+            repo.altaItems(items, this.numFactura);
+
+            fact.numero = this.numFactura;
+            fact.cliente = Int32.Parse(txtCliente.Text);
+            fact.empresa = txtEmpresa.Text;
+            fact.alta = dateAlta.Value.Date;
+            fact.vencimiento = dateVencimiento.Value.Date;
         }
     }
 }
