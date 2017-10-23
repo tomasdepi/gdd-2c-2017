@@ -117,6 +117,18 @@
     <Compile Include="AbmSucursal\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Devolucion\DevolucionFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Devolucion\DevolucionFactura.Designer.cs">
+      <DependentUpon>DevolucionFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Devolucion\DevolucionRendicion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Devolucion\DevolucionRendicion.Designer.cs">
+      <DependentUpon>DevolucionRendicion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Cliente.cs" />
     <Compile Include="Entities\Empresa.cs" />
     <Compile Include="Entities\Factura.cs" />
@@ -207,6 +219,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRol\ListadoRoles.resx">
       <DependentUpon>ListadoRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Devolucion\DevolucionFactura.resx">
+      <DependentUpon>DevolucionFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Devolucion\DevolucionRendicion.resx">
+      <DependentUpon>DevolucionRendicion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
