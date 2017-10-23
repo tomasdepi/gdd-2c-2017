@@ -11,11 +11,16 @@ namespace PagoAgilFrba.Utilities
     {
         public int dni { get; set;  }
         public string cuit { get; set; }
+        public int numFactura { get; set; }
+        public int idRendicion { get; set; }
+
 
         public BuscadorEntidad()
         {
             this.cuit = "";
             this.dni = 0;
+            this.numFactura = 0;
+            this.idRendicion = 0;
         }
 
         public void lanzarBuscadorCliente()
@@ -27,6 +32,11 @@ namespace PagoAgilFrba.Utilities
         {
             BuscadorEmpresa buscEmpresa = new BuscadorEmpresa(this);
             buscEmpresa.ShowDialog();
+        }
+        public void lanzarBuscadorFactura()
+        {
+            BuscadorFactura buscFactura = new BuscadorFactura(this);
+            buscFactura.ShowDialog();
         }
 
         public void formCallback()

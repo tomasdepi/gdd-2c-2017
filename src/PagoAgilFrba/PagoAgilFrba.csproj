@@ -189,6 +189,18 @@
     <Compile Include="Utilities\BuscadorCliente.Designer.cs">
       <DependentUpon>BuscadorCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\BuscadorFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\BuscadorFactura.Designer.cs">
+      <DependentUpon>BuscadorFactura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\BuscadorRendicion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\BuscadorRendicion.Designer.cs">
+      <DependentUpon>BuscadorRendicion.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AbmCliente\AltaCliente.resx">
       <DependentUpon>AltaCliente.cs</DependentUpon>
     </EmbeddedResource>
@@ -251,6 +263,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utilities\BuscadorEmpresa.resx">
       <DependentUpon>BuscadorEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\BuscadorFactura.resx">
+      <DependentUpon>BuscadorFactura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\BuscadorRendicion.resx">
+      <DependentUpon>BuscadorRendicion.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

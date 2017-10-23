@@ -171,5 +171,6 @@ namespace PagoAgilFrba.Repository
             this.Command.ExecuteNonQuery();
             this.Connector.Close();
         }
+
     }
 }

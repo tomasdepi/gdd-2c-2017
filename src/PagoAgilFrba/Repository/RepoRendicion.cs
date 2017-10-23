@@ -127,5 +127,37 @@ namespace PagoAgilFrba.Repository
             return facturas;
         }
 
+        public List<Entities.Rendicion> buscarRendiciones(string CuitEmpresa)
+        {
+            var query = "SELECT rend_id, rend_empresa, rend_fecha FROM PIZZA.Rendicion WHERE rend_empresa = '@empresa'";
+
+            this.Command = new SqlCommand(query, this.Connector);
+            this.Command.Parameters.Add("@empresa", SqlDbType.VarChar).Value = CuitEmpresa;
+
+            this.Connector.Open();
+            SqlDataReader reader = this.Command.ExecuteReader();
+
+            List<Entities.Rendicion> rendiciones = new List<Entities.Rendicion>();
+
+            while (reader.Read())
+            {
+                rendiciones.Add(crearRendicion(reader));
+            }
+
+            this.Connector.Close();
+
+            return rendiciones;
+        }
+
+        private Entities.Rendicion crearRendicion(SqlDataReader reader)
+        {
+            Entities.Rendicion rendicion = new Entities.Rendicion();
+            rendicion.id = Int32.Parse(reader["rend_id"].ToString());
+            rendicion.empresa = reader["rend_empresa"].ToString();
+            rendicion.fecha = Convert.ToDateTime(reader["rend_fecha"].ToString());
+
+            return rendicion;
+        }
+
     }
 }
