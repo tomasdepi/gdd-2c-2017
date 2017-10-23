@@ -130,6 +130,7 @@
       <DependentUpon>DevolucionRendicion.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\Cliente.cs" />
+    <Compile Include="Entities\Devolucion.cs" />
     <Compile Include="Entities\Empresa.cs" />
     <Compile Include="Entities\Factura.cs" />
     <Compile Include="Entities\Funcionalidad.cs" />
@@ -169,6 +170,7 @@
       <DependentUpon>RendicionPago.cs</DependentUpon>
     </Compile>
     <Compile Include="Repository\RepoCliente.cs" />
+    <Compile Include="Repository\RepoDevolucion.cs" />
     <Compile Include="Repository\RepoEmpresa.cs" />
     <Compile Include="Repository\RepoFactura.cs" />
     <Compile Include="Repository\RepoRendicion.cs" />
