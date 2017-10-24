@@ -30,7 +30,7 @@
         {
             this.btnSeleccionarRendicion = new System.Windows.Forms.Button();
             this.txtMotivo = new System.Windows.Forms.TextBox();
-            this.txtFactura = new System.Windows.Forms.TextBox();
+            this.txtIdRendicion = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,6 +45,7 @@
             this.btnSeleccionarRendicion.TabIndex = 13;
             this.btnSeleccionarRendicion.Text = "Seleccionar";
             this.btnSeleccionarRendicion.UseVisualStyleBackColor = true;
+            this.btnSeleccionarRendicion.Click += new System.EventHandler(this.btnSeleccionarRendicion_Click);
             // 
             // txtMotivo
             // 
@@ -53,13 +54,13 @@
             this.txtMotivo.Size = new System.Drawing.Size(191, 20);
             this.txtMotivo.TabIndex = 12;
             // 
-            // txtFactura
+            // txtIdRendicion
             // 
-            this.txtFactura.Location = new System.Drawing.Point(81, 18);
-            this.txtFactura.Name = "txtFactura";
-            this.txtFactura.ReadOnly = true;
-            this.txtFactura.Size = new System.Drawing.Size(100, 20);
-            this.txtFactura.TabIndex = 11;
+            this.txtIdRendicion.Location = new System.Drawing.Point(81, 18);
+            this.txtIdRendicion.Name = "txtIdRendicion";
+            this.txtIdRendicion.ReadOnly = true;
+            this.txtIdRendicion.Size = new System.Drawing.Size(100, 20);
+            this.txtIdRendicion.TabIndex = 11;
             // 
             // btnCancelar
             // 
@@ -79,6 +80,7 @@
             this.btnAceptar.TabIndex = 9;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // label2
             // 
@@ -105,7 +107,7 @@
             this.ClientSize = new System.Drawing.Size(284, 152);
             this.Controls.Add(this.btnSeleccionarRendicion);
             this.Controls.Add(this.txtMotivo);
-            this.Controls.Add(this.txtFactura);
+            this.Controls.Add(this.txtIdRendicion);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.label2);
@@ -121,7 +123,7 @@
 
         private System.Windows.Forms.Button btnSeleccionarRendicion;
         private System.Windows.Forms.TextBox txtMotivo;
-        private System.Windows.Forms.TextBox txtFactura;
+        private System.Windows.Forms.TextBox txtIdRendicion;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Label label2;

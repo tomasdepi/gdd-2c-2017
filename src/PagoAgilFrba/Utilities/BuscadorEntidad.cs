@@ -38,6 +38,11 @@ namespace PagoAgilFrba.Utilities
             BuscadorFactura buscFactura = new BuscadorFactura(this);
             buscFactura.ShowDialog();
         }
+        public void lanzarBuscadorRendicion()
+        {
+            BuscadorRendicion buscRendicion = new BuscadorRendicion(this);
+            buscRendicion.ShowDialog();
+        }
 
         public void formCallback()
         {

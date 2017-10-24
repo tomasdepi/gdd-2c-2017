@@ -64,6 +64,8 @@ namespace PagoAgilFrba.Utilities
                 return;
 
             buscador.idRendicion = Int32.Parse(gridRendiciones.SelectedRows[0].Cells[0].Value.ToString());
+
+            this.Close();
         }
     }
 }

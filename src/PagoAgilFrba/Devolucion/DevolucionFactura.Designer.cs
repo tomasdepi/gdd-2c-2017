@@ -63,6 +63,7 @@
             this.btnAceptar.TabIndex = 2;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // button2
             // 
@@ -97,6 +98,7 @@
             this.btnSeleccionarFactura.TabIndex = 6;
             this.btnSeleccionarFactura.Text = "Seleccionar";
             this.btnSeleccionarFactura.UseVisualStyleBackColor = true;
+            this.btnSeleccionarFactura.Click += new System.EventHandler(this.btnSeleccionarFactura_Click);
             // 
             // DevolucionFactura
             // 

@@ -63,6 +63,8 @@ namespace PagoAgilFrba.Utilities
 
             int numFactura = Int32.Parse(gridFacturas.SelectedRows[0].Cells[0].Value.ToString());
             buscador.numFactura = numFactura;
+
+            this.Close();
         }
     }
 }
