@@ -40,7 +40,7 @@ namespace PagoAgilFrba.AbmCliente
             txtDni.Text = this.dni.ToString();
 
             dateFechaNac.Format = DateTimePickerFormat.Custom;
-            dateFechaNac.CustomFormat = "yyyyy-MM-dd";
+            dateFechaNac.CustomFormat = "yyyy-MM-dd";
 
             Cliente clie = repo.getCliente(this.dni);
             txtApellido.Text = clie.apellido;

@@ -23,7 +23,7 @@ namespace PagoAgilFrba.AbmEmpresa
             this.repo = new RepoEmpresa();
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void txtCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -35,7 +35,7 @@ namespace PagoAgilFrba.AbmEmpresa
 
             txtId.KeyPress += new KeyPressEventHandler(keypressed);
             txtCuit.KeyPress += new KeyPressEventHandler(keypressed);
-            txtId.KeyPress += new KeyPressEventHandler(keypressed);
+            
         }
 
         private void alertNotAllFieldsCompleted()
