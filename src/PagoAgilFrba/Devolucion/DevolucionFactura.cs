@@ -3,6 +3,7 @@ using PagoAgilFrba.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -45,6 +46,7 @@ namespace PagoAgilFrba.Devolucion
             devolucion.motivo = txtMotivo.Text;
             devolucion.idEntidad = Int32.Parse(txtFactura.Text);
             devolucion.tipoEntidad = "Factura";
+            devolucion.fecha = Convert.ToDateTime(ConfigurationManager.AppSettings["FechaSistema"]);
 
             repo.altaDevolucion(devolucion);
 

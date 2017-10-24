@@ -22,5 +22,7 @@ namespace PagoAgilFrba
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new ListadoFacturas());
         }
-    }
+
+           
+}
 }
