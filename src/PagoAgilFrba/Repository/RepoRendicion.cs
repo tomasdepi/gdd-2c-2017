@@ -79,7 +79,7 @@ namespace PagoAgilFrba.Repository
             int anio = fecha.Year;
             bool existe = false;
 
-            var query = "SELECT 1 FROM PIZZA.Rendicion WHERE YEAR(rend_fecha) = @anio AND MONTH(rend_fecha) = @mes AND rend_empresa = '@empresa'";
+            var query = "SELECT 1 FROM PIZZA.Rendicion WHERE YEAR(rend_fecha) = @anio AND MONTH(rend_fecha) = @mes AND rend_empresa = '@empresa' AND rend_devuelta = 0";
 
             this.Command = new SqlCommand(query, this.Connector);
             this.Command.Parameters.Add("@mes", SqlDbType.Int).Value = mes;
