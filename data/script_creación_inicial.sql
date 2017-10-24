@@ -42,7 +42,6 @@ CREATE TABLE [pizza].[Empresa](
 GO
 CREATE TABLE [pizza].[Devolucion](
 	[dev_id] [int] NOT NULL,
-	[dev_factura] [int] NOT NULL,
 	[dev_tipoEntidad] [varchar](40) NOT NULL,
 	[dev_fecha] [datetime] NULL,
 	[dev_motivo] [varchar](150) NOT NULL,
@@ -61,7 +60,8 @@ CREATE TABLE [pizza].[Rendicion](
 	[rend_importeComision] [int] NOT NULL,
 	[rend_empresa] [varchar](50) NOT NULL,
 	[rend_porcentComision] [int] NOT NULL,
-	[rend_totalRendicion] [int] NULL
+	[rend_totalRendicion] [int] NULL,
+	[rend_devuelta] [tinyiny] NOT NULL
  CONSTRAINT [PK_Rendicion] PRIMARY KEY CLUSTERED 
 (
 	[rend_id] ASC
@@ -268,8 +268,8 @@ AS
 BEGIN
 	SET IDENTITY_INSERT [pizza].[Rendicion] ON
 	
-	INSERT INTO PIZZA.Rendicion(rend_id, rend_fecha, rend_cantFacturas, rend_importeComision, rend_empresa, rend_porcentComision)
-	SELECT DISTINCT Rendicion_nro,Rendicion_Fecha, count(Nro_Factura), 0, Empresa_Cuit, 0 FROM gd_esquema.Maestra
+	INSERT INTO PIZZA.Rendicion(rend_id, rend_fecha, rend_cantFacturas, rend_importeComision, rend_empresa, rend_porcentComision, rend_devuelta)
+	SELECT DISTINCT Rendicion_nro,Rendicion_Fecha, count(Nro_Factura), 0, Empresa_Cuit, 0, 0 FROM gd_esquema.Maestra
 	where Rendicion_Nro is not null
 	group by Rendicion_nro, Rendicion_Fecha, Empresa_Cuit
 
