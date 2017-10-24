@@ -141,6 +141,7 @@
     <Compile Include="Entities\Factura.cs" />
     <Compile Include="Entities\Funcionalidad.cs" />
     <Compile Include="Entities\ItemFactura.cs" />
+    <Compile Include="Entities\Pago.cs" />
     <Compile Include="Entities\Rendicion.cs" />
     <Compile Include="Entities\Rol.cs" />
     <Compile Include="Login.cs">
@@ -179,6 +180,7 @@
     <Compile Include="Repository\RepoDevolucion.cs" />
     <Compile Include="Repository\RepoEmpresa.cs" />
     <Compile Include="Repository\RepoFactura.cs" />
+    <Compile Include="Repository\RepoPago.cs" />
     <Compile Include="Repository\RepoRendicion.cs" />
     <Compile Include="Repository\RepoRol.cs" />
     <Compile Include="Repository\Repository.cs" />
