@@ -55,18 +55,18 @@ namespace PagoAgilFrba.AbmEmpresa
         private void txtGuardar_Click(object sender, EventArgs e)
         {
             Empresa empresa = new Empresa();
-            if (txtId.Text == "") {alertNotAllFieldsCompleted(); return; } else empresa.id = Int32.Parse(txtId.Text);
-            if (txtCuit.Text == "") {alertNotAllFieldsCompleted(); return; } else empresa.cuit = txtCuit.Text;
-            if (txtNombre.Text == "") {alertNotAllFieldsCompleted(); return; } else empresa.nombre = txtNombre.Text;
-            if (txtDireccion.Text == "") {alertNotAllFieldsCompleted(); return; } else empresa.direccion = txtDireccion.Text;
-            if (txtRubro.Text == "") {alertNotAllFieldsCompleted(); return; } else empresa.rubro = txtRubro.Text;
-            if (dateFechaRend.Text == "") {alertNotAllFieldsCompleted(); return; } else empresa.fechaRendicion = dateFechaRend.Value.Date;
-     
+            if (txtId.Text == "") { alertNotAllFieldsCompleted(); return; } else empresa.id = Int32.Parse(txtId.Text);
+            if (txtCuit.Text == "") { alertNotAllFieldsCompleted(); return; } else empresa.cuit = txtCuit.Text;
+            if (txtNombre.Text == "") { alertNotAllFieldsCompleted(); return; } else empresa.nombre = txtNombre.Text;
+            if (txtDireccion.Text == "") { alertNotAllFieldsCompleted(); return; } else empresa.direccion = txtDireccion.Text;
+            if (txtRubro.Text == "") { alertNotAllFieldsCompleted(); return; } else empresa.rubro = txtRubro.Text;
+            if (dateFechaRend.Text == "") { alertNotAllFieldsCompleted(); return; } else empresa.fechaRendicion = dateFechaRend.Value.Date;
+
             repo.updateEmpresa(empresa);
 
             MessageBox.Show("Empresa actualizada con éxito.", "Alta Empresa", MessageBoxButtons.OK);
             this.Close();
-        
+
         }
 
         private void keypressed(object sender, KeyPressEventArgs e)
@@ -78,11 +78,12 @@ namespace PagoAgilFrba.AbmEmpresa
             }
         }
 
-         private void alertNotAllFieldsCompleted()
+        private void alertNotAllFieldsCompleted()
         {
             MessageBox.Show("Debe completar todos los campos.", "Error", MessageBoxButtons.OK);
         }
 
 
+    }
 
 }
