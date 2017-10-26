@@ -60,6 +60,59 @@ DROP table [pizza].[Rol_por_funcionalidad];
 IF OBJECT_ID('[pizza].[Funcionalidad]', 'U') IS NOT NULL
 DROP table [pizza].[Funcionalidad];
 
+--ELIMINACIÓN DE PROCEDURES
+
+IF OBJECT_ID('[pizza].[Migracion_cliente]') IS NOT NULL
+BEGIN
+	DROP PROCEDURE [pizza].[Migracion_cliente]
+END
+GO
+
+IF OBJECT_ID('[pizza].[Migracion_empresa]') IS NOT NULL
+BEGIN
+	DROP PROCEDURE [pizza].[Migracion_empresa]
+END
+GO
+
+IF OBJECT_ID('[pizza].[Migracion_sucursal]') IS NOT NULL
+BEGIN
+	DROP PROCEDURE [pizza].[Migracion_sucursal]
+END
+GO
+
+IF OBJECT_ID('[pizza].[Migracion_factura]') IS NOT NULL
+BEGIN
+	DROP PROCEDURE [pizza].[Migracion_factura]
+END
+GO
+
+IF OBJECT_ID('[pizza].[Migracion_pago]') IS NOT NULL
+BEGIN
+	DROP PROCEDURE [pizza].[Migracion_pago]
+END
+GO
+
+IF OBJECT_ID('[pizza].[Migracion_rendicion]') IS NOT NULL
+BEGIN
+	DROP PROCEDURE [pizza].[Migracion_rendicion]
+END
+GO
+
+IF OBJECT_ID('[pizza].[Migracion_rol]') IS NOT NULL
+BEGIN
+	DROP PROCEDURE [pizza].[Migracion_rol]
+END
+GO
+
+IF OBJECT_ID('[pizza].[Migracion_Usuario]') IS NOT NULL
+BEGIN
+	DROP PROCEDURE [pizza].[Migracion_Usuario]
+END
+GO
+
+
+--ELIMINACIÓN DEL SCHEMA
+
 IF EXISTS (SELECT * FROM sys.schemas WHERE sys.schemas.name = 'pizza')
 	DROP SCHEMA pizza
 GO
@@ -267,15 +320,6 @@ CREATE TABLE [pizza].[Funcionalidad](
 	[func_id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
-
-DROP PROCEDURE [pizza].[Migracion_cliente]
-DROP PROCEDURE [pizza].[Migracion_empresa]
-DROP PROCEDURE [pizza].[Migracion_sucursal]
-DROP PROCEDURE [pizza].[Migracion_factura]
-DROP PROCEDURE [pizza].[Migracion_pago]
-DROP PROCEDURE [pizza].[Migracion_rendicion]
-DROP PROCEDURE [pizza].[Migracion_rol]
-DROP PROCEDURE [pizza].[Migracion_Usuario]
 
 
 GO
