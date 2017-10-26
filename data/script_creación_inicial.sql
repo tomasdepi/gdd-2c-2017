@@ -61,7 +61,7 @@ CREATE TABLE [pizza].[Rendicion](
 	[rend_empresa] [varchar](50) NOT NULL,
 	[rend_porcentComision] [int] NOT NULL,
 	[rend_totalRendicion] [int] NULL,
-	[rend_devuelta] [tinyiny] NOT NULL
+	[rend_devuelta] [tinyint] NOT NULL
  CONSTRAINT [PK_Rendicion] PRIMARY KEY CLUSTERED 
 (
 	[rend_id] ASC
