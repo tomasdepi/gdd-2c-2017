@@ -229,6 +229,7 @@
             this.Controls.Add(this.btnAgregarFactura);
             this.Name = "RegistroPago";
             this.Text = "RegistroPago";
+            this.Load += new System.EventHandler(this.RegistroPago_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridFacturas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -58,10 +58,16 @@ namespace PagoAgilFrba
                     break;
                 case 1:
                     var menu = new Menu(txtUsuario.Text) { StartPosition = FormStartPosition.CenterParent };
+                    this.Hide();
                     menu.ShowDialog();
                     break;
 
             }
+
+            txtPassword.Text = "";
+            txtUsuario.Text = "";
+            this.Show();
+
         }
     }
 }

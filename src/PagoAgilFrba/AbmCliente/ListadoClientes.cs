@@ -17,7 +17,7 @@ namespace PagoAgilFrba.AbmCliente
     {
         RepoCliente repo;
         
-        public ListadoClientes(ListadoFacturas formPadre)
+        public ListadoClientes()
         {
             InitializeComponent();
             this.repo = new RepoCliente();

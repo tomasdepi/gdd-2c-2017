@@ -35,6 +35,15 @@
             this.btnSeleccionarSucursal = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.comboRol = new System.Windows.Forms.ComboBox();
+            this.btnAbmCliente = new System.Windows.Forms.Button();
+            this.btnAbmEmpresa = new System.Windows.Forms.Button();
+            this.btnAbmSucursal = new System.Windows.Forms.Button();
+            this.btnAbmFactura = new System.Windows.Forms.Button();
+            this.btnPagoFactura = new System.Windows.Forms.Button();
+            this.btnRendiciones = new System.Windows.Forms.Button();
+            this.btnDevoluciones = new System.Windows.Forms.Button();
+            this.btnListadoEstadistico = new System.Windows.Forms.Button();
+            this.btnCerrarSession = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -76,12 +85,13 @@
             // 
             // btnSeleccionarSucursal
             // 
-            this.btnSeleccionarSucursal.Location = new System.Drawing.Point(220, 53);
+            this.btnSeleccionarSucursal.Location = new System.Drawing.Point(205, 53);
             this.btnSeleccionarSucursal.Name = "btnSeleccionarSucursal";
-            this.btnSeleccionarSucursal.Size = new System.Drawing.Size(75, 23);
+            this.btnSeleccionarSucursal.Size = new System.Drawing.Size(90, 23);
             this.btnSeleccionarSucursal.TabIndex = 4;
             this.btnSeleccionarSucursal.Text = "Seleccionar";
             this.btnSeleccionarSucursal.UseVisualStyleBackColor = true;
+            this.btnSeleccionarSucursal.Click += new System.EventHandler(this.btnSeleccionarSucursal_Click);
             // 
             // label3
             // 
@@ -100,11 +110,110 @@
             this.comboRol.Size = new System.Drawing.Size(121, 21);
             this.comboRol.TabIndex = 6;
             // 
+            // btnAbmCliente
+            // 
+            this.btnAbmCliente.Location = new System.Drawing.Point(43, 138);
+            this.btnAbmCliente.Name = "btnAbmCliente";
+            this.btnAbmCliente.Size = new System.Drawing.Size(112, 34);
+            this.btnAbmCliente.TabIndex = 7;
+            this.btnAbmCliente.Text = "ABM Clientes";
+            this.btnAbmCliente.UseVisualStyleBackColor = true;
+            this.btnAbmCliente.Click += new System.EventHandler(this.btnAbmCliente_Click);
+            // 
+            // btnAbmEmpresa
+            // 
+            this.btnAbmEmpresa.Location = new System.Drawing.Point(161, 138);
+            this.btnAbmEmpresa.Name = "btnAbmEmpresa";
+            this.btnAbmEmpresa.Size = new System.Drawing.Size(112, 34);
+            this.btnAbmEmpresa.TabIndex = 8;
+            this.btnAbmEmpresa.Text = "ABM Empresas";
+            this.btnAbmEmpresa.UseVisualStyleBackColor = true;
+            this.btnAbmEmpresa.Click += new System.EventHandler(this.btnAbmEmpresa_Click);
+            // 
+            // btnAbmSucursal
+            // 
+            this.btnAbmSucursal.Location = new System.Drawing.Point(43, 178);
+            this.btnAbmSucursal.Name = "btnAbmSucursal";
+            this.btnAbmSucursal.Size = new System.Drawing.Size(112, 34);
+            this.btnAbmSucursal.TabIndex = 9;
+            this.btnAbmSucursal.Text = "ABM Sucursales";
+            this.btnAbmSucursal.UseVisualStyleBackColor = true;
+            this.btnAbmSucursal.Click += new System.EventHandler(this.btnAbmSucursal_Click);
+            // 
+            // btnAbmFactura
+            // 
+            this.btnAbmFactura.Location = new System.Drawing.Point(161, 178);
+            this.btnAbmFactura.Name = "btnAbmFactura";
+            this.btnAbmFactura.Size = new System.Drawing.Size(112, 34);
+            this.btnAbmFactura.TabIndex = 10;
+            this.btnAbmFactura.Text = "ABM Facturas";
+            this.btnAbmFactura.UseVisualStyleBackColor = true;
+            this.btnAbmFactura.Click += new System.EventHandler(this.btnAbmFactura_Click);
+            // 
+            // btnPagoFactura
+            // 
+            this.btnPagoFactura.Location = new System.Drawing.Point(43, 218);
+            this.btnPagoFactura.Name = "btnPagoFactura";
+            this.btnPagoFactura.Size = new System.Drawing.Size(112, 34);
+            this.btnPagoFactura.TabIndex = 11;
+            this.btnPagoFactura.Text = "Pago Facturas";
+            this.btnPagoFactura.UseVisualStyleBackColor = true;
+            this.btnPagoFactura.Click += new System.EventHandler(this.btnPagoFactura_Click);
+            // 
+            // btnRendiciones
+            // 
+            this.btnRendiciones.Location = new System.Drawing.Point(161, 218);
+            this.btnRendiciones.Name = "btnRendiciones";
+            this.btnRendiciones.Size = new System.Drawing.Size(112, 34);
+            this.btnRendiciones.TabIndex = 12;
+            this.btnRendiciones.Text = "Rendiciones";
+            this.btnRendiciones.UseVisualStyleBackColor = true;
+            this.btnRendiciones.Click += new System.EventHandler(this.btnRendiciones_Click);
+            // 
+            // btnDevoluciones
+            // 
+            this.btnDevoluciones.Location = new System.Drawing.Point(43, 258);
+            this.btnDevoluciones.Name = "btnDevoluciones";
+            this.btnDevoluciones.Size = new System.Drawing.Size(112, 34);
+            this.btnDevoluciones.TabIndex = 13;
+            this.btnDevoluciones.Text = "Devoluciones";
+            this.btnDevoluciones.UseVisualStyleBackColor = true;
+            this.btnDevoluciones.Click += new System.EventHandler(this.btnDevoluciones_Click);
+            // 
+            // btnListadoEstadistico
+            // 
+            this.btnListadoEstadistico.Location = new System.Drawing.Point(161, 258);
+            this.btnListadoEstadistico.Name = "btnListadoEstadistico";
+            this.btnListadoEstadistico.Size = new System.Drawing.Size(112, 34);
+            this.btnListadoEstadistico.TabIndex = 14;
+            this.btnListadoEstadistico.Text = "Listado Estadistico";
+            this.btnListadoEstadistico.UseVisualStyleBackColor = true;
+            this.btnListadoEstadistico.Click += new System.EventHandler(this.btnListadoEstadistico_Click);
+            // 
+            // btnCerrarSession
+            // 
+            this.btnCerrarSession.Location = new System.Drawing.Point(205, 16);
+            this.btnCerrarSession.Name = "btnCerrarSession";
+            this.btnCerrarSession.Size = new System.Drawing.Size(93, 23);
+            this.btnCerrarSession.TabIndex = 15;
+            this.btnCerrarSession.Text = "Cerrar Sesion";
+            this.btnCerrarSession.UseVisualStyleBackColor = true;
+            this.btnCerrarSession.Click += new System.EventHandler(this.btnCerrarSession_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(328, 177);
+            this.ClientSize = new System.Drawing.Size(324, 307);
+            this.Controls.Add(this.btnCerrarSession);
+            this.Controls.Add(this.btnListadoEstadistico);
+            this.Controls.Add(this.btnDevoluciones);
+            this.Controls.Add(this.btnRendiciones);
+            this.Controls.Add(this.btnPagoFactura);
+            this.Controls.Add(this.btnAbmFactura);
+            this.Controls.Add(this.btnAbmSucursal);
+            this.Controls.Add(this.btnAbmEmpresa);
+            this.Controls.Add(this.btnAbmCliente);
             this.Controls.Add(this.comboRol);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnSeleccionarSucursal);
@@ -129,5 +238,14 @@
         private System.Windows.Forms.Button btnSeleccionarSucursal;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboRol;
+        private System.Windows.Forms.Button btnAbmCliente;
+        private System.Windows.Forms.Button btnAbmEmpresa;
+        private System.Windows.Forms.Button btnAbmSucursal;
+        private System.Windows.Forms.Button btnAbmFactura;
+        private System.Windows.Forms.Button btnPagoFactura;
+        private System.Windows.Forms.Button btnRendiciones;
+        private System.Windows.Forms.Button btnDevoluciones;
+        private System.Windows.Forms.Button btnListadoEstadistico;
+        private System.Windows.Forms.Button btnCerrarSession;
     }
 }

@@ -17,11 +17,13 @@ namespace PagoAgilFrba.RegistroPago
     public partial class RegistroPago : Form
     {
         RepoPago repo;
+        int sucursal;
 
-        public RegistroPago()
+        public RegistroPago(int sucursal)
         {
             InitializeComponent();
             this.repo = new RepoPago();
+            this.sucursal = sucursal;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -103,6 +105,11 @@ namespace PagoAgilFrba.RegistroPago
         {
             int importeTotal = Int32.Parse(lblImporteTotal.Text) + importe;
             lblImporteTotal.Text = importeTotal.ToString();
+        }
+
+        private void RegistroPago_Load(object sender, EventArgs e)
+        {
+            lblSucursal.Text = this.sucursal.ToString();
         }
     }
 }
