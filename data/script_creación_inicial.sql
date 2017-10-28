@@ -1,13 +1,125 @@
 
-USE [GD1C2017]
+USE [GD2C2017]
 
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE SCHEMA [pizza]
+--ELIMINACIÓN DE CONSTRAINTS
+
+
+
+--ELIMINACIÓN DE TABLAS
+
+IF OBJECT_ID('[pizza].[Cliente]' , 'U') IS NOT NULL
+DROP table [pizza].[Cliente];
+
+IF OBJECT_ID('[pizza].[Empresa]', 'U') IS NOT NULL
+DROP table  [pizza].[Empresa];
+
+IF OBJECT_ID('[pizza].[Devolucion]', 'U') IS NOT NULL
+DROP table [pizza].[Devolucion];
+
+IF OBJECT_ID('[pizza].[Rendicion]', 'U') IS NOT NULL
+DROP table [pizza].[Rendicion];
+
+IF OBJECT_ID('[pizza].[Factura_por_rendicion]', 'U') IS NOT NULL
+DROP table [pizza].[Factura_por_rendicion];
+
+IF OBJECT_ID('[pizza].[Factura]', 'U') IS NOT NULL
+DROP table [pizza].[Factura];
+
+IF OBJECT_ID('[pizza].[Item_factura]', 'U') IS NOT NULL
+DROP table [pizza].[Item_factura];
+
+IF OBJECT_ID('[pizza].[Factura_por_pago]', 'U') IS NOT NULL
+DROP table [pizza].[Factura_por_pago];
+
+IF OBJECT_ID('[pizza].[Pago]', 'U') IS NOT NULL
+DROP table [pizza].[Pago];
+
+IF OBJECT_ID('[pizza].[Sucursal]', 'U') IS NOT NULL
+DROP table [pizza].[Sucursal];
+
+IF OBJECT_ID('[pizza].[User_por_sucursal]', 'U') IS NOT NULL
+DROP table [pizza].[User_por_sucursal];
+
+IF OBJECT_ID('[pizza].[Usuario]', 'U') IS NOT NULL
+DROP table [pizza].[Usuario]
+
+IF OBJECT_ID('[pizza].[Rol_por_usuario]', 'U') IS NOT NULL
+DROP table [pizza].[Rol_por_usuario];
+
+IF OBJECT_ID('[pizza].[Rol]', 'U') IS NOT NULL
+DROP table [pizza].[Rol];
+
+IF OBJECT_ID('[pizza].[Rol_por_funcionalidad]', 'U') IS NOT NULL
+DROP table [pizza].[Rol_por_funcionalidad];
+
+IF OBJECT_ID('[pizza].[Funcionalidad]', 'U') IS NOT NULL
+DROP table [pizza].[Funcionalidad];
+
+--ELIMINACIÓN DE PROCEDURES
+
+IF OBJECT_ID('[pizza].[Migracion_cliente]') IS NOT NULL
+BEGIN
+	DROP PROCEDURE [pizza].[Migracion_cliente]
+END
 GO
+
+IF OBJECT_ID('[pizza].[Migracion_empresa]') IS NOT NULL
+BEGIN
+	DROP PROCEDURE [pizza].[Migracion_empresa]
+END
+GO
+
+IF OBJECT_ID('[pizza].[Migracion_sucursal]') IS NOT NULL
+BEGIN
+	DROP PROCEDURE [pizza].[Migracion_sucursal]
+END
+GO
+
+IF OBJECT_ID('[pizza].[Migracion_factura]') IS NOT NULL
+BEGIN
+	DROP PROCEDURE [pizza].[Migracion_factura]
+END
+GO
+
+IF OBJECT_ID('[pizza].[Migracion_pago]') IS NOT NULL
+BEGIN
+	DROP PROCEDURE [pizza].[Migracion_pago]
+END
+GO
+
+IF OBJECT_ID('[pizza].[Migracion_rendicion]') IS NOT NULL
+BEGIN
+	DROP PROCEDURE [pizza].[Migracion_rendicion]
+END
+GO
+
+IF OBJECT_ID('[pizza].[Migracion_rol]') IS NOT NULL
+BEGIN
+	DROP PROCEDURE [pizza].[Migracion_rol]
+END
+GO
+
+IF OBJECT_ID('[pizza].[Migracion_Usuario]') IS NOT NULL
+BEGIN
+	DROP PROCEDURE [pizza].[Migracion_Usuario]
+END
+GO
+
+
+--ELIMINACIÓN DEL SCHEMA
+
+IF EXISTS (SELECT * FROM sys.schemas WHERE sys.schemas.name = 'pizza')
+	DROP SCHEMA pizza
+GO
+
+CREATE SCHEMA [pizza] AUTHORIZATION [gd]
+GO
+
 CREATE TABLE [pizza].[Cliente](
 	[clie_dni] [int] NOT NULL,
 	[clie_nombre] [varchar](150) NOT NULL,
@@ -61,7 +173,7 @@ CREATE TABLE [pizza].[Rendicion](
 	[rend_empresa] [varchar](50) NOT NULL,
 	[rend_porcentComision] [int] NOT NULL,
 	[rend_totalRendicion] [int] NULL,
-	[rend_devuelta] [tinyiny] NOT NULL
+	[rend_devuelta] [tinyint] NOT NULL
  CONSTRAINT [PK_Rendicion] PRIMARY KEY CLUSTERED 
 (
 	[rend_id] ASC
@@ -208,7 +320,6 @@ CREATE TABLE [pizza].[Funcionalidad](
 	[func_id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
-
 
 
 GO
