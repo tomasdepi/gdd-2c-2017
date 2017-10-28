@@ -47,15 +47,15 @@ namespace PagoAgilFrba.Repository
             this.Connector.Close();
         }
 
-        public void altaItems(List<ItemFactura> items, int numFactura)
+        public void altaItems(List<ItemFactura> items)
         {
             foreach (ItemFactura item in items)
             {
-                altaItemFactura(numFactura, item);
+                altaItemFactura(item);
             }
         }
 
-        private void altaItemFactura(int numFactura, ItemFactura item)
+        private void altaItemFactura(ItemFactura item)
         {
             var query = "INSERT INTO PIZZA.Item_factura (item_numFacutura, item_cantidad, item_monto) ";
             query += "VALUES (@numero, @cantidad, @monto)";

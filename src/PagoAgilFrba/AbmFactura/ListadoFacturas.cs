@@ -71,6 +71,13 @@ namespace PagoAgilFrba.AbmFactura
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            if(txtCliente.Text == "" && txtNumFactura.Text == "")
+            {
+                MessageBox.Show("Debido a que habra muchos resultados, debe filtrar por cliente o numero de factura", "Alerta", MessageBoxButtons.OK);
+                return;
+            }
+
+
             gridFacturas.Rows.Clear();
 
             string cliente = txtCliente.Text;

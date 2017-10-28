@@ -50,9 +50,7 @@ namespace PagoAgilFrba.AbmFactura
             Factura factura = repo.getFactura(this.numFactura);
             txtCliente.Text = factura.cliente.ToString();
             txtEmpresa.Text = factura.empresa;
-
-            MessageBox.Show("Factura Actualizada!!", "Exito", MessageBoxButtons.OK);
-            this.Close();
+            
         }
 
         private void txtCancelar_Click(object sender, EventArgs e)
@@ -127,16 +125,22 @@ namespace PagoAgilFrba.AbmFactura
                 ItemFactura i = new ItemFactura();
                 i.cantidad = Int32.Parse(row.Cells[0].Value.ToString());
                 i.monto = Int32.Parse(row.Cells[1].Value.ToString());
+                i.numFactura = this.numFactura;
                 items.Add(i);
             }
 
-            repo.altaItems(items, this.numFactura);
+            repo.altaItems(items);
 
             fact.numero = this.numFactura;
             fact.cliente = Int32.Parse(txtCliente.Text);
             fact.empresa = txtEmpresa.Text;
             fact.alta = dateAlta.Value.Date;
             fact.vencimiento = dateVencimiento.Value.Date;
+
+            repo.updateFactura(fact);
+
+            MessageBox.Show("Factura Actualizada!!", "Exito", MessageBoxButtons.OK);
+            this.Close();
         }
     }
 }

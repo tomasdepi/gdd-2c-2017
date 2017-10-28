@@ -79,11 +79,12 @@ namespace PagoAgilFrba.AbmFactura
                 ItemFactura i = new ItemFactura();
                 i.cantidad = Int32.Parse(row.Cells[0].Value.ToString());
                 i.monto = Int32.Parse(row.Cells[1].Value.ToString());
+                i.numFactura = fact.numero;
                 items.Add(i);
             }
 
             repo.altaFactura(fact);
-            repo.altaItems(items, fact.numero);
+            repo.altaItems(items);
             MessageBox.Show("Factura cargada con exito", "Exito", MessageBoxButtons.OK);
             this.Close();
         }
