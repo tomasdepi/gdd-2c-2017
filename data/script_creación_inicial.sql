@@ -423,7 +423,7 @@ CREATE PROCEDURE [PIZZA].[Migracion_Usuario]
 AS
 BEGIN
 	INSERT INTO Usuario(usr_usuario, usr_password, usr_intentosLogin) VALUES
-	('admin', HASHBYTES('SHA2_256', 'w23e'), 0)
+	('admin', CONVERT(NVARCHAR(32), HASHBYTES('SHA2_256', 'w23e'),2), 0)
 
 	INSERT INTO Rol_por_usuario(rolUsr_rol, rolUsr_usuario) VALUES (1, 'admin')
 

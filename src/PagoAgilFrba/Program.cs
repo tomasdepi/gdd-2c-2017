@@ -2,6 +2,7 @@
 using PagoAgilFrba.AbmFactura;
 using PagoAgilFrba.AbmRol;
 using PagoAgilFrba.Devolucion;
+using PagoAgilFrba.ListadoEstadistico;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace PagoAgilFrba
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ListadoFacturas());
+            Application.Run(new Login());
         }
 
            

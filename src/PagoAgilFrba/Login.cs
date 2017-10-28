@@ -57,6 +57,8 @@ namespace PagoAgilFrba
                     MessageBox.Show("Usuario o Password incorrecto", "Alerta", MessageBoxButtons.OK);
                     break;
                 case 1:
+                    var menu = new Menu(txtUsuario.Text) { StartPosition = FormStartPosition.CenterParent };
+                    menu.ShowDialog();
                     break;
 
             }

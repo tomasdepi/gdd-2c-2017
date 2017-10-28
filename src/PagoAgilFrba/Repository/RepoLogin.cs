@@ -15,34 +15,39 @@ namespace PagoAgilFrba.Repository
 
         public int validarUsuario(string username, string password)
         {
-            var query = "SELECT usr_password, usr_intentosLogin FROM PIZZA.Usuario WHERE usr_usuario = @user";
+            var query = "SELECT usr_password, usr_intentosLogin, CONVERT(NVARCHAR(32), HASHBYTES('SHA2_256', @pass),2) hashedInput FROM PIZZA.Usuario WHERE usr_usuario = @user";
 
             this.Command = new SqlCommand(query, this.Connector);
 
             this.Command.Parameters.Add("@user", SqlDbType.VarChar).Value = username;
+            this.Command.Parameters.Add("@pass", SqlDbType.VarChar).Value = password;
 
             this.Connector.Open();
             SqlDataReader data = Command.ExecuteReader();
 
-            bool hasRows = data.FieldCount > 0 ? true : false;
-         
-            data.Read();
-            
-            int intentos = Int32.Parse(data["usr_intentosLogin"].ToString());
-            string hashedPassword = data["usr_password"].ToString();
+           
+            if (data.HasRows)
+            {
+                data.Read();
+
+                int intentos = Int32.Parse(data["usr_intentosLogin"].ToString());
+                string hashedPassword = data["usr_password"].ToString();
+                string hashedInput = data["hashedInput"].ToString();
+                this.Connector.Close();
+
+                if (intentos >= 3)
+                    return 0;
+                
+
+                if (hashedInput == hashedPassword)
+                    return 1;
+
+                if(!username.Equals("admin"))
+                    this.aniadirIntentoFallido(username);
+
+            }
 
             this.Connector.Close();
-
-            if (intentos >= 3)
-                return 0;
-
-            string hashedInput = SHA256Encrypt(password);
-
-            if (hashedInput == hashedPassword)
-                return 1;
-
-            if (hasRows)
-                this.aniadirIntentoFallido(username);
 
             return 2;
 
@@ -59,21 +64,6 @@ namespace PagoAgilFrba.Repository
             this.Connector.Open();
             this.Command.ExecuteNonQuery();
             this.Connector.Close();
-        }
-
-        private string SHA256Encrypt(string input)
-        {
-            SHA256CryptoServiceProvider provider = new SHA256CryptoServiceProvider();
-
-            byte[] inputBytes = Encoding.UTF8.GetBytes(input);
-            byte[] hashedBytes = provider.ComputeHash(inputBytes);
-
-            StringBuilder output = new StringBuilder();
-
-            for (int i = 0; i < hashedBytes.Length; i++)
-                output.Append(hashedBytes[i].ToString("x2").ToLower());
-
-            return output.ToString();
         }
 
         public List<Sucursal> getSucursalesDeUsuario(string username)
