@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace PagoAgilFrba.Entities
 {
     public class Cliente
-    {  
+    {
         public string nombre { get; set; }
         public string apellido { get; set; }
         public int telefono { get; set; }
@@ -17,5 +17,6 @@ namespace PagoAgilFrba.Entities
         public string codigoPostal { get; set; }
         public DateTime fechaNac { get; set; }
         public bool habilitado { get; set; }
+        public int pagos { get; set; }
     }
 }

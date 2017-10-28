@@ -150,11 +150,11 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="ListadoEstadistico\Form1.cs">
+    <Compile Include="ListadoEstadistico\Listado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ListadoEstadistico\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ListadoEstadistico\Listado.Designer.cs">
+      <DependentUpon>Listado.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -180,6 +180,7 @@
     <Compile Include="Repository\RepoDevolucion.cs" />
     <Compile Include="Repository\RepoEmpresa.cs" />
     <Compile Include="Repository\RepoFactura.cs" />
+    <Compile Include="Repository\RepoListado.cs" />
     <Compile Include="Repository\RepoPago.cs" />
     <Compile Include="Repository\RepoRendicion.cs" />
     <Compile Include="Repository\RepoRol.cs" />
@@ -250,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Devolucion\DevolucionRendicion.resx">
       <DependentUpon>DevolucionRendicion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoEstadistico\Listado.resx">
+      <DependentUpon>Listado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
