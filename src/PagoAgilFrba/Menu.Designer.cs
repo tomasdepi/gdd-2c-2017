@@ -33,6 +33,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comboSucursales = new System.Windows.Forms.ComboBox();
             this.btnSeleccionarSucursal = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboRol = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -58,7 +60,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 72);
+            this.label2.Location = new System.Drawing.Point(12, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 13);
             this.label2.TabIndex = 2;
@@ -67,25 +69,44 @@
             // comboSucursales
             // 
             this.comboSucursales.FormattingEnabled = true;
-            this.comboSucursales.Location = new System.Drawing.Point(78, 69);
+            this.comboSucursales.Location = new System.Drawing.Point(78, 53);
             this.comboSucursales.Name = "comboSucursales";
             this.comboSucursales.Size = new System.Drawing.Size(121, 21);
             this.comboSucursales.TabIndex = 3;
             // 
             // btnSeleccionarSucursal
             // 
-            this.btnSeleccionarSucursal.Location = new System.Drawing.Point(223, 69);
+            this.btnSeleccionarSucursal.Location = new System.Drawing.Point(220, 53);
             this.btnSeleccionarSucursal.Name = "btnSeleccionarSucursal";
             this.btnSeleccionarSucursal.Size = new System.Drawing.Size(75, 23);
             this.btnSeleccionarSucursal.TabIndex = 4;
             this.btnSeleccionarSucursal.Text = "Seleccionar";
             this.btnSeleccionarSucursal.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 88);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(26, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Rol:";
+            // 
+            // comboRol
+            // 
+            this.comboRol.FormattingEnabled = true;
+            this.comboRol.Location = new System.Drawing.Point(78, 85);
+            this.comboRol.Name = "comboRol";
+            this.comboRol.Size = new System.Drawing.Size(121, 21);
+            this.comboRol.TabIndex = 6;
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(328, 177);
+            this.Controls.Add(this.comboRol);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnSeleccionarSucursal);
             this.Controls.Add(this.comboSucursales);
             this.Controls.Add(this.label2);
@@ -106,5 +127,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboSucursales;
         private System.Windows.Forms.Button btnSeleccionarSucursal;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboRol;
     }
 }

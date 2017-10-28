@@ -28,11 +28,23 @@ namespace PagoAgilFrba
         {
             lblUsername.Text = this.username;
             List<Sucursal> sucursales = repo.getSucursalesDeUsuario(username);
+            List<Rol> roles = repo.getRolesDeUsuario(username);
+
+            if (sucursales.Count == 0)
+            {
+               // MessageBox.Show();
+
+            }
 
             foreach (Sucursal suc in sucursales)
             {
                 comboSucursales.Items.Add(suc.nombre);
             }
+            foreach(Rol rol in roles)
+            {
+                comboRol.Items.Add(rol.nombre);
+            }
+
         }
     }
 }

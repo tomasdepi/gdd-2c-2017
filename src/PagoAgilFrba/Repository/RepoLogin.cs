@@ -94,6 +94,56 @@ namespace PagoAgilFrba.Repository
             return sucursales;
         }
 
+        public List<Rol> getRolesDeUsuario(string username)
+        {
+            var query = "SELECT rol_id, rol_nombre FROM PIZZA.Rol ";
+            query += "JOIN PIZZA.Rol_por_usuario on rolUsr_rol = rol_id ";
+            query += "WHERE rolUsr_usuario = @user AND rol_habilitado = 1";
+
+            this.Command = new SqlCommand(query, this.Connector);
+            this.Command.Parameters.Add("@user", SqlDbType.VarChar).Value = username;
+
+            List<Rol> roles = new List<Rol>();
+
+            this.Connector.Open();
+            SqlDataReader rolesData = Command.ExecuteReader();
+
+            while (rolesData.Read())
+            {
+                Rol rol = new Rol();
+                rol.nombre = rolesData["rol_nombre"].ToString();
+                rol.id = Int32.Parse(rolesData["rol_id"].ToString());
+                roles.Add(rol);
+            }
+            
+             return roles;
+        }
+
+        public List<Funcionalidad> getFuncionalidadesDeRol(int rol)
+        {
+            List<Funcionalidad> listaFuncionalidades = new List<Funcionalidad>();
+
+            var query = "SELECT func_id, func_nombre FROM PIZZA.Funcionalidad JOIN PIZZA.Rol_por_funcionalidad on rolFunc_func = func_id WHERE rolFunc_rol = @rol";
+
+            this.Command = new SqlCommand(query, this.Connector);
+            this.Command.Parameters.Add("@rol", SqlDbType.Int).Value = rol;
+
+            this.Connector.Open();
+            SqlDataReader funcionalidades = Command.ExecuteReader();
+
+            while (funcionalidades.Read())
+            {
+                Funcionalidad func = new Funcionalidad();
+                func.id = (int)funcionalidades["func_id"];
+                func.nombre = (string)funcionalidades["func_nombre"];
+                listaFuncionalidades.Add(func);
+            }
+
+            this.Connector.Close();
+
+            return listaFuncionalidades;
+        }
+
 
     }
 }
