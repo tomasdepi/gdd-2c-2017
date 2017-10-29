@@ -93,9 +93,9 @@
             // 
             // btnRegistrarPago
             // 
-            this.btnRegistrarPago.Location = new System.Drawing.Point(65, 235);
+            this.btnRegistrarPago.Location = new System.Drawing.Point(65, 194);
             this.btnRegistrarPago.Name = "btnRegistrarPago";
-            this.btnRegistrarPago.Size = new System.Drawing.Size(106, 23);
+            this.btnRegistrarPago.Size = new System.Drawing.Size(161, 23);
             this.btnRegistrarPago.TabIndex = 3;
             this.btnRegistrarPago.Text = "Registrar Pago";
             this.btnRegistrarPago.UseVisualStyleBackColor = true;
@@ -153,9 +153,9 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(65, 191);
+            this.btnCancel.Location = new System.Drawing.Point(65, 223);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(106, 23);
+            this.btnCancel.Size = new System.Drawing.Size(161, 23);
             this.btnCancel.TabIndex = 9;
             this.btnCancel.Text = "Cancelar";
             this.btnCancel.UseVisualStyleBackColor = true;

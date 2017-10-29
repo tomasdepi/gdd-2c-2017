@@ -33,11 +33,11 @@ namespace PagoAgilFrba.RegistroPago
 
         private void btnAgregarFactura_Click(object sender, EventArgs e)
         {
-            // var altaRegistroPag = new AltaRegistroPago() { StartPosition = FormStartPosition.CenterParent };
-            // altaRegistroPag.ShowDialog();
-
             BuscadorEntidad buscador = new BuscadorEntidad();
             buscador.lanzarBuscadorFactura();
+            Factura factura = buscador.factura;
+
+            this.gridAgregarFactura(factura.numero, factura.importe);
         }
 
         private void btnSelectCliente_Click(object sender, EventArgs e)
@@ -68,7 +68,7 @@ namespace PagoAgilFrba.RegistroPago
                 return;
 
             DataGridViewRow row = gridFacturas.SelectedRows[0];
-            int importe = Int32.Parse(gridFacturas.SelectedRows[0].Cells[0].Value.ToString());
+            int importe = Int32.Parse(gridFacturas.SelectedRows[0].Cells[1].Value.ToString());
             gridFacturas.Rows.Remove(row);
 
             int importeTotal = Int32.Parse(lblImporteTotal.Text) - importe;
@@ -77,13 +77,35 @@ namespace PagoAgilFrba.RegistroPago
 
         private void btnRegistrarPago_Click(object sender, EventArgs e)
         {
+            if(txtCliente.Text == "")
+            {
+                MessageBox.Show("Debe seleccionar un cliente.", "Alerta", MessageBoxButtons.OK);
+                return;
+            }
+
             Pago pago = new Pago();
             pago.cliente = Int32.Parse(txtCliente.Text);
             pago.importeTotal = Int32.Parse(lblImporteTotal.Text);
             pago.sucursal = Int32.Parse(lblSucursal.Text);
             pago.fecha = Convert.ToDateTime(ConfigurationManager.AppSettings["fechaSistema"]);
+            pago.formaPago = comboFormaPago.Items[comboFormaPago.SelectedIndex].ToString();
 
-            repo.altaPago(pago);
+            var pagoId = repo.altaPago(pago);
+
+            //registro cada factura en la tabla intermedia
+            List<int> numFacturas = new List<int>();
+            foreach (DataGridViewRow row in gridFacturas.Rows)
+            {
+                var num = Int32.Parse(row.Cells[0].Value.ToString());
+                numFacturas.Add(num);
+            }
+
+            repo.altaFacturasPago(pagoId, numFacturas);
+
+            gridFacturas.Rows.Clear();
+            lblImporteTotal.Text = "0";
+            txtCliente.Text = "";
+            MessageBox.Show("Pago realizado con exito", "Exito", MessageBoxButtons.OK);
         }
 
         private void gridAgregarFactura(int numFactura, int importe)
@@ -110,6 +132,8 @@ namespace PagoAgilFrba.RegistroPago
         private void RegistroPago_Load(object sender, EventArgs e)
         {
             lblSucursal.Text = this.sucursal.ToString();
+            comboFormaPago.SelectedIndex = 0;
+            gridFacturas.AllowUserToAddRows = false;
         }
     }
 }

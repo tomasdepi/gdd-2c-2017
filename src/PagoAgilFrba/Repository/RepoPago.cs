@@ -12,9 +12,9 @@ namespace PagoAgilFrba.Repository
     public class RepoPago : Repo
     {
 
-        public void altaPago(Pago pago)
+        public int altaPago(Pago pago)
         {
-            var query = "INSERT INTO PIZZA.Pago (pago_cliente, pago_importeTotal, pago_sucursal, pago_fecha, pago_formaPago)";
+            var query = "INSERT INTO PIZZA.Pago (pago_clie, pago_importeTotal, pago_sucursal, pago_fecha, pago_formaPago)";
             query += " VALUES (@cliente, @importe, @sucursal, @fecha, @formaPago)";
 
             this.Command = new SqlCommand(query, this.Connector);
@@ -29,6 +29,7 @@ namespace PagoAgilFrba.Repository
             this.Command.ExecuteNonQuery();
             this.Connector.Close();
 
+            return this.getUltimoPagoId();
         }
 
         public void altaFacturasPago(int idPago, List<int> numFacturas)
@@ -39,13 +40,46 @@ namespace PagoAgilFrba.Repository
             {
                 query += "("+idPago+","+numFactura+"),";
             }
-            query.Remove(query.Count() - 1);
+            query = query.Remove(query.Count() - 1);
 
             this.Command = new SqlCommand(query, this.Connector);
 
             this.Connector.Open();
             this.Command.ExecuteNonQuery();
             this.Connector.Close();
+
+            foreach(int numFactura in numFacturas)
+            {
+                this.updateFacturaPagada(numFactura);
+            }
+        }
+
+        private void updateFacturaPagada(int numFactura)
+        {
+            var query = "UPDATE PIZZA.Factura set fact_pagada = 1 WHERE fact_numero = @numFactura";
+
+            this.Command = new SqlCommand(query, this.Connector);
+            this.Command.Parameters.Add("@numFactura", SqlDbType.Int).Value = numFactura;
+
+            this.Connector.Open();
+            this.Command.ExecuteNonQuery();
+            this.Connector.Close();
+        }
+
+        private int getUltimoPagoId()
+        {
+            var query = "select top 1 pago_id from PIZZA.Pago order by pago_id desc";
+            this.Command = new SqlCommand(query, this.Connector);
+            
+            this.Connector.Open();
+
+            SqlDataReader data = this.Command.ExecuteReader();
+            data.Read();
+            int pagoId = Int32.Parse(data["pago_id"].ToString());
+            
+            this.Connector.Close();
+
+            return pagoId;
         }
 
     }

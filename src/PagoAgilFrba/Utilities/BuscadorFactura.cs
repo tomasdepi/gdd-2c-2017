@@ -43,14 +43,17 @@ namespace PagoAgilFrba.Utilities
                 DataGridViewTextBoxCell cellNumFactura = new DataGridViewTextBoxCell();
                 DataGridViewTextBoxCell cellEmpresa = new DataGridViewTextBoxCell();
                 DataGridViewTextBoxCell cellCliente = new DataGridViewTextBoxCell();
+                DataGridViewTextBoxCell cellImporte = new DataGridViewTextBoxCell();
                 cellCliente.Value = fact.cliente;
                 cellNumFactura.Value = fact.numero;
                 cellEmpresa.Value = fact.empresa;
+                cellImporte.Value = fact.importe;
 
                 DataGridViewRow row = new DataGridViewRow();
                 row.Cells.Add(cellNumFactura);
                 row.Cells.Add(cellEmpresa);
                 row.Cells.Add(cellCliente);
+                row.Cells.Add(cellImporte);
 
                 gridFacturas.Rows.Add(row);
             }
@@ -62,7 +65,11 @@ namespace PagoAgilFrba.Utilities
                 return;
 
             int numFactura = Int32.Parse(gridFacturas.SelectedRows[0].Cells[0].Value.ToString());
-            buscador.numFactura = numFactura;
+            int importe = Int32.Parse(gridFacturas.SelectedRows[0].Cells[3].Value.ToString());
+            Factura fact = new Factura();
+            fact.importe = importe;
+            fact.numero = numFactura;
+            buscador.factura = fact;
 
             this.Close();
         }

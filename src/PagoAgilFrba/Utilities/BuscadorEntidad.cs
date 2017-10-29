@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagoAgilFrba.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ namespace PagoAgilFrba.Utilities
     {
         public int dni { get; set;  }
         public string cuit { get; set; }
-        public int numFactura { get; set; }
+        public Factura factura { get; set; }
         public int idRendicion { get; set; }
 
 
@@ -19,7 +20,7 @@ namespace PagoAgilFrba.Utilities
         {
             this.cuit = "";
             this.dni = 0;
-            this.numFactura = 0;
+            this.factura = new Factura();
             this.idRendicion = 0;
         }
 

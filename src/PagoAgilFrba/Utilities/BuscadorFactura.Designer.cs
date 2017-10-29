@@ -31,15 +31,16 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.gridFacturas = new System.Windows.Forms.DataGridView();
+            this.numFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.empresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txtDniCliente = new System.Windows.Forms.TextBox();
             this.txtNumFactura = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.numFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.empresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridFacturas)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -70,11 +71,30 @@
             this.gridFacturas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.numFactura,
             this.empresa,
-            this.cliente});
-            this.gridFacturas.Location = new System.Drawing.Point(257, 18);
+            this.cliente,
+            this.importe});
+            this.gridFacturas.Location = new System.Drawing.Point(246, 18);
             this.gridFacturas.Name = "gridFacturas";
-            this.gridFacturas.Size = new System.Drawing.Size(351, 215);
+            this.gridFacturas.Size = new System.Drawing.Size(447, 215);
             this.gridFacturas.TabIndex = 7;
+            // 
+            // numFactura
+            // 
+            this.numFactura.HeaderText = "Numero Factura";
+            this.numFactura.Name = "numFactura";
+            this.numFactura.ReadOnly = true;
+            // 
+            // empresa
+            // 
+            this.empresa.HeaderText = "Cuit Empresa";
+            this.empresa.Name = "empresa";
+            this.empresa.ReadOnly = true;
+            // 
+            // cliente
+            // 
+            this.cliente.HeaderText = "Dni Cliente";
+            this.cliente.Name = "cliente";
+            this.cliente.ReadOnly = true;
             // 
             // groupBox1
             // 
@@ -132,29 +152,17 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nº Factura:";
             // 
-            // numFactura
+            // importe
             // 
-            this.numFactura.HeaderText = "Numero Factura";
-            this.numFactura.Name = "numFactura";
-            this.numFactura.ReadOnly = true;
-            // 
-            // empresa
-            // 
-            this.empresa.HeaderText = "Cuit Empresa";
-            this.empresa.Name = "empresa";
-            this.empresa.ReadOnly = true;
-            // 
-            // cliente
-            // 
-            this.cliente.HeaderText = "Dni Cliente";
-            this.cliente.Name = "cliente";
-            this.cliente.ReadOnly = true;
+            this.importe.HeaderText = "Importe";
+            this.importe.Name = "importe";
+            this.importe.ReadOnly = true;
             // 
             // BuscadorFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(622, 245);
+            this.ClientSize = new System.Drawing.Size(696, 245);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.gridFacturas);
@@ -182,5 +190,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn numFactura;
         private System.Windows.Forms.DataGridViewTextBoxColumn empresa;
         private System.Windows.Forms.DataGridViewTextBoxColumn cliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn importe;
     }
 }

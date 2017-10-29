@@ -74,7 +74,7 @@ namespace PagoAgilFrba.Repository
         {
             List<Factura> facts = new List<Factura>();
 
-            var query = "SELECT fact_numero, fact_cliente, fact_empresa, fact_pagada FROM PIZZA.Factura ";
+            var query = "SELECT fact_numero, fact_cliente, fact_empresa, fact_pagada, (SELECT sum(item_monto * item_cantidad) FROM PIZZA.Item_factura where item_numFacutura = @numFactura) importe FROM PIZZA.Factura ";
             query += "WHERE fact_numero LIKE '%"+numFactura+"' AND fact_cliente LIKE '%"+cliente+"%' ";
 
             if(pago == 1) //pagada
@@ -83,7 +83,7 @@ namespace PagoAgilFrba.Repository
                 query += "AND fact_pagada = 0";
 
             this.Command = new SqlCommand(query, this.Connector);
-           // this.Command.Parameters.Add("@numFactura", SqlDbType.VarChar).Value = numFactura;
+            this.Command.Parameters.Add("@numFactura", SqlDbType.VarChar).Value = numFactura;
             //this.Command.Parameters.Add("@cliente", SqlDbType.VarChar).Value = cliente;
 
             this.Connector.Open();
@@ -106,6 +106,7 @@ namespace PagoAgilFrba.Repository
             factura.numero = Int32.Parse(data["fact_numero"].ToString());
             factura.cliente = Int32.Parse(data["fact_cliente"].ToString());
             factura.empresa = data["fact_empresa"].ToString();
+            factura.importe = Int32.Parse(data["importe"].ToString());
             factura.pagada = data["fact_pagada"].ToString() == "1" ? true : false;
 
             return factura;

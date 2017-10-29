@@ -37,7 +37,7 @@ namespace PagoAgilFrba.Devolucion
         {
             BuscadorEntidad buscador = new BuscadorEntidad();
             buscador.lanzarBuscadorFactura();
-            txtFactura.Text = buscador.numFactura.ToString();
+            txtFactura.Text = buscador.factura.numero.ToString();
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
