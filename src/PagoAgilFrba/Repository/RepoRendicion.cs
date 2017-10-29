@@ -14,8 +14,8 @@ namespace PagoAgilFrba.Repository
 
         public void altaRendicion(Entities.Rendicion rend)
         {
-            var query = "INSERT INTO PIZZA.Rendicion (rend_fecha, rend_cantFacturas, rend_importeComision, rend_empresa, rend_porcentComision, rend_totalRendicion)";
-            query += "VALUES (@fecha, @cantFacturas, @importeComision, @empresa, @porcentComision, @totalRendicion)";
+            var query = "INSERT INTO PIZZA.Rendicion (rend_fecha, rend_cantFacturas, rend_importeComision, rend_empresa, rend_porcentComision, rend_totalRendicion, rend_devuelta)";
+            query += "VALUES (@fecha, @cantFacturas, @importeComision, @empresa, @porcentComision, @totalRendicion, 0)";
 
             this.Command = new SqlCommand(query, this.Connector);
             this.Command.Parameters.Add("@fecha", SqlDbType.Date).Value = rend.fecha;
@@ -31,13 +31,13 @@ namespace PagoAgilFrba.Repository
 
         }
 
-        public int getIdRendicion(DateTime fecha, string empresa)
+        public int getIdRendicion(int anio, int mes, string empresa)
         {
-            var query = "SELECT rend_id FROM PIZZA.Rendicion WHERE YEAR(rend_fecha) = @anio AND MONTH(rend_fecha) = @mes AND rend_empresa = '@empresa' ";
+            var query = "SELECT rend_id FROM PIZZA.Rendicion WHERE YEAR(rend_fecha) = @anio AND MONTH(rend_fecha) = @mes AND rend_empresa = @empresa ";
 
             this.Command = new SqlCommand(query, this.Connector);
-            this.Command.Parameters.Add("@mes", SqlDbType.Int).Value = fecha.Month;
-            this.Command.Parameters.Add("@anio", SqlDbType.Int).Value = fecha.Year;
+            this.Command.Parameters.Add("@mes", SqlDbType.Int).Value = mes;
+            this.Command.Parameters.Add("@anio", SqlDbType.Int).Value = anio;
             this.Command.Parameters.Add("@empresa", SqlDbType.VarChar).Value = empresa;
 
             this.Connector.Open();
@@ -73,13 +73,11 @@ namespace PagoAgilFrba.Repository
             this.Connector.Close();
         }
 
-        public bool validarExistenciaRendicion(DateTime fecha, string empresa)
+        public bool validarExistenciaRendicion(int anio, int mes, string empresa)
         {
-            int mes = fecha.Month;
-            int anio = fecha.Year;
             bool existe = false;
 
-            var query = "SELECT 1 FROM PIZZA.Rendicion WHERE YEAR(rend_fecha) = @anio AND MONTH(rend_fecha) = @mes AND rend_empresa = '@empresa' AND rend_devuelta = 0";
+            var query = "SELECT 1 FROM PIZZA.Rendicion WHERE YEAR(rend_fecha) = @anio AND MONTH(rend_fecha) = @mes AND rend_empresa = @empresa AND rend_devuelta = 0";
 
             this.Command = new SqlCommand(query, this.Connector);
             this.Command.Parameters.Add("@mes", SqlDbType.Int).Value = mes;
@@ -96,20 +94,22 @@ namespace PagoAgilFrba.Repository
             return existe;
         }
 
-        public List<Factura> getFacturasARendir(DateTime fecha, string empresa)
+        public List<Factura> getFacturasARendir(int anio, int mes, string empresa)
         {
             List<Factura> facturas = new List<Factura>();
 
-            var query = "SELECT fact_numero, sum(item_monto * item_cantidad) factura_monto FROM Factura ";
-            query += "JOIN Item_factura on item_numFactura = fact_numero ";
-            query +=  "JOIN Factura_por_pago on factPago_factura = fact_numero ";
-            query += "JOIN Pago on pago_id = factPago_pago ";
-            query += "WHERE fact_pagada = 1 AND pago_anulado = 0 AND YEAR(pago_fecha) = @anio AND MONTH(pago_fecha) = @mes";
+            var query = "SELECT fact_numero, sum(item_monto * item_cantidad) factura_monto FROM PIZZA.Factura ";
+            query += "JOIN PIZZA.Item_factura on item_numFacutura = fact_numero ";
+            query +=  "JOIN PIZZA.Factura_por_pago on factPago_factura = fact_numero ";
+            query += "JOIN PIZZA.Pago on pago_id = factPago_pago ";
+            query += "WHERE fact_pagada = 1 AND YEAR(pago_fecha) = @anio AND MONTH(pago_fecha) = @mes AND fact_empresa = @empresa ";
+            query += "GROUP BY fact_numero";
 
             this.Command = new SqlCommand(query, this.Connector);
-            this.Command.Parameters.Add("@mes", SqlDbType.Int).Value = fecha.Month;
-            this.Command.Parameters.Add("@anio", SqlDbType.Int).Value = fecha.Year;
-
+            this.Command.Parameters.Add("@mes", SqlDbType.Int).Value = mes;
+            this.Command.Parameters.Add("@anio", SqlDbType.Int).Value = anio;
+            this.Command.Parameters.Add("@empresa", SqlDbType.VarChar).Value = empresa;
+            
             this.Connector.Open();
             SqlDataReader reader = this.Command.ExecuteReader();
 

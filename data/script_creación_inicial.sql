@@ -425,6 +425,9 @@ BEGIN
 	INSERT INTO Usuario(usr_usuario, usr_password, usr_intentosLogin) VALUES
 	('admin', CONVERT(NVARCHAR(32), HASHBYTES('SHA2_256', 'w23e'),2), 0)
 
+	INSERT INTO User_por_sucursal (usrSuc_sucursal, usrSuc_usuario)
+	VALUES (7210, 'admin')
+
 	INSERT INTO Rol_por_usuario(rolUsr_rol, rolUsr_usuario) VALUES (1, 'admin')
 
 END

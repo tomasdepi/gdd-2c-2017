@@ -42,7 +42,16 @@ namespace PagoAgilFrba.Rendicion
 
         private void btnBuscarFacturas_Click(object sender, EventArgs e)
         {
-            facturas = repo.getFacturasARendir(dateFechaRendicion.Value, txtEmpresa.Text);
+            if(txtEmpresa.Text == "")
+            {
+                MessageBox.Show("Primero seleccione una empresa", "Alerta", MessageBoxButtons.OK);
+                return;
+            }
+
+            var mes = comboMes.SelectedIndex + 1;
+            var anio = Int32.Parse(numericAnio.Value.ToString());
+
+            facturas = repo.getFacturasARendir(anio, mes, txtEmpresa.Text);
             totalRendicion = 0;
             foreach(Factura factura in facturas)
             {
@@ -74,7 +83,7 @@ namespace PagoAgilFrba.Rendicion
         {
             if(this.totalRendicion != -1)
             {
-                var comision = totalRendicion * Int32.Parse(upDownPorcentajeComision.Value.ToString());
+                var comision = totalRendicion * Int32.Parse(upDownPorcentajeComision.Value.ToString()) / 100;
                 lblComision.Text = comision.ToString();
             }
         }
@@ -82,26 +91,35 @@ namespace PagoAgilFrba.Rendicion
         private void btnAceptar_Click(object sender, EventArgs e)
         {
 
-            if(repo.validarExistenciaRendicion(dateFechaRendicion.Value, txtEmpresa.Text))
+            var mes = comboMes.SelectedIndex + 1;
+            var anio = Int32.Parse(numericAnio.Value.ToString());
+
+            if (repo.validarExistenciaRendicion(anio, mes, txtEmpresa.Text))
             {
                 MessageBox.Show("Ya se realizo la rendicion para ese mes y esa empresa", "Error", MessageBoxButtons.OK);
                 return;
             }
-
+            
             Entities.Rendicion rendicion = new Entities.Rendicion();
             rendicion.empresa = txtEmpresa.Text;
-            rendicion.fecha = dateFechaRendicion.Value;
+            rendicion.fecha = new DateTime(anio, mes, 1);
             rendicion.porcentComision = Int32.Parse(upDownPorcentajeComision.Value.ToString());
-            rendicion.totalRendicion = Int32.Parse(lblImporteTotal.Text);
-            rendicion.cantFacturas = Int32.Parse(lblCantFacturas.Text);
-            rendicion.importeComision = Int32.Parse(lblComision.Text);
+            rendicion.totalRendicion = Int32.Parse(lblImporteTotal.Text.ToString());
+            rendicion.cantFacturas = Int32.Parse(lblCantFacturas.Text.ToString());
+            rendicion.importeComision = Int32.Parse(lblComision.Text.ToString());
 
             repo.altaRendicion(rendicion);
-            int idRendicion = repo.getIdRendicion(dateFechaRendicion.Value, txtEmpresa.Text);
+            int idRendicion = repo.getIdRendicion(anio, mes, txtEmpresa.Text);
             repo.altaFacturas(facturas, idRendicion);
 
             MessageBox.Show("Rendicion realizada correctamente!!", "Exito", MessageBoxButtons.OK);
             this.Close();
+        }
+
+        private void RendicionPago_Load(object sender, EventArgs e)
+        {
+            comboMes.SelectedIndex = 0;
+            gridFacturas.AllowUserToAddRows = false;
         }
     }
 }
