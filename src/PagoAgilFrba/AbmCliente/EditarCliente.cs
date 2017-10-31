@@ -108,5 +108,10 @@ namespace PagoAgilFrba.AbmCliente
 
 
         }
+
+        private void txtDni_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

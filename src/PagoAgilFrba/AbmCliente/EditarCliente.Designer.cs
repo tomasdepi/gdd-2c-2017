@@ -120,6 +120,7 @@
             this.txtDni.Size = new System.Drawing.Size(35, 13);
             this.txtDni.TabIndex = 7;
             this.txtDni.Text = "label8";
+            this.txtDni.Click += new System.EventHandler(this.txtDni_Click);
             // 
             // txtNombre
             // 

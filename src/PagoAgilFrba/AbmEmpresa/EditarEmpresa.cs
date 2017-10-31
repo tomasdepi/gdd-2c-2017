@@ -83,6 +83,11 @@ namespace PagoAgilFrba.AbmEmpresa
             MessageBox.Show("Debe completar todos los campos.", "Error", MessageBoxButtons.OK);
         }
 
+        private void txtCuit_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 
