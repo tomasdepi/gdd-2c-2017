@@ -15,6 +15,6 @@ namespace PagoAgilFrba.Entities
         public string empresa { get; set; }
         public bool pagada { get; set; }
         public int importe { get; set; }
-
+        public bool vencida { get; set; }
     }
 }

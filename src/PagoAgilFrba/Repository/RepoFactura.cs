@@ -1,6 +1,7 @@
 ﻿using PagoAgilFrba.Entities;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -74,7 +75,7 @@ namespace PagoAgilFrba.Repository
         {
             List<Factura> facts = new List<Factura>();
 
-            var query = "SELECT fact_numero, fact_cliente, fact_empresa, fact_pagada, (SELECT sum(item_monto * item_cantidad) FROM PIZZA.Item_factura where item_numFacutura = fact_numero) importe FROM PIZZA.Factura ";
+            var query = "SELECT fact_numero, fact_cliente, fact_empresa, fact_pagada, fact_vencimiento, (SELECT sum(item_monto * item_cantidad) FROM PIZZA.Item_factura where item_numFacutura = fact_numero) importe FROM PIZZA.Factura ";
             query += "WHERE fact_numero LIKE '%"+numFactura+"%' AND fact_cliente LIKE '%"+cliente+"%' ";
 
             if(pago == 1) //pagada
@@ -102,12 +103,15 @@ namespace PagoAgilFrba.Repository
 
         private Factura crearFactura(SqlDataReader data)
         {
+            DateTime fechaSistema = Convert.ToDateTime(ConfigurationManager.AppSettings["fechaSistema"].ToString());
             Factura factura = new Factura();
             factura.numero = Int32.Parse(data["fact_numero"].ToString());
             factura.cliente = Int32.Parse(data["fact_cliente"].ToString());
             factura.empresa = data["fact_empresa"].ToString();
             factura.importe = Int32.Parse(data["importe"].ToString());
             factura.pagada = data["fact_pagada"].ToString() == "1" ? true : false;
+            factura.vencimiento = Convert.ToDateTime(data["fact_vencimiento"].ToString());
+            factura.vencida = factura.vencimiento.CompareTo(fechaSistema) > 0 ? false : true;
 
             return factura;
         }

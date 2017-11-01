@@ -1,4 +1,5 @@
 ﻿using PagoAgilFrba.AbmCliente;
+using PagoAgilFrba.AbmEmpresa;
 using PagoAgilFrba.AbmFactura;
 using PagoAgilFrba.Devolucion;
 using PagoAgilFrba.Entities;
@@ -81,8 +82,8 @@ namespace PagoAgilFrba
         private void btnAbmEmpresa_Click(object sender, EventArgs e)
         {
             this.Hide();
-           // var ambEmpresa = new ListadoClieAntes() { StartPosition = FormStartPosition.CenterParent };
-            //ambEmpresa.ShowDialog();
+            var ambEmpresa = new ListadoEmpresas() { StartPosition = FormStartPosition.CenterParent };
+            ambEmpresa.ShowDialog();
             this.Show();
         }
 

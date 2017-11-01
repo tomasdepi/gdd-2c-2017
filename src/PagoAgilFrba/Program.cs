@@ -3,6 +3,7 @@ using PagoAgilFrba.AbmFactura;
 using PagoAgilFrba.AbmRol;
 using PagoAgilFrba.Devolucion;
 using PagoAgilFrba.ListadoEstadistico;
+using PagoAgilFrba.Rendicion;
 using System;
 using System.Collections.Generic;
 using System.Linq;

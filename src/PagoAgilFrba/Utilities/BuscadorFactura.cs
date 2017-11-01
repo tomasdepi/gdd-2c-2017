@@ -3,6 +3,7 @@ using PagoAgilFrba.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -38,22 +39,30 @@ namespace PagoAgilFrba.Utilities
 
             List<Factura> facturas = repo.getFacturas(numFactura, cliente, 1);
 
+            DateTime fechaSistema = Convert.ToDateTime(ConfigurationManager.AppSettings["fechaSistema"].ToString());
+
             foreach (Factura fact in facturas)
             {
                 DataGridViewTextBoxCell cellNumFactura = new DataGridViewTextBoxCell();
                 DataGridViewTextBoxCell cellEmpresa = new DataGridViewTextBoxCell();
                 DataGridViewTextBoxCell cellCliente = new DataGridViewTextBoxCell();
                 DataGridViewTextBoxCell cellImporte = new DataGridViewTextBoxCell();
+                DataGridViewTextBoxCell cellPagada = new DataGridViewTextBoxCell();
+                DataGridViewTextBoxCell cellVencida = new DataGridViewTextBoxCell();
                 cellCliente.Value = fact.cliente;
                 cellNumFactura.Value = fact.numero;
                 cellEmpresa.Value = fact.empresa;
                 cellImporte.Value = fact.importe;
+                cellPagada.Value = fact.pagada ? "Si" : "No";
+                cellVencida.Value = fact.vencida ? "Si" : "No";
 
                 DataGridViewRow row = new DataGridViewRow();
                 row.Cells.Add(cellNumFactura);
                 row.Cells.Add(cellEmpresa);
                 row.Cells.Add(cellCliente);
                 row.Cells.Add(cellImporte);
+                row.Cells.Add(cellPagada);
+                row.Cells.Add(cellVencida);
 
                 gridFacturas.Rows.Add(row);
             }
@@ -69,9 +78,16 @@ namespace PagoAgilFrba.Utilities
             Factura fact = new Factura();
             fact.importe = importe;
             fact.numero = numFactura;
+            fact.pagada = gridFacturas.SelectedRows[0].Cells[4].Value.ToString() == "Si" ? true : false;
+            fact.vencida = gridFacturas.SelectedRows[0].Cells[5].Value.ToString() == "Si" ? true : false;
             buscador.factura = fact;
 
             this.Close();
+        }
+
+        private void BuscadorFactura_Load(object sender, EventArgs e)
+        {
+            gridFacturas.AllowUserToAddRows = false;
         }
     }
 }

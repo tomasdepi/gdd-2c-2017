@@ -34,13 +34,15 @@
             this.numFactura = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.empresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txtDniCliente = new System.Windows.Forms.TextBox();
             this.txtNumFactura = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pagada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vencida = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridFacturas)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -72,10 +74,12 @@
             this.numFactura,
             this.empresa,
             this.cliente,
-            this.importe});
+            this.importe,
+            this.pagada,
+            this.vencida});
             this.gridFacturas.Location = new System.Drawing.Point(246, 18);
             this.gridFacturas.Name = "gridFacturas";
-            this.gridFacturas.Size = new System.Drawing.Size(447, 215);
+            this.gridFacturas.Size = new System.Drawing.Size(643, 215);
             this.gridFacturas.TabIndex = 7;
             // 
             // numFactura
@@ -95,6 +99,12 @@
             this.cliente.HeaderText = "Dni Cliente";
             this.cliente.Name = "cliente";
             this.cliente.ReadOnly = true;
+            // 
+            // importe
+            // 
+            this.importe.HeaderText = "Importe";
+            this.importe.Name = "importe";
+            this.importe.ReadOnly = true;
             // 
             // groupBox1
             // 
@@ -152,23 +162,30 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nº Factura:";
             // 
-            // importe
+            // pagada
             // 
-            this.importe.HeaderText = "Importe";
-            this.importe.Name = "importe";
-            this.importe.ReadOnly = true;
+            this.pagada.HeaderText = "Pagada";
+            this.pagada.Name = "pagada";
+            this.pagada.ReadOnly = true;
+            // 
+            // vencida
+            // 
+            this.vencida.HeaderText = "Vencida";
+            this.vencida.Name = "vencida";
+            this.vencida.ReadOnly = true;
             // 
             // BuscadorFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(696, 245);
+            this.ClientSize = new System.Drawing.Size(891, 245);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.gridFacturas);
             this.Controls.Add(this.groupBox1);
             this.Name = "BuscadorFactura";
             this.Text = "BuscadorFactura";
+            this.Load += new System.EventHandler(this.BuscadorFactura_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridFacturas)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -191,5 +208,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn empresa;
         private System.Windows.Forms.DataGridViewTextBoxColumn cliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn importe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pagada;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vencida;
     }
 }

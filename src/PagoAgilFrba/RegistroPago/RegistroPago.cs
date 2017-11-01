@@ -18,12 +18,14 @@ namespace PagoAgilFrba.RegistroPago
     {
         RepoPago repo;
         int sucursal;
+        List<Factura> facturas_a_pagar;
 
         public RegistroPago(int sucursal)
         {
             InitializeComponent();
             this.repo = new RepoPago();
             this.sucursal = sucursal;
+            this.facturas_a_pagar = new List<Factura>();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -36,6 +38,26 @@ namespace PagoAgilFrba.RegistroPago
             BuscadorEntidad buscador = new BuscadorEntidad();
             buscador.lanzarBuscadorFactura();
             Factura factura = buscador.factura;
+
+            if (factura.pagada)
+            {
+                MessageBox.Show("Esa factura ya esta pagada", "Alerta", MessageBoxButtons.OK);
+                return;
+            }
+
+            if (factura.vencida)
+            {
+                MessageBox.Show("Esa factura esta vencida. No puede ser pagada.", "Alerta", MessageBoxButtons.OK);
+                return;
+            }
+
+            if(facturas_a_pagar.Exists( f => f.numero == factura.numero))
+            {
+                MessageBox.Show("Esa factura ya esta seleccionada", "Error", MessageBoxButtons.OK);
+                return;
+            }
+
+            facturas_a_pagar.Add(factura);
 
             this.gridAgregarFactura(factura.numero, factura.importe);
         }
@@ -69,6 +91,8 @@ namespace PagoAgilFrba.RegistroPago
 
             DataGridViewRow row = gridFacturas.SelectedRows[0];
             int importe = Int32.Parse(gridFacturas.SelectedRows[0].Cells[1].Value.ToString());
+            var numFactura = Int32.Parse(gridFacturas.SelectedRows[0].Cells[0].Value.ToString());
+            facturas_a_pagar.RemoveAll(f => f.numero == numFactura);
             gridFacturas.Rows.Remove(row);
 
             int importeTotal = Int32.Parse(lblImporteTotal.Text) - importe;
@@ -110,6 +134,8 @@ namespace PagoAgilFrba.RegistroPago
 
         private void gridAgregarFactura(int numFactura, int importe)
         {
+            if (numFactura == 0) return;
+
             DataGridViewRow row = new DataGridViewRow();
             DataGridViewTextBoxCell numFacturaCell = new DataGridViewTextBoxCell();
             DataGridViewTextBoxCell importeCell = new DataGridViewTextBoxCell();
@@ -133,6 +159,7 @@ namespace PagoAgilFrba.RegistroPago
         {
             lblSucursal.Text = this.sucursal.ToString();
             comboFormaPago.SelectedIndex = 0;
+            gridFacturas.AllowUserToAddRows = false;
             gridFacturas.AllowUserToAddRows = false;
         }
     }
