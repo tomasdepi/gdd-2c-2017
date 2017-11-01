@@ -31,7 +31,7 @@ namespace PagoAgilFrba.ListadoEstadistico
 
         private void Cancelar_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void btnGenerarListado_Click(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace PagoAgilFrba.ListadoEstadistico
             {
                 case 0: //facturas cobradas por empresa
                     gridListado.Columns.Add("empresa", "Empresa");
-                    gridListado.Columns.Add("porcentaje", "Porcentaje");
+                    gridListado.Columns.Add("porcentaje", "Porcentaje (%)");
 
                     List<Empresa> empresasConMasFacturas = repo.porcentajeFacturasCobradasEmpresa(anio, trimestre);
 
@@ -120,11 +120,11 @@ namespace PagoAgilFrba.ListadoEstadistico
 
 
                     break;
-                case 3: //clientes con mayot porcentaje de facturas rendidas
+                case 3: //clientes con mayor porcentaje de facturas rendidas
                     gridListado.Columns.Add("cliente", "Cliente");
-                    gridListado.Columns.Add("porcentaje", "Porcentaje");
+                    gridListado.Columns.Add("porcentaje", "Porcentaje (%)");
 
-                    List<Cliente> clientesConMasFacturasRendidas = repo.clientesMasPagos(anio, trimestre);
+                    List<Cliente> clientesConMasFacturasRendidas = repo.clientesMayorPorcentajeFacturasPagadas(anio, trimestre);
 
                     foreach (Cliente clie in clientesConMasFacturasRendidas)
                     {
