@@ -29,12 +29,6 @@
         private void InitializeComponent()
         {
             this.gridListadoEmpresas = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cuit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rubro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.habilitado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txtCuit = new System.Windows.Forms.TextBox();
@@ -47,6 +41,11 @@
             this.txtCancelar = new System.Windows.Forms.Button();
             this.txtHabilitar = new System.Windows.Forms.Button();
             this.btnAltaEmpresa = new System.Windows.Forms.Button();
+            this.cuit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rubro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.habilitado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridListadoEmpresas)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -55,7 +54,6 @@
             // 
             this.gridListadoEmpresas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridListadoEmpresas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id,
             this.cuit,
             this.nombre,
             this.direccion,
@@ -63,43 +61,8 @@
             this.habilitado});
             this.gridListadoEmpresas.Location = new System.Drawing.Point(250, 12);
             this.gridListadoEmpresas.Name = "gridListadoEmpresas";
-            this.gridListadoEmpresas.Size = new System.Drawing.Size(648, 373);
+            this.gridListadoEmpresas.Size = new System.Drawing.Size(554, 373);
             this.gridListadoEmpresas.TabIndex = 0;
-            // 
-            // id
-            // 
-            this.id.HeaderText = "ID";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            // 
-            // cuit
-            // 
-            this.cuit.HeaderText = "CUIT";
-            this.cuit.Name = "cuit";
-            this.cuit.ReadOnly = true;
-            // 
-            // nombre
-            // 
-            this.nombre.HeaderText = "Nombre";
-            this.nombre.Name = "nombre";
-            this.nombre.ReadOnly = true;
-            // 
-            // direccion
-            // 
-            this.direccion.HeaderText = "Direccion";
-            this.direccion.Name = "direccion";
-            this.direccion.ReadOnly = true;
-            // 
-            // rubro
-            // 
-            this.rubro.HeaderText = "Rubro";
-            this.rubro.Name = "rubro";
-            this.rubro.ReadOnly = true;
-            // 
-            // habilitado
-            // 
-            this.habilitado.HeaderText = "Habilitado";
-            this.habilitado.Name = "habilitado";
             // 
             // groupBox1
             // 
@@ -217,11 +180,40 @@
             this.btnAltaEmpresa.UseVisualStyleBackColor = true;
             this.btnAltaEmpresa.Click += new System.EventHandler(this.btnAltaEmpresa_Click);
             // 
+            // cuit
+            // 
+            this.cuit.HeaderText = "CUIT";
+            this.cuit.Name = "cuit";
+            this.cuit.ReadOnly = true;
+            // 
+            // nombre
+            // 
+            this.nombre.HeaderText = "Nombre";
+            this.nombre.Name = "nombre";
+            this.nombre.ReadOnly = true;
+            // 
+            // direccion
+            // 
+            this.direccion.HeaderText = "Direccion";
+            this.direccion.Name = "direccion";
+            this.direccion.ReadOnly = true;
+            // 
+            // rubro
+            // 
+            this.rubro.HeaderText = "Rubro";
+            this.rubro.Name = "rubro";
+            this.rubro.ReadOnly = true;
+            // 
+            // habilitado
+            // 
+            this.habilitado.HeaderText = "Habilitado";
+            this.habilitado.Name = "habilitado";
+            // 
             // ListadoEmpresas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(918, 399);
+            this.ClientSize = new System.Drawing.Size(814, 399);
             this.Controls.Add(this.btnAltaEmpresa);
             this.Controls.Add(this.txtHabilitar);
             this.Controls.Add(this.txtCancelar);
@@ -252,12 +244,11 @@
         private System.Windows.Forms.Button txtEditar;
         private System.Windows.Forms.Button txtCancelar;
         private System.Windows.Forms.Button txtHabilitar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.Button btnAltaEmpresa;
         private System.Windows.Forms.DataGridViewTextBoxColumn cuit;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn direccion;
         private System.Windows.Forms.DataGridViewTextBoxColumn rubro;
         private System.Windows.Forms.DataGridViewTextBoxColumn habilitado;
-        private System.Windows.Forms.Button btnAltaEmpresa;
     }
 }

@@ -32,9 +32,8 @@ namespace PagoAgilFrba.AbmEmpresa
         {
             dateFechaRend.Format = DateTimePickerFormat.Custom;
             dateFechaRend.CustomFormat = "yyyyy-MM-dd";
-
-            txtId.KeyPress += new KeyPressEventHandler(keypressed);
-            txtCuit.KeyPress += new KeyPressEventHandler(keypressed);
+            
+            txtCuit.KeyPress += new KeyPressEventHandler(cuitValidation);
             
         }
 
@@ -46,10 +45,9 @@ namespace PagoAgilFrba.AbmEmpresa
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             Empresa empr = new Empresa();
-            if (txtId.Text == "") { alertNotAllFieldsCompleted(); return; } else empr.id = Int32.Parse(txtId.Text);
             if (txtCuit.Text == "") { alertNotAllFieldsCompleted(); return; } else empr.cuit = txtCuit.Text;
-            if (txtId.Text == "") { alertNotAllFieldsCompleted(); return; } else empr.nombre = txtId.Text;
             if (txtDireccion.Text == "") { alertNotAllFieldsCompleted(); return; } else empr.direccion = txtDireccion.Text;
+            if (txtNombre.Text == "") { alertNotAllFieldsCompleted(); return; } else empr.nombre = txtNombre.Text;
             if (txtRubro.Text == "") { alertNotAllFieldsCompleted(); return; } else empr.rubro = txtRubro.Text;
             if (dateFechaRend.Text == "") { alertNotAllFieldsCompleted(); return; } else empr.fechaRendicion = dateFechaRend.Value.Date;
             
@@ -59,7 +57,7 @@ namespace PagoAgilFrba.AbmEmpresa
 
         }
 
-        private void keypressed(object sender, KeyPressEventArgs e)
+        private void onlyNumbers(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
                 (e.KeyChar != '.'))
@@ -67,5 +65,15 @@ namespace PagoAgilFrba.AbmEmpresa
                 e.Handled = true;
             }
         }
+
+        private void cuitValidation(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                (e.KeyChar != '.') && (e.KeyChar != '-'))
+            {
+                e.Handled = true;
+            }
+        }
+
     }
 }

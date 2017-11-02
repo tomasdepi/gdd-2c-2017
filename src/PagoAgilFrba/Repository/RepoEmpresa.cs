@@ -13,12 +13,11 @@ namespace PagoAgilFrba.Repository
     {
         public void altaEmpresa(Empresa empresa)
         {
-            var query = "INSERT INTO PIZZA.Empresa (emp_id, emp_cuit, emp_nombre, emp_direccion, emp_rubro, emp_fechaRendicion, emp_habilitado) ";
-            query += "VALUES (@id, @cuit, @nombre, @direccion, @rubro, @fechaRendicion, 1)";
+            var query = "INSERT INTO PIZZA.Empresa (emp_cuit, emp_nombre, emp_direccion, emp_rubro, emp_fechaRendicion, emp_habilitado) ";
+            query += "VALUES (@cuit, @nombre, @direccion, @rubro, @fechaRendicion, 1)";
 
             this.Command = new SqlCommand(query, this.Connector);
-
-            this.Command.Parameters.Add("@id", SqlDbType.Int).Value = empresa.id;
+            
             this.Command.Parameters.Add("@cuit", SqlDbType.VarChar).Value = empresa.cuit;
             this.Command.Parameters.Add("@nombre", SqlDbType.VarChar).Value = empresa.nombre;
             this.Command.Parameters.Add("@direccion", SqlDbType.VarChar).Value = empresa.direccion;
@@ -92,7 +91,7 @@ namespace PagoAgilFrba.Repository
             empr.nombre = empresa["emp_nombre"].ToString();
             empr.direccion = empresa["emp_direccion"].ToString();
             empr.rubro = empresa["emp_rubro"].ToString();
-            //empr.fechaRendicion = Convert.ToDateTime(empresa["emp_fechaRendicion"].ToString());
+           // empr.fechaRendicion = Convert.ToDateTime(empresa["emp_fechaRendicion"].ToString());
             empr.habilitado = empresa["emp_habilitado"].ToString() == "1" ? true : false;
 
             return empr;
