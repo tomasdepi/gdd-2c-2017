@@ -153,7 +153,7 @@ CREATE TABLE [pizza].[Empresa](
 
 GO
 CREATE TABLE [pizza].[Devolucion](
-	[dev_id] [int] NOT NULL,
+	[dev_id] [int] NOT NULL IDENTITY(1,1),
 	[dev_tipoEntidad] [varchar](40) NOT NULL,
 	[dev_fecha] [datetime] NULL,
 	[dev_motivo] [varchar](150) NOT NULL,
@@ -187,7 +187,7 @@ CREATE TABLE [pizza].[Factura_por_rendicion](
 	[factRend_rendicion] [int] NOT NULL
  CONSTRAINT [PK_Factura_por_rendicion] PRIMARY KEY CLUSTERED 
 (
-	[factRend_factura],[factRend_rendicion]  ASC
+	[factRend_id]  ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
@@ -377,18 +377,17 @@ GO
 CREATE PROCEDURE [pizza].[Migracion_rendicion]
 AS
 BEGIN
-	SET IDENTITY_INSERT [pizza].[Rendicion] ON
 	
-	INSERT INTO PIZZA.Rendicion(rend_id, rend_fecha, rend_cantFacturas, rend_importeComision, rend_empresa, rend_porcentComision, rend_devuelta)
-	SELECT DISTINCT Rendicion_nro,Rendicion_Fecha, count(Nro_Factura), 0, Empresa_Cuit, 0, 0 FROM gd_esquema.Maestra
+	INSERT INTO Rendicion(rend_fecha, rend_cantFacturas, rend_importeComision, rend_empresa, rend_porcentComision, rend_devuelta)
+	SELECT cast(cast(year(Rendicion_Fecha)as varchar) + '-01-' + cast(month(Rendicion_Fecha)as varchar)  as datetime), count(Nro_Factura), sum(ItemRendicion_importe), Empresa_Cuit, 0, 0 FROM gd_esquema.Maestra
 	where Rendicion_Nro is not null
-	group by Rendicion_nro, Rendicion_Fecha, Empresa_Cuit
+	group by year(Rendicion_Fecha), month(Rendicion_Fecha), Empresa_Cuit
+	
 
-	SET IDENTITY_INSERT [pizza].[Rendicion] OFF
-
-	INSERT INTO PIZZA.Factura_por_rendicion(factRend_rendicion, factRend_factura)
-	SELECT distinct Rendicion_nro, Nro_factura from gd_esquema.Maestra where Rendicion_Nro is not null and Nro_Factura is not null
-	order by Rendicion_Nro
+	INSERT INTO Factura_por_rendicion(factRend_rendicion, factRend_factura)
+	SELECT rend_id, Nro_Factura FROM PIZZA.Rendicion
+	JOIN gd_esquema.Maestra ON year(Rendicion_Fecha) = year(rend_fecha) AND month(Rendicion_Fecha) = month(rend_fecha) 
+	where rend_fecha is not null AND Rendicion_Nro is not null
 
 END
 GO
@@ -429,6 +428,14 @@ BEGIN
 	VALUES (7210, 'admin')
 
 	INSERT INTO Rol_por_usuario(rolUsr_rol, rolUsr_usuario) VALUES (1, 'admin')
+
+	INSERT INTO Usuario(usr_usuario, usr_password, usr_intentosLogin) VALUES
+	('cobrador', CONVERT(NVARCHAR(32), HASHBYTES('SHA2_256', 'cobrador'),2), 0)
+
+	INSERT INTO User_por_sucursal (usrSuc_sucursal, usrSuc_usuario)
+	VALUES (7210, 'cobrador')
+
+	INSERT INTO Rol_por_usuario(rolUsr_rol, rolUsr_usuario) VALUES (2, 'cobrador')
 
 END
 
