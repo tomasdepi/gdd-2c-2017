@@ -35,14 +35,16 @@
             this.empresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pagada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vencida = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txtDniCliente = new System.Windows.Forms.TextBox();
             this.txtNumFactura = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.pagada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vencida = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboPago = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridFacturas)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -106,9 +108,23 @@
             this.importe.Name = "importe";
             this.importe.ReadOnly = true;
             // 
+            // pagada
+            // 
+            this.pagada.HeaderText = "Pagada";
+            this.pagada.Name = "pagada";
+            this.pagada.ReadOnly = true;
+            // 
+            // vencida
+            // 
+            this.vencida.HeaderText = "Vencida";
+            this.vencida.Name = "vencida";
+            this.vencida.ReadOnly = true;
+            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboPago);
             this.groupBox1.Controls.Add(this.btnBuscar);
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtDniCliente);
             this.groupBox1.Controls.Add(this.txtNumFactura);
             this.groupBox1.Controls.Add(this.label3);
@@ -122,7 +138,7 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(32, 109);
+            this.btnBuscar.Location = new System.Drawing.Point(32, 127);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(150, 23);
             this.btnBuscar.TabIndex = 6;
@@ -162,17 +178,26 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nº Factura:";
             // 
-            // pagada
+            // comboPago
             // 
-            this.pagada.HeaderText = "Pagada";
-            this.pagada.Name = "pagada";
-            this.pagada.ReadOnly = true;
+            this.comboPago.FormattingEnabled = true;
+            this.comboPago.Items.AddRange(new object[] {
+            "Indistinto",
+            "Si",
+            "No"});
+            this.comboPago.Location = new System.Drawing.Point(82, 95);
+            this.comboPago.Name = "comboPago";
+            this.comboPago.Size = new System.Drawing.Size(120, 21);
+            this.comboPago.TabIndex = 11;
             // 
-            // vencida
+            // label2
             // 
-            this.vencida.HeaderText = "Vencida";
-            this.vencida.Name = "vencida";
-            this.vencida.ReadOnly = true;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 98);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Paga:";
             // 
             // BuscadorFactura
             // 
@@ -210,5 +235,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn importe;
         private System.Windows.Forms.DataGridViewTextBoxColumn pagada;
         private System.Windows.Forms.DataGridViewTextBoxColumn vencida;
+        private System.Windows.Forms.ComboBox comboPago;
+        private System.Windows.Forms.Label label2;
     }
 }

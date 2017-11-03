@@ -36,8 +36,9 @@ namespace PagoAgilFrba.Utilities
 
             string cliente = txtDniCliente.Text;
             string numFactura = txtNumFactura.Text;
+            int paga = comboPago.SelectedIndex;
 
-            List<Factura> facturas = repo.getFacturas(numFactura, cliente, 1);
+            List<Factura> facturas = repo.getFacturas(numFactura, cliente, paga);
 
             DateTime fechaSistema = Convert.ToDateTime(ConfigurationManager.AppSettings["fechaSistema"].ToString());
 
@@ -54,7 +55,10 @@ namespace PagoAgilFrba.Utilities
                 cellEmpresa.Value = fact.empresa;
                 cellImporte.Value = fact.importe;
                 cellPagada.Value = fact.pagada ? "Si" : "No";
-                cellVencida.Value = fact.vencida ? "Si" : "No";
+                if (!fact.pagada)
+                    cellVencida.Value = fact.vencida ? "Si" : "No";
+                else
+                    cellVencida.Value = "-";
 
                 DataGridViewRow row = new DataGridViewRow();
                 row.Cells.Add(cellNumFactura);
@@ -89,6 +93,7 @@ namespace PagoAgilFrba.Utilities
         {
             gridFacturas.AllowUserToAddRows = false;
             gridFacturas.MultiSelect = false;
+            comboPago.SelectedIndex = 0;
         }
     }
 }
