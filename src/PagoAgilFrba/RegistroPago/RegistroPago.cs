@@ -160,7 +160,6 @@ namespace PagoAgilFrba.RegistroPago
             lblSucursal.Text = this.sucursal.ToString();
             comboFormaPago.SelectedIndex = 0;
             gridFacturas.AllowUserToAddRows = false;
-            gridFacturas.AllowUserToAddRows = false;
         }
     }
 }

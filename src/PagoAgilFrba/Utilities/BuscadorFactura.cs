@@ -88,6 +88,7 @@ namespace PagoAgilFrba.Utilities
         private void BuscadorFactura_Load(object sender, EventArgs e)
         {
             gridFacturas.AllowUserToAddRows = false;
+            gridFacturas.MultiSelect = false;
         }
     }
 }

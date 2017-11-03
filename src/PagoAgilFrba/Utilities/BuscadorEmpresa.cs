@@ -27,6 +27,8 @@ namespace PagoAgilFrba.Utilities
         private void BuscadorEmpresa_Load(object sender, EventArgs e)
         {
             txtCuit.KeyPress += onlyNumbers;
+            gridListadoEmpresa.MultiSelect = false;
+            gridListadoEmpresa.AllowUserToAddRows = false;
         }
 
         private void onlyNumbers(object sender, KeyPressEventArgs e)

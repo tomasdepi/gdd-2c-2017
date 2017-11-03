@@ -23,8 +23,10 @@ namespace PagoAgilFrba.AbmRol
 
         private void ListadoRoles_Load(object sender, EventArgs e)
         {
+            gridViewRoles.AllowUserToAddRows = false;
             repo = new RepoRol();
             cargarRoles();
+
         }
 
         private void cargarRoles()

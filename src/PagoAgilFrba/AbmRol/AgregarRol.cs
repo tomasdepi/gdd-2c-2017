@@ -91,6 +91,7 @@ namespace PagoAgilFrba.AbmRol
         {
             cargarFuncionalidades();
             gridFuncionalidades.MultiSelect = false;
+            gridFuncionalidades.AllowUserToAddRows = false;
         }
 
         private void label2_Click(object sender, EventArgs e)

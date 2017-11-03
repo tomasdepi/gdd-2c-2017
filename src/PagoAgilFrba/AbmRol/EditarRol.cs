@@ -33,6 +33,7 @@ namespace PagoAgilFrba.AbmRol
 
         private void EditarRol_Load(object sender, EventArgs e)
         {
+            gridFuncionalidades.AllowUserToAddRows = false;
             cbHabilitado.Items.Add("Si");
             cbHabilitado.Items.Add("No");
             cbHabilitado.DropDownStyle = ComboBoxStyle.DropDownList;

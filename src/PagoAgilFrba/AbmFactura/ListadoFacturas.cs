@@ -26,6 +26,7 @@ namespace PagoAgilFrba.AbmFactura
         private void ListadoFacturas_Load(object sender, EventArgs e)
         {
             gridFacturas.MultiSelect = false;
+            gridFacturas.AllowUserToAddRows = false;
             comboPago.SelectedIndex = 0;
         }
 

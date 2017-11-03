@@ -31,13 +31,13 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.gridRendiciones = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.empresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txtCuitEmpresa = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.empresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSeleccionar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridRendiciones)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -74,6 +74,24 @@
             this.gridRendiciones.Name = "gridRendiciones";
             this.gridRendiciones.Size = new System.Drawing.Size(351, 215);
             this.gridRendiciones.TabIndex = 11;
+            // 
+            // id
+            // 
+            this.id.HeaderText = "Id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            // 
+            // empresa
+            // 
+            this.empresa.HeaderText = "Cuit Empresa";
+            this.empresa.Name = "empresa";
+            this.empresa.ReadOnly = true;
+            // 
+            // fecha
+            // 
+            this.fecha.HeaderText = "Fecha";
+            this.fecha.Name = "fecha";
+            this.fecha.ReadOnly = true;
             // 
             // groupBox1
             // 
@@ -114,24 +132,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Cuit Empresa:";
             // 
-            // id
-            // 
-            this.id.HeaderText = "Id";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            // 
-            // empresa
-            // 
-            this.empresa.HeaderText = "Cuit Empresa";
-            this.empresa.Name = "empresa";
-            this.empresa.ReadOnly = true;
-            // 
-            // fecha
-            // 
-            this.fecha.HeaderText = "Fecha";
-            this.fecha.Name = "fecha";
-            this.fecha.ReadOnly = true;
-            // 
             // txtSeleccionar
             // 
             this.txtSeleccionar.Location = new System.Drawing.Point(224, 30);
@@ -154,6 +154,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "BuscadorRendicion";
             this.Text = "BuscadorRendicion";
+            this.Load += new System.EventHandler(this.BuscadorRendicion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridRendiciones)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -91,6 +91,7 @@ namespace PagoAgilFrba.Utilities
         private void BuscadorCliente_Load(object sender, EventArgs e)
         {
             gridListadoClientes.MultiSelect = false;
+            gridListadoClientes.AllowUserToAddRows = false;
         }
     }
 }

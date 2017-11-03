@@ -67,5 +67,11 @@ namespace PagoAgilFrba.Utilities
 
             this.Close();
         }
+
+        private void BuscadorRendicion_Load(object sender, EventArgs e)
+        {
+            gridRendiciones.MultiSelect = false;
+            gridRendiciones.AllowUserToAddRows = false;
+        }
     }
 }

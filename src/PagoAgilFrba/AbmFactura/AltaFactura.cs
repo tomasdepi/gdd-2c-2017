@@ -93,6 +93,7 @@ namespace PagoAgilFrba.AbmFactura
         {
             txtMonto.KeyPress += onlyNumbers;
             txtCantidad.KeyPress += onlyNumbers;
+            gridItems.AllowUserToAddRows = false;
         }
 
         private void onlyNumbers(object sender, KeyPressEventArgs e)

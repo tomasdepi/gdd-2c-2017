@@ -37,6 +37,7 @@ namespace PagoAgilFrba.AbmFactura
         private void EditarFactura_Load(object sender, EventArgs e)
         {
             lblNumFactura.Text = this.numFactura.ToString();
+            gridItems.AllowUserToAddRows = false;
 
             txtMonto.KeyPress += onlyNumbers;
             txtCantidad.KeyPress += onlyNumbers;

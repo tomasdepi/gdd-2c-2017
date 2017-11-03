@@ -69,6 +69,7 @@ namespace PagoAgilFrba.AbmCliente
         private void ListadoClientes_Load(object sender, EventArgs e)
         {
             gridListadoClientes.MultiSelect = false;
+            gridListadoClientes.AllowUserToAddRows = false;
         }
 
         private void txtHabilitar_Click(object sender, EventArgs e)
