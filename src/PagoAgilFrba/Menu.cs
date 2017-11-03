@@ -1,6 +1,7 @@
 ﻿using PagoAgilFrba.AbmCliente;
 using PagoAgilFrba.AbmEmpresa;
 using PagoAgilFrba.AbmFactura;
+using PagoAgilFrba.AbmRol;
 using PagoAgilFrba.Devolucion;
 using PagoAgilFrba.Entities;
 using PagoAgilFrba.ListadoEstadistico;
@@ -22,14 +23,29 @@ namespace PagoAgilFrba
     {
         string username;
         RepoLogin repo;
+        RepoRol repoRol;
         List<Sucursal> sucursales;
-        List<Rol> roles; 
+        List<Rol> roles;
+        List<List<Funcionalidad>> funcionalidadesDeRoles;
+        List<Button> botonesFuncionalidades;
 
         public Menu(string username)
         {
             InitializeComponent();
             this.username = username;
             this.repo = new RepoLogin();
+            this.repoRol = new RepoRol();
+            this.botonesFuncionalidades = new List<Button>();
+            this.botonesFuncionalidades.Add(btnAbmRol);
+            this.botonesFuncionalidades.Add(btnAbmCliente);
+            this.botonesFuncionalidades.Add(btnAbmEmpresa);
+            this.botonesFuncionalidades.Add(btnAbmSucursal);
+            this.botonesFuncionalidades.Add(btnAbmFactura);
+            this.botonesFuncionalidades.Add(btnPagoFactura);
+            this.botonesFuncionalidades.Add(btnRendiciones);
+            this.botonesFuncionalidades.Add(btnListadoEstadistico);
+            this.botonesFuncionalidades.Add(btnDevoluciones);
+            this.funcionalidadesDeRoles = new List<List<Funcionalidad>>();
         }
 
         private void Menu_Load(object sender, EventArgs e)
@@ -40,8 +56,8 @@ namespace PagoAgilFrba
 
             if (sucursales.Count == 0)
             {
-                // MessageBox.Show();
-
+                MessageBox.Show("Este usurio no tiene sucursales asignadas, no puede usar el sistema PagoAgil, la sesion se cerrara automaticamentes","Error",MessageBoxButtons.OK);
+                this.Close();
             }
 
             foreach (Sucursal suc in sucursales)
@@ -51,10 +67,14 @@ namespace PagoAgilFrba
             foreach (Rol rol in roles)
             {
                 comboRol.Items.Add(rol.nombre);
+               
+                List<Funcionalidad> funcs= repoRol.getFuncionalidadesDeRol(rol.nombre);
+                funcionalidadesDeRoles.Add(funcs);
             }
             comboSucursales.SelectedIndex = 0;
             comboRol.SelectedIndex = 0;
-
+            comboSucursales.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboRol.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void btnSeleccionarSucursal_Click(object sender, EventArgs e)
@@ -137,10 +157,7 @@ namespace PagoAgilFrba
                 var devolucionFactura = new DevolucionFactura() { StartPosition = FormStartPosition.CenterParent };
                 devolucionFactura.ShowDialog();
             }
-                
-
-
-
+      
             this.Show();
         }
 
@@ -152,9 +169,34 @@ namespace PagoAgilFrba
             this.Show();
         }
 
+        private void btnAbmRol_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var abmRoles = new ListadoRoles() { StartPosition = FormStartPosition.CenterParent };
+            abmRoles.ShowDialog();
+            this.Show();
+        }
+
         private void btnCerrarSession_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+
+        private void comboRol_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var index = comboRol.SelectedIndex;
+            List<Funcionalidad> funcsDeRol = funcionalidadesDeRoles.ElementAt(index);
+            funcsDeRol = funcsDeRol.FindAll(f => f.id != 2); //elimino el registro de usuarios 
+
+            for (var i = 0; i < funcsDeRol.Count; i++)
+            {
+                Button botonMenu = botonesFuncionalidades.ElementAt(i);
+                if (funcsDeRol.ElementAt(i).posee == true) botonMenu.Enabled = true; else botonMenu.Enabled = false;
+            }
+
+        }
+
+        
     }
 }

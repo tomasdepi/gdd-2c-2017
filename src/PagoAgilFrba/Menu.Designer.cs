@@ -32,7 +32,6 @@
             this.lblUsername = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.comboSucursales = new System.Windows.Forms.ComboBox();
-            this.btnSeleccionarSucursal = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.comboRol = new System.Windows.Forms.ComboBox();
             this.btnAbmCliente = new System.Windows.Forms.Button();
@@ -44,6 +43,7 @@
             this.btnDevoluciones = new System.Windows.Forms.Button();
             this.btnListadoEstadistico = new System.Windows.Forms.Button();
             this.btnCerrarSession = new System.Windows.Forms.Button();
+            this.btnAbmRol = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -83,16 +83,6 @@
             this.comboSucursales.Size = new System.Drawing.Size(121, 21);
             this.comboSucursales.TabIndex = 3;
             // 
-            // btnSeleccionarSucursal
-            // 
-            this.btnSeleccionarSucursal.Location = new System.Drawing.Point(205, 53);
-            this.btnSeleccionarSucursal.Name = "btnSeleccionarSucursal";
-            this.btnSeleccionarSucursal.Size = new System.Drawing.Size(90, 23);
-            this.btnSeleccionarSucursal.TabIndex = 4;
-            this.btnSeleccionarSucursal.Text = "Seleccionar";
-            this.btnSeleccionarSucursal.UseVisualStyleBackColor = true;
-            this.btnSeleccionarSucursal.Click += new System.EventHandler(this.btnSeleccionarSucursal_Click);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -109,10 +99,11 @@
             this.comboRol.Name = "comboRol";
             this.comboRol.Size = new System.Drawing.Size(121, 21);
             this.comboRol.TabIndex = 6;
+            this.comboRol.SelectedIndexChanged += new System.EventHandler(this.comboRol_SelectedIndexChanged);
             // 
             // btnAbmCliente
             // 
-            this.btnAbmCliente.Location = new System.Drawing.Point(43, 138);
+            this.btnAbmCliente.Location = new System.Drawing.Point(45, 172);
             this.btnAbmCliente.Name = "btnAbmCliente";
             this.btnAbmCliente.Size = new System.Drawing.Size(112, 34);
             this.btnAbmCliente.TabIndex = 7;
@@ -122,7 +113,7 @@
             // 
             // btnAbmEmpresa
             // 
-            this.btnAbmEmpresa.Location = new System.Drawing.Point(161, 138);
+            this.btnAbmEmpresa.Location = new System.Drawing.Point(163, 172);
             this.btnAbmEmpresa.Name = "btnAbmEmpresa";
             this.btnAbmEmpresa.Size = new System.Drawing.Size(112, 34);
             this.btnAbmEmpresa.TabIndex = 8;
@@ -132,7 +123,7 @@
             // 
             // btnAbmSucursal
             // 
-            this.btnAbmSucursal.Location = new System.Drawing.Point(43, 178);
+            this.btnAbmSucursal.Location = new System.Drawing.Point(45, 212);
             this.btnAbmSucursal.Name = "btnAbmSucursal";
             this.btnAbmSucursal.Size = new System.Drawing.Size(112, 34);
             this.btnAbmSucursal.TabIndex = 9;
@@ -142,7 +133,7 @@
             // 
             // btnAbmFactura
             // 
-            this.btnAbmFactura.Location = new System.Drawing.Point(161, 178);
+            this.btnAbmFactura.Location = new System.Drawing.Point(163, 212);
             this.btnAbmFactura.Name = "btnAbmFactura";
             this.btnAbmFactura.Size = new System.Drawing.Size(112, 34);
             this.btnAbmFactura.TabIndex = 10;
@@ -152,7 +143,7 @@
             // 
             // btnPagoFactura
             // 
-            this.btnPagoFactura.Location = new System.Drawing.Point(43, 218);
+            this.btnPagoFactura.Location = new System.Drawing.Point(45, 252);
             this.btnPagoFactura.Name = "btnPagoFactura";
             this.btnPagoFactura.Size = new System.Drawing.Size(112, 34);
             this.btnPagoFactura.TabIndex = 11;
@@ -162,7 +153,7 @@
             // 
             // btnRendiciones
             // 
-            this.btnRendiciones.Location = new System.Drawing.Point(161, 218);
+            this.btnRendiciones.Location = new System.Drawing.Point(163, 252);
             this.btnRendiciones.Name = "btnRendiciones";
             this.btnRendiciones.Size = new System.Drawing.Size(112, 34);
             this.btnRendiciones.TabIndex = 12;
@@ -172,7 +163,7 @@
             // 
             // btnDevoluciones
             // 
-            this.btnDevoluciones.Location = new System.Drawing.Point(43, 258);
+            this.btnDevoluciones.Location = new System.Drawing.Point(45, 292);
             this.btnDevoluciones.Name = "btnDevoluciones";
             this.btnDevoluciones.Size = new System.Drawing.Size(112, 34);
             this.btnDevoluciones.TabIndex = 13;
@@ -182,7 +173,7 @@
             // 
             // btnListadoEstadistico
             // 
-            this.btnListadoEstadistico.Location = new System.Drawing.Point(161, 258);
+            this.btnListadoEstadistico.Location = new System.Drawing.Point(163, 292);
             this.btnListadoEstadistico.Name = "btnListadoEstadistico";
             this.btnListadoEstadistico.Size = new System.Drawing.Size(112, 34);
             this.btnListadoEstadistico.TabIndex = 14;
@@ -200,11 +191,22 @@
             this.btnCerrarSession.UseVisualStyleBackColor = true;
             this.btnCerrarSession.Click += new System.EventHandler(this.btnCerrarSession_Click);
             // 
+            // btnAbmRol
+            // 
+            this.btnAbmRol.Location = new System.Drawing.Point(107, 132);
+            this.btnAbmRol.Name = "btnAbmRol";
+            this.btnAbmRol.Size = new System.Drawing.Size(112, 34);
+            this.btnAbmRol.TabIndex = 16;
+            this.btnAbmRol.Text = "ABM Roles";
+            this.btnAbmRol.UseVisualStyleBackColor = true;
+            this.btnAbmRol.Click += new System.EventHandler(this.btnAbmRol_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(324, 307);
+            this.ClientSize = new System.Drawing.Size(324, 346);
+            this.Controls.Add(this.btnAbmRol);
             this.Controls.Add(this.btnCerrarSession);
             this.Controls.Add(this.btnListadoEstadistico);
             this.Controls.Add(this.btnDevoluciones);
@@ -216,7 +218,6 @@
             this.Controls.Add(this.btnAbmCliente);
             this.Controls.Add(this.comboRol);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnSeleccionarSucursal);
             this.Controls.Add(this.comboSucursales);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblUsername);
@@ -235,7 +236,6 @@
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboSucursales;
-        private System.Windows.Forms.Button btnSeleccionarSucursal;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboRol;
         private System.Windows.Forms.Button btnAbmCliente;
@@ -247,5 +247,6 @@
         private System.Windows.Forms.Button btnDevoluciones;
         private System.Windows.Forms.Button btnListadoEstadistico;
         private System.Windows.Forms.Button btnCerrarSession;
+        private System.Windows.Forms.Button btnAbmRol;
     }
 }

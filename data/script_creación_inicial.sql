@@ -405,7 +405,8 @@ BEGIN
 	(6, 'ABM Factura'),
 	(7, 'Registro de Pago de Facturas'),
 	(8, 'Rendicion de Facturas Cobradas'),
-	(9, 'Listado Estadistico')
+	(9, 'Listado Estadistico'),
+	(10, 'Devoluciones')
 
 	SET IDENTITY_INSERT PIZZA.Rol ON
 	INSERT INTO PIZZA.Rol(rol_id, rol_nombre, rol_habilitado) VALUES
@@ -413,7 +414,7 @@ BEGIN
 	SET IDENTITY_INSERT PIZZA.Rol OFF
 
 	INSERT INTO PIZZA.Rol_por_funcionalidad(rolFunc_rol, rolFunc_func) VALUES
-	(1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(2,7),(2,8)
+	(1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(2,7),(2,8)
 
 END
 
