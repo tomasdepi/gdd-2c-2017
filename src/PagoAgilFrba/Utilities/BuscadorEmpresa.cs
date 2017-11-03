@@ -52,6 +52,8 @@ namespace PagoAgilFrba.Utilities
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            gridListadoEmpresa.Rows.Clear();
+
             List<Empresa> empresas = repo.getEmpresas(txtCuit.Text, txtNombre.Text);
             foreach(Empresa emp in empresas)
             {

@@ -1,4 +1,5 @@
 ﻿using PagoAgilFrba.AbmCliente;
+using PagoAgilFrba.AbmEmpresa;
 using PagoAgilFrba.AbmFactura;
 using PagoAgilFrba.AbmRol;
 using PagoAgilFrba.Devolucion;
@@ -22,7 +23,7 @@ namespace PagoAgilFrba
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Listado());
+            Application.Run(new Login());
         }
 
            

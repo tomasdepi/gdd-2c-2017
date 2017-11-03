@@ -123,9 +123,24 @@ namespace PagoAgilFrba
 
         private void btnDevoluciones_Click(object sender, EventArgs e)
         {
+            var rol = comboRol.SelectedItem.ToString();
+           
             this.Hide();
-            var devoluciones = new DevolucionRendicion() { StartPosition = FormStartPosition.CenterParent };
-            devoluciones.ShowDialog();
+
+            if(rol == "Administrador")
+            {
+                var devolucionRendicion = new DevolucionRendicion() { StartPosition = FormStartPosition.CenterParent };
+                devolucionRendicion.ShowDialog();
+            }
+            else
+            {
+                var devolucionFactura = new DevolucionFactura() { StartPosition = FormStartPosition.CenterParent };
+                devolucionFactura.ShowDialog();
+            }
+                
+
+
+
             this.Show();
         }
 

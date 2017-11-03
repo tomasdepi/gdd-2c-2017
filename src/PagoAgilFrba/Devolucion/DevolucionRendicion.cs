@@ -32,6 +32,13 @@ namespace PagoAgilFrba.Devolucion
         {
             Entities.Devolucion devolucion = new Entities.Devolucion();
             devolucion.motivo = txtMotivo.Text;
+
+            if(txtMotivo.Text == "")
+            {
+                MessageBox.Show("Debe ingresar el motivo de la devolucion", "Alerta", MessageBoxButtons.OK);
+                return;
+            }
+
             devolucion.idEntidad = Int32.Parse(txtIdRendicion.Text);
             devolucion.tipoEntidad = "Rendicion";
             devolucion.fecha = Convert.ToDateTime(ConfigurationManager.AppSettings["FechaSistema"]);

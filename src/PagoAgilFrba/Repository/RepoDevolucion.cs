@@ -48,7 +48,16 @@ namespace PagoAgilFrba.Repository
 
         private void devolucionRendicion(int idRendicion)
         {
-            var query = "UPDATE PIZZA.Rendicion SET rend_devuelta = 0 WHERE rend_id = @idRendicion";
+            var query = "UPDATE PIZZA.Rendicion SET rend_devuelta = 1 WHERE rend_id = @idRendicion";
+
+            this.Command = new SqlCommand(query, this.Connector);
+            this.Command.Parameters.Add("@idRendicion", SqlDbType.Int).Value = idRendicion;
+
+            this.Connector.Open();
+            this.Command.ExecuteNonQuery();
+            this.Connector.Close();
+
+            query = "DELETE FROM PIZZA.Factura_por_rendicion WHERE factRend_rendicion = @idRendicion";
 
             this.Command = new SqlCommand(query, this.Connector);
             this.Command.Parameters.Add("@idRendicion", SqlDbType.Int).Value = idRendicion;
