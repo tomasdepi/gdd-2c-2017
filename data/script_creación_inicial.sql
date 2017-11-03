@@ -440,7 +440,7 @@ BEGIN
 
 END
 
-
+GO
 exec PIZZA.Migracion_cliente;
 exec PIZZA.Migracion_empresa;
 exec PIZZA.Migracion_factura;
