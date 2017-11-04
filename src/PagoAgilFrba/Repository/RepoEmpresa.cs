@@ -17,7 +17,7 @@ namespace PagoAgilFrba.Repository
             query += "VALUES (@cuit, @nombre, @direccion, @rubro, @fechaRendicion, 1)";
 
             this.Command = new SqlCommand(query, this.Connector);
-            
+
             this.Command.Parameters.Add("@cuit", SqlDbType.VarChar).Value = empresa.cuit;
             this.Command.Parameters.Add("@nombre", SqlDbType.VarChar).Value = empresa.nombre;
             this.Command.Parameters.Add("@direccion", SqlDbType.VarChar).Value = empresa.direccion;
@@ -91,7 +91,10 @@ namespace PagoAgilFrba.Repository
             empr.nombre = empresa["emp_nombre"].ToString();
             empr.direccion = empresa["emp_direccion"].ToString();
             empr.rubro = empresa["emp_rubro"].ToString();
-           // empr.fechaRendicion = Convert.ToDateTime(empresa["emp_fechaRendicion"].ToString());
+            if (!empresa.IsDBNull(5))
+                empr.fechaRendicion = Convert.ToDateTime(empresa["emp_fechaRendicion"].ToString());
+            else
+                empr.fechaRendicion = DateTime.Now;
             empr.habilitado = empresa["emp_habilitado"].ToString() == "1" ? true : false;
 
             return empr;
@@ -99,10 +102,9 @@ namespace PagoAgilFrba.Repository
 
         public void updateEmpresa(Empresa empr)
         {
-            var sql = "UPDATE PIZZA.Empresa SET emp_cuit=@cuit, emp_nombre=@nombre, emp_direccion=@direccion, emp_rubro=@rubro, emp_fechaRendicion=@fechaRendicion WHERE emp_id=@id";
+            var sql = "UPDATE PIZZA.Empresa SET emp_nombre=@nombre, emp_direccion=@direccion, emp_rubro=@rubro, emp_fechaRendicion=@fechaRendicion WHERE emp_cuit=@cuit";
 
             this.Command = new SqlCommand(sql, this.Connector);
-            this.Command.Parameters.Add("@id", SqlDbType.Int).Value = empr.id;
             this.Command.Parameters.Add("@cuit", SqlDbType.VarChar).Value = empr.cuit;
             this.Command.Parameters.Add("@nombre", SqlDbType.VarChar).Value = empr.nombre;
             this.Command.Parameters.Add("@direccion", SqlDbType.VarChar).Value = empr.direccion;
@@ -112,6 +114,25 @@ namespace PagoAgilFrba.Repository
             this.Connector.Open();
             this.Command.ExecuteNonQuery();
             this.Connector.Close();
+        }
+
+        public bool validarExistencia(string cuit)
+        {
+            var sql = "SELECT 1 FROM PIZZA.Empresa WHERE emp_cuit = @cuit";
+
+            this.Command = new SqlCommand(sql, this.Connector);
+            this.Command.Parameters.Add("@cuit", SqlDbType.VarChar).Value = cuit;
+
+            this.Connector.Open();
+
+            SqlDataReader empresaDb = Command.ExecuteReader();
+
+            bool existe = empresaDb.HasRows;
+
+            this.Connector.Close();
+
+            return existe;
+
         }
     }
 }
