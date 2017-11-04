@@ -37,6 +37,13 @@ namespace PagoAgilFrba.Utilities
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+
+            if(txtCuitEmpresa.Text.ToString() == "")
+            {
+                MessageBox.Show("Debe seleccionar una empresa.", "Alerta", MessageBoxButtons.OK);
+                return;
+            }
+
             List<Entities.Rendicion> rendiciones = repo.buscarRendiciones(txtCuitEmpresa.Text);
 
             gridRendiciones.Rows.Clear();

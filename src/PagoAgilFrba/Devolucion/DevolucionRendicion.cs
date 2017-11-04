@@ -56,7 +56,9 @@ namespace PagoAgilFrba.Devolucion
         {
             BuscadorEntidad buscador = new BuscadorEntidad();
             buscador.lanzarBuscadorRendicion();
-            txtIdRendicion.Text = buscador.idRendicion.ToString();
+
+            if(buscador.idRendicion.ToString() != "0")
+                txtIdRendicion.Text = buscador.idRendicion.ToString();
         }
     }
 }
