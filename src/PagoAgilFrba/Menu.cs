@@ -2,6 +2,7 @@
 using PagoAgilFrba.AbmEmpresa;
 using PagoAgilFrba.AbmFactura;
 using PagoAgilFrba.AbmRol;
+using PagoAgilFrba.AbmSucursal;
 using PagoAgilFrba.Devolucion;
 using PagoAgilFrba.Entities;
 using PagoAgilFrba.ListadoEstadistico;
@@ -110,8 +111,8 @@ namespace PagoAgilFrba
         private void btnAbmSucursal_Click(object sender, EventArgs e)
         {
             this.Hide();
-            // var ambEmpresa = new ListadoClieAntes() { StartPosition = FormStartPosition.CenterParent };
-            //ambEmpresa.ShowDialog();
+            var abmSucursal = new ListadoSucursales() { StartPosition = FormStartPosition.CenterParent };
+            abmSucursal.ShowDialog();
             this.Show();
         }
 

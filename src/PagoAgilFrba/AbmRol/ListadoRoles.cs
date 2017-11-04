@@ -88,5 +88,10 @@ namespace PagoAgilFrba.AbmRol
             else
                 row.Cells[1].Value = "Si";
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

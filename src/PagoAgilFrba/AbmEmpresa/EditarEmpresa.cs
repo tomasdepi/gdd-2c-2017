@@ -36,7 +36,7 @@ namespace PagoAgilFrba.AbmEmpresa
 
         private void EditarEmpresa_Load(object sender, EventArgs e)
         {
-            txtId.Text = this.empresa_id.ToString();
+            txtCuit.Text = this.empresa_id.ToString();
 
             dateFechaRend.Format = DateTimePickerFormat.Custom;
             dateFechaRend.CustomFormat = "yyyy-MM-dd";
@@ -46,16 +46,15 @@ namespace PagoAgilFrba.AbmEmpresa
             txtNombre.Text = empresa.nombre;
             txtDireccion.Text = empresa.direccion;
             txtRubro.Text = empresa.rubro;
-            dateFechaRend.Value = empresa.fechaRendicion;
-
-            txtId.KeyPress += new KeyPressEventHandler(keypressed);
+            if(empresa.fechaRendicion != null)
+                dateFechaRend.Value = empresa.fechaRendicion;
+            
             txtCuit.KeyPress += new KeyPressEventHandler(keypressed);
         }
 
         private void txtGuardar_Click(object sender, EventArgs e)
         {
             Empresa empresa = new Empresa();
-            if (txtId.Text == "") { alertNotAllFieldsCompleted(); return; } else empresa.id = Int32.Parse(txtId.Text);
             if (txtCuit.Text == "") { alertNotAllFieldsCompleted(); return; } else empresa.cuit = txtCuit.Text;
             if (txtNombre.Text == "") { alertNotAllFieldsCompleted(); return; } else empresa.nombre = txtNombre.Text;
             if (txtDireccion.Text == "") { alertNotAllFieldsCompleted(); return; } else empresa.direccion = txtDireccion.Text;
@@ -64,7 +63,7 @@ namespace PagoAgilFrba.AbmEmpresa
 
             repo.updateEmpresa(empresa);
 
-            MessageBox.Show("Empresa actualizada con éxito.", "Alta Empresa", MessageBoxButtons.OK);
+            MessageBox.Show("Empresa actualizada con éxito. Recargue la grilla para ver los cambios", "Alta Empresa", MessageBoxButtons.OK);
             this.Close();
 
         }

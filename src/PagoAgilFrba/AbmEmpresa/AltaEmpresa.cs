@@ -50,11 +50,20 @@ namespace PagoAgilFrba.AbmEmpresa
             if (txtNombre.Text == "") { alertNotAllFieldsCompleted(); return; } else empr.nombre = txtNombre.Text;
             if (txtRubro.Text == "") { alertNotAllFieldsCompleted(); return; } else empr.rubro = txtRubro.Text;
             if (dateFechaRend.Text == "") { alertNotAllFieldsCompleted(); return; } else empr.fechaRendicion = dateFechaRend.Value.Date;
-            
-            repo.altaEmpresa(empr);
-            MessageBox.Show("Empresa creada con éxito.", "Alta Empresa", MessageBoxButtons.OK);
-            this.Close();
 
+            if (repo.validarExistencia(empr.cuit))
+            {
+                MessageBox.Show("Ya existe una empresa con ese cuit.", "Error", MessageBoxButtons.OK);
+                return;
+            }
+            else
+            {
+                repo.altaEmpresa(empr);
+                MessageBox.Show("Empresa creada con éxito.", "Alta Empresa", MessageBoxButtons.OK);
+                this.Close();
+            }
+
+           
         }
 
         private void onlyNumbers(object sender, KeyPressEventArgs e)
