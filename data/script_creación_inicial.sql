@@ -6,110 +6,129 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
---ELIMINACIÓN DE CONSTRAINTS
-
-
-
 --ELIMINACIÓN DE TABLAS
 
+--ELIMINACIÓN TABLA CLIENTE
 IF OBJECT_ID('[pizza].[Cliente]' , 'U') IS NOT NULL
 DROP table [pizza].[Cliente];
 
+--ELIMINACIÓN TABLA EMPRESA
 IF OBJECT_ID('[pizza].[Empresa]', 'U') IS NOT NULL
 DROP table  [pizza].[Empresa];
 
+--ELIMINACIÓN TABLA DEVOLUCIÓN
 IF OBJECT_ID('[pizza].[Devolucion]', 'U') IS NOT NULL
 DROP table [pizza].[Devolucion];
 
+--ELIMINACIÓN TABLA RENDICIÓN
 IF OBJECT_ID('[pizza].[Rendicion]', 'U') IS NOT NULL
 DROP table [pizza].[Rendicion];
 
+--ELIMINACIÓN TABLA FACTURA_POR_RENDICION
 IF OBJECT_ID('[pizza].[Factura_por_rendicion]', 'U') IS NOT NULL
 DROP table [pizza].[Factura_por_rendicion];
 
+--ELIMINACIÓN TABLA FACTURA
 IF OBJECT_ID('[pizza].[Factura]', 'U') IS NOT NULL
 DROP table [pizza].[Factura];
 
+--ELIMINACIÓN TABLA ITEM_FACTURA
 IF OBJECT_ID('[pizza].[Item_factura]', 'U') IS NOT NULL
 DROP table [pizza].[Item_factura];
 
+--ELIMINACIÓN TABLA FACTURA_POR_PAGO
 IF OBJECT_ID('[pizza].[Factura_por_pago]', 'U') IS NOT NULL
 DROP table [pizza].[Factura_por_pago];
 
+--ELIMINACIÓN TABLA PAGO
 IF OBJECT_ID('[pizza].[Pago]', 'U') IS NOT NULL
 DROP table [pizza].[Pago];
 
+--ELIMINACIÓN TABLA SUCURSAL
 IF OBJECT_ID('[pizza].[Sucursal]', 'U') IS NOT NULL
 DROP table [pizza].[Sucursal];
 
+--ELIMINACIÓN TABLA USER_POR_SUCURSAL
 IF OBJECT_ID('[pizza].[User_por_sucursal]', 'U') IS NOT NULL
 DROP table [pizza].[User_por_sucursal];
 
+--ELIMINACIÓN TABLA USUARIO
 IF OBJECT_ID('[pizza].[Usuario]', 'U') IS NOT NULL
 DROP table [pizza].[Usuario]
 
+--ELIMINACIÓN TABLA ROL_POR_USUARIO
 IF OBJECT_ID('[pizza].[Rol_por_usuario]', 'U') IS NOT NULL
 DROP table [pizza].[Rol_por_usuario];
 
+--ELIMINACIÓN TABLA ROL
 IF OBJECT_ID('[pizza].[Rol]', 'U') IS NOT NULL
 DROP table [pizza].[Rol];
 
+--ELIMINACIÓN TABLA ROL_POR_FUNCIONALIDAD
 IF OBJECT_ID('[pizza].[Rol_por_funcionalidad]', 'U') IS NOT NULL
 DROP table [pizza].[Rol_por_funcionalidad];
 
+--ELIMINACIÓN TABLA FUNCIONALIDAD
 IF OBJECT_ID('[pizza].[Funcionalidad]', 'U') IS NOT NULL
 DROP table [pizza].[Funcionalidad];
 
 --ELIMINACIÓN DE PROCEDURES
 
+--ELIMINACIÓN PROCEDURE MIGRACION CLIENTE
 IF OBJECT_ID('[pizza].[Migracion_cliente]') IS NOT NULL
 BEGIN
 	DROP PROCEDURE [pizza].[Migracion_cliente]
 END
 GO
 
+--ELIMINACIÓN PROCEDURE MIGRACION EMPRESA
 IF OBJECT_ID('[pizza].[Migracion_empresa]') IS NOT NULL
 BEGIN
 	DROP PROCEDURE [pizza].[Migracion_empresa]
 END
 GO
 
+--ELIMINACIÓN PROCEDURE MIGRACION SUCURSAL
 IF OBJECT_ID('[pizza].[Migracion_sucursal]') IS NOT NULL
 BEGIN
 	DROP PROCEDURE [pizza].[Migracion_sucursal]
 END
 GO
 
+--ELIMINACIÓN PROCEDURE MIGRACION FACTURA
 IF OBJECT_ID('[pizza].[Migracion_factura]') IS NOT NULL
 BEGIN
 	DROP PROCEDURE [pizza].[Migracion_factura]
 END
 GO
 
+--ELIMINACIÓN PROCEDURE MIGRACION PAGO
 IF OBJECT_ID('[pizza].[Migracion_pago]') IS NOT NULL
 BEGIN
 	DROP PROCEDURE [pizza].[Migracion_pago]
 END
 GO
 
+--ELIMINACIÓN PROCEDURE MIGRACION RENDICION
 IF OBJECT_ID('[pizza].[Migracion_rendicion]') IS NOT NULL
 BEGIN
 	DROP PROCEDURE [pizza].[Migracion_rendicion]
 END
 GO
 
+--ELIMINACIÓN PROCEDURE MIGRACION ROL
 IF OBJECT_ID('[pizza].[Migracion_rol]') IS NOT NULL
 BEGIN
 	DROP PROCEDURE [pizza].[Migracion_rol]
 END
 GO
 
+--ELIMINACIÓN PROCEDURE MIGRACION USUARIO
 IF OBJECT_ID('[pizza].[Migracion_Usuario]') IS NOT NULL
 BEGIN
 	DROP PROCEDURE [pizza].[Migracion_Usuario]
 END
 GO
-
 
 --ELIMINACIÓN DEL SCHEMA
 
@@ -117,9 +136,14 @@ IF EXISTS (SELECT * FROM sys.schemas WHERE sys.schemas.name = 'pizza')
 	DROP SCHEMA pizza
 GO
 
+--CREACIÓN DEL SCHEMA
+
 CREATE SCHEMA [pizza] AUTHORIZATION [gd]
 GO
 
+--CREACIÓN DE TABLAS
+
+--TABLA CLIENTE
 CREATE TABLE [pizza].[Cliente](
 	[clie_dni] [int] NOT NULL,
 	[clie_nombre] [varchar](150) NOT NULL,
@@ -136,6 +160,8 @@ CREATE TABLE [pizza].[Cliente](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+
+--TABLA EMPRESA
 GO
 CREATE TABLE [pizza].[Empresa](
 	[emp_id] [int] NOT NULL IDENTITY(1,1),
@@ -151,6 +177,8 @@ CREATE TABLE [pizza].[Empresa](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+
+--TABLA DEVOLUCIÓN
 GO
 CREATE TABLE [pizza].[Devolucion](
 	[dev_id] [int] NOT NULL IDENTITY(1,1),
@@ -164,6 +192,8 @@ CREATE TABLE [pizza].[Devolucion](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+
+--TABLA RENDICIÓN
 GO
 CREATE TABLE [pizza].[Rendicion](
 	[rend_id] [int] NOT NULL IDENTITY(1,1),
@@ -180,6 +210,8 @@ CREATE TABLE [pizza].[Rendicion](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+
+--TABLA FACTURA_POR_RENDICION
 GO
 CREATE TABLE [pizza].[Factura_por_rendicion](
 	[factRend_id] [int] NOT NULL IDENTITY(1,1),
@@ -191,6 +223,8 @@ CREATE TABLE [pizza].[Factura_por_rendicion](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+
+--TABLA FACTURA
 GO
 CREATE TABLE [pizza].[Factura](
 	[fact_numero] [int] NOT NULL,
@@ -205,6 +239,8 @@ CREATE TABLE [pizza].[Factura](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+
+--TABLA ITEM_FACTURA
 GO
 CREATE TABLE [pizza].[Item_factura](
 	[item_id] [int] NOT NULL IDENTITY(1,1),
@@ -217,6 +253,8 @@ CREATE TABLE [pizza].[Item_factura](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+
+--TABLA FACTURA_POR_PAGO
 GO
 CREATE TABLE [pizza].[Factura_por_pago](
 	[factPago_id] [int] NOT NULL IDENTITY(1,1),
@@ -228,6 +266,8 @@ CREATE TABLE [pizza].[Factura_por_pago](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+
+--TABLA PAGO
 GO
 CREATE TABLE [pizza].[Pago](
 	[pago_id] [int] NOT NULL IDENTITY(1,1),
@@ -243,6 +283,8 @@ CREATE TABLE [pizza].[Pago](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+
+--TABLA SUCURSAL
 GO
 CREATE TABLE [pizza].[Sucursal](
 	[suc_codPostal] [int] NOT NULL,
@@ -255,6 +297,8 @@ CREATE TABLE [pizza].[Sucursal](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+
+--TABLA USER_POR_SUCURSAL
 GO
 CREATE TABLE [pizza].[User_por_sucursal](
 	[usrSuc_id] [int] NOT NULL IDENTITY(1,1),
@@ -266,6 +310,8 @@ CREATE TABLE [pizza].[User_por_sucursal](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+
+--TABLA USUARIO
 GO
 CREATE TABLE [pizza].[Usuario](
 	[usr_usuario] [varchar](50) NOT NULL,
@@ -278,6 +324,7 @@ CREATE TABLE [pizza].[Usuario](
 ) ON [PRIMARY]
 
 
+--TABLA ROL_POR_USUARIO
 GO
 CREATE TABLE [pizza].[Rol_por_usuario](
 	[rolUsr_id] [int] NOT NULL IDENTITY(1,1),
@@ -289,6 +336,8 @@ CREATE TABLE [pizza].[Rol_por_usuario](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+
+--TABLA ROL
 GO
 CREATE TABLE [pizza].[Rol](
 	[rol_id] [int] NOT NULL IDENTITY(1,1),
@@ -300,6 +349,8 @@ CREATE TABLE [pizza].[Rol](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+
+--TABLA ROL_POR_FUNCIONALIDAD
 GO
 CREATE TABLE [pizza].[Rol_por_funcionalidad](
 	[rolFunc_id] [int] NOT NULL IDENTITY(1,1),
@@ -311,6 +362,8 @@ CREATE TABLE [pizza].[Rol_por_funcionalidad](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+
+-TABLA FUNCIONALIDAD
 GO
 CREATE TABLE [pizza].[Funcionalidad](
 	[func_id] [int] NOT NULL,
@@ -322,6 +375,9 @@ CREATE TABLE [pizza].[Funcionalidad](
 ) ON [PRIMARY]
 
 
+--CREACIÓN DE STORED PROCEDURES PARA LA MIGRACIÓN
+
+--MIGRACIÓN DE CLIENTE
 GO
 CREATE PROCEDURE [pizza].[Migracion_cliente]
 AS
@@ -331,6 +387,7 @@ BEGIN
 
 END
 
+--MIGRACIÓN DE EMPRESA
 GO
 CREATE PROCEDURE [pizza].[Migracion_empresa]
 AS
@@ -339,6 +396,7 @@ BEGIN
 	SELECT DISTINCT Empresa_Cuit, Empresa_Nombre, Empresa_Direccion, Rubro_Descripcion, null, 1 from gd_esquema.Maestra
 END
 
+--MIGRACIÓN DE SUCURSAL
 GO
 CREATE PROCEDURE [pizza].[Migracion_sucursal]
 AS
@@ -347,6 +405,8 @@ BEGIN
 	SELECT DISTINCT Sucursal_Codigo_Postal, Sucursal_Nombre, Sucursal_Dirección, 1 FROM gd_esquema.Maestra where Sucursal_Codigo_Postal is not null
 END
 
+
+--MIGRACIÓN DE FACTURA
 GO
 CREATE PROCEDURE [pizza].[Migracion_factura]
 AS
@@ -359,6 +419,8 @@ BEGIN
 	SELECT DISTINCT Nro_Factura, ItemFactura_Monto, ItemFactura_Cantidad FROM gd_esquema.Maestra
 END
 
+
+--MIGRACIÓN DE PAGO
 GO
 CREATE PROCEDURE [pizza].[Migracion_pago]
 AS
@@ -373,6 +435,8 @@ BEGIN
 
 END
 
+
+--MIGRACIÓN DE RENDICIÓN
 GO
 CREATE PROCEDURE [pizza].[Migracion_rendicion]
 AS
@@ -392,6 +456,8 @@ BEGIN
 END
 GO
 
+
+--MIGRACIÓN DE ROL
 GO
 CREATE PROCEDURE [pizza].[Migracion_rol]
 AS
@@ -418,6 +484,8 @@ BEGIN
 
 END
 
+
+--MIGRACIÓN DE USUARIO
 GO
 CREATE PROCEDURE [PIZZA].[Migracion_Usuario]
 AS
