@@ -20,8 +20,8 @@ namespace PagoAgilFrba.Repository
         public Repo()
         {
             //ustedes usen el que dice cnLocalhost, no me borren la otra linea, solo comentenla
-            //var connectionString = ConfigurationManager.ConnectionStrings["cnLocalhost"].ConnectionString;
-            var connectionString = ConfigurationManager.ConnectionStrings["cnDepi"].ConnectionString;
+            var connectionString = ConfigurationManager.ConnectionStrings["cnLocalhost"].ConnectionString;
+            //var connectionString = ConfigurationManager.ConnectionStrings["cnDepi"].ConnectionString;
             Connector = new SqlConnection(connectionString);
         }
 

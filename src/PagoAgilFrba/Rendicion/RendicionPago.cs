@@ -42,6 +42,8 @@ namespace PagoAgilFrba.Rendicion
 
         private void btnBuscarFacturas_Click(object sender, EventArgs e)
         {
+            gridFacturas.Rows.Clear();
+
             if(txtEmpresa.Text == "")
             {
                 MessageBox.Show("Primero seleccione una empresa", "Alerta", MessageBoxButtons.OK);

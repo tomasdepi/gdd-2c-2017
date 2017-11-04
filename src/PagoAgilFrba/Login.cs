@@ -31,6 +31,7 @@ namespace PagoAgilFrba
         private void CargarConfiguracionFecha()
         {
            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings.Remove("FechaSistema");
            config.AppSettings.Settings.Add("FechaSistema", Resources.FechaSistema);
            config.Save(ConfigurationSaveMode.Modified);
            ConfigurationManager.RefreshSection(config.AppSettings.SectionInformation.Name);
