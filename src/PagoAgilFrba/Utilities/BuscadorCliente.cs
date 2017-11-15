@@ -72,7 +72,7 @@ namespace PagoAgilFrba.Utilities
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            var habilitado = gridListadoClientes.SelectedRows[0].Cells[0].Value.ToString();
+            var habilitado = gridListadoClientes.SelectedRows[0].Cells[5].Value.ToString();
 
             if(habilitado == "No")
             {
@@ -81,7 +81,7 @@ namespace PagoAgilFrba.Utilities
             }
 
             var dni = gridListadoClientes.SelectedRows[0].Cells[0].Value.ToString();
-
+            
             this.padre.dni = Int32.Parse(dni);
                 
 
