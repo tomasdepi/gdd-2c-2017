@@ -31,15 +31,16 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.gridListadoEmpresa = new System.Windows.Forms.DataGridView();
+            this.cuit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rubro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txtCuit = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cuit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rubro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.habilitado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridListadoEmpresa)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -70,11 +71,30 @@
             this.gridListadoEmpresa.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cuit,
             this.nombre,
-            this.rubro});
+            this.rubro,
+            this.habilitado});
             this.gridListadoEmpresa.Location = new System.Drawing.Point(247, 12);
             this.gridListadoEmpresa.Name = "gridListadoEmpresa";
-            this.gridListadoEmpresa.Size = new System.Drawing.Size(356, 215);
+            this.gridListadoEmpresa.Size = new System.Drawing.Size(443, 215);
             this.gridListadoEmpresa.TabIndex = 7;
+            // 
+            // cuit
+            // 
+            this.cuit.HeaderText = "Cuit";
+            this.cuit.Name = "cuit";
+            this.cuit.ReadOnly = true;
+            // 
+            // nombre
+            // 
+            this.nombre.HeaderText = "Nombre";
+            this.nombre.Name = "nombre";
+            this.nombre.ReadOnly = true;
+            // 
+            // rubro
+            // 
+            this.rubro.HeaderText = "Rubro";
+            this.rubro.Name = "rubro";
+            this.rubro.ReadOnly = true;
             // 
             // groupBox1
             // 
@@ -132,29 +152,17 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre:";
             // 
-            // cuit
+            // habilitado
             // 
-            this.cuit.HeaderText = "Cuit";
-            this.cuit.Name = "cuit";
-            this.cuit.ReadOnly = true;
-            // 
-            // nombre
-            // 
-            this.nombre.HeaderText = "Nombre";
-            this.nombre.Name = "nombre";
-            this.nombre.ReadOnly = true;
-            // 
-            // rubro
-            // 
-            this.rubro.HeaderText = "Rubro";
-            this.rubro.Name = "rubro";
-            this.rubro.ReadOnly = true;
+            this.habilitado.HeaderText = "Habilitado";
+            this.habilitado.Name = "habilitado";
+            this.habilitado.ReadOnly = true;
             // 
             // BuscadorEmpresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(630, 256);
+            this.ClientSize = new System.Drawing.Size(696, 256);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.gridListadoEmpresa);
@@ -183,5 +191,6 @@
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn habilitado;
     }
 }

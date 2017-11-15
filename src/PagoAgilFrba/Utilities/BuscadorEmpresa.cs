@@ -47,6 +47,13 @@ namespace PagoAgilFrba.Utilities
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            if(gridListadoEmpresa.SelectedRows[0].Cells[3].Value.ToString() == "No")
+            {
+                MessageBox.Show("Esa empresa no esta habilitada, no puede ser seleccionada para operar.", "Alerta", MessageBoxButtons.OK);
+                return;
+            }
+
+
             if (gridListadoEmpresa.SelectedRows.Count <= 0) return;
             buscador.cuit = gridListadoEmpresa.SelectedRows[0].Cells[0].Value.ToString();
             this.Close();
@@ -65,18 +72,19 @@ namespace PagoAgilFrba.Utilities
 
         private void gridAgregarEmpresa(Empresa e)
         {
-            if (!e.habilitado) return;
-
             DataGridViewRow row = new DataGridViewRow();
             DataGridViewTextBoxCell cuit = new DataGridViewTextBoxCell();
             DataGridViewTextBoxCell nombre = new DataGridViewTextBoxCell();
             DataGridViewTextBoxCell rubro = new DataGridViewTextBoxCell();
+            DataGridViewTextBoxCell habilitado = new DataGridViewTextBoxCell();
             cuit.Value = e.cuit;
             nombre.Value = e.nombre;
             rubro.Value = e.rubro;
+            habilitado.Value = e.habilitado ? "Si" : "No";
             row.Cells.Add(cuit);
             row.Cells.Add(nombre);
             row.Cells.Add(rubro);
+            row.Cells.Add(habilitado);
             gridListadoEmpresa.Rows.Add(row);
         }
     }

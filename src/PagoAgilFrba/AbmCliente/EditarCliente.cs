@@ -17,12 +17,14 @@ namespace PagoAgilFrba.AbmCliente
     {
         int dni;
         RepoCliente repo;
+        Cliente clienteSinModificar;
 
         public EditarCliente(int dni)
         {
             InitializeComponent();
             this.dni = dni;
             this.repo = new RepoCliente();
+            this.clienteSinModificar = new Cliente();
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -42,14 +44,14 @@ namespace PagoAgilFrba.AbmCliente
             dateFechaNac.Format = DateTimePickerFormat.Custom;
             dateFechaNac.CustomFormat = "yyyy-MM-dd";
 
-            Cliente clie = repo.getCliente(this.dni);
-            txtApellido.Text = clie.apellido;
-            txtNombre.Text = clie.nombre;
-            txtDireccion.Text = clie.direccion;
-            txtCodigoPostal.Text = clie.codigoPostal;
-            txtTelefono.Text = clie.telefono.ToString();
-            dateFechaNac.Value = clie.fechaNac;
-            txtMail.Text = clie.mail;
+            clienteSinModificar = repo.getCliente(this.dni);
+            txtApellido.Text = clienteSinModificar.apellido;
+            txtNombre.Text = clienteSinModificar.nombre;
+            txtDireccion.Text = clienteSinModificar.direccion;
+            txtCodigoPostal.Text = clienteSinModificar.codigoPostal;
+            txtTelefono.Text = clienteSinModificar.telefono.ToString();
+            dateFechaNac.Value = clienteSinModificar.fechaNac;
+            txtMail.Text = clienteSinModificar.mail;
 
             txtDni.KeyPress += new KeyPressEventHandler(keypressed);
             txtTelefono.KeyPress += new KeyPressEventHandler(keypressed);
@@ -70,6 +72,12 @@ namespace PagoAgilFrba.AbmCliente
             if (!verificarMail(txtMail.Text))
             {
                 MessageBox.Show("El mail ingresado no es valido", "Error", MessageBoxButtons.OK);
+                return;
+            }
+
+            if (!clienteSinModificar.mail.Equals(clie.mail) && repo.checkExistingMail(clie.mail))
+            {
+                MessageBox.Show("Ya existe un usuario con ese Mail.", "Alerta", MessageBoxButtons.OK);
                 return;
             }
 

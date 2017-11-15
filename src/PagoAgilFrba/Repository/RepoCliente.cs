@@ -105,11 +105,12 @@ namespace PagoAgilFrba.Repository
 
         public void updateCliente(Cliente clie)
         {
-            var sql = "UPDATE PIZZA.Cliente SET clie_nombre=@nombre, clie_apellido=@apellido, clie_direccion=@direccion, clie_telefono=@telefono, clie_codPostal=@codPostal, clie_fechaNac=@fechaNac WHERE clie_dni = @dni";
+            var sql = "UPDATE PIZZA.Cliente SET clie_nombre=@nombre, clie_apellido=@apellido, clie_direccion=@direccion, clie_telefono=@telefono, clie_codPostal=@codPostal, clie_fechaNac=@fechaNac, clie_mail=@mail WHERE clie_dni = @dni";
 
             this.Command = new SqlCommand(sql, this.Connector);
             this.Command.Parameters.Add("@dni", SqlDbType.Int).Value = clie.dni;
             this.Command.Parameters.Add("@nombre", SqlDbType.VarChar).Value = clie.nombre;
+            this.Command.Parameters.Add("@mail", SqlDbType.VarChar).Value = clie.mail;
             this.Command.Parameters.Add("@apellido", SqlDbType.VarChar).Value = clie.apellido;
             this.Command.Parameters.Add("@direccion", SqlDbType.VarChar).Value = clie.direccion;
             this.Command.Parameters.Add("@fecNac", SqlDbType.VarChar).Value = clie.fechaNac;
