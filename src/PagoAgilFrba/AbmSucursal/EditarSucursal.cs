@@ -44,7 +44,7 @@ namespace PagoAgilFrba.AbmSucursal
             Sucursal sucursal = new Sucursal();
 
             if (txtNombre.Text == "") { alertNotAllFieldsCompleted(); return; } else sucursal.nombre = txtNombre.Text;
-            if (txtDireccion.Text == "") { alertNotAllFieldsCompleted(); return; } else sucursal.direccion = txtNombre.Text;
+            if (txtDireccion.Text == "") { alertNotAllFieldsCompleted(); return; } else sucursal.direccion = txtDireccion.Text;
 
             sucursal.codigoPostal = this.codPostal;
 

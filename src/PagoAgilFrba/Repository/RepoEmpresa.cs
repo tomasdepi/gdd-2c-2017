@@ -134,5 +134,23 @@ namespace PagoAgilFrba.Repository
             return existe;
 
         }
+
+        public bool validarTodasFacturasRendidas(string cuit)
+        {
+            var sql = "SELECT TOP 1 1 FROM PIZZA.Factura WHERE fact_empresa = @cuit AND fact_numero not in (SELECT factRend_factura FROM PIZZA.Factura_por_rendicion)";
+
+            this.Command = new SqlCommand(sql, this.Connector);
+            this.Command.Parameters.Add("@cuit", SqlDbType.VarChar).Value = cuit;
+
+            this.Connector.Open();
+
+            SqlDataReader empresaDb = Command.ExecuteReader();
+
+            bool existe = empresaDb.HasRows;
+
+            this.Connector.Close();
+
+            return existe;
+        }
     }
 }

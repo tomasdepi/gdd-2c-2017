@@ -28,7 +28,7 @@ namespace PagoAgilFrba.AbmSucursal
 
             if (txtNombre.Text == "") { alertNotAllFieldsCompleted(); return; } else sucursal.nombre = txtNombre.Text;
             if (txtCodPostal.Text == "") { alertNotAllFieldsCompleted(); return; } else sucursal.codigoPostal = Int32.Parse(txtCodPostal.Text);
-            if (txtDireccion.Text == "") { alertNotAllFieldsCompleted(); return; } else sucursal.direccion = txtNombre.Text;
+            if (txtDireccion.Text == "") { alertNotAllFieldsCompleted(); return; } else sucursal.direccion = txtDireccion.Text;
 
             if (repo.validarExistencia(sucursal.codigoPostal))
             {

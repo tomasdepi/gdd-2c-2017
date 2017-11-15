@@ -83,10 +83,17 @@ namespace PagoAgilFrba.AbmEmpresa
             var cuit = gridListadoEmpresas.SelectedRows[0].Cells[0].Value.ToString();
             int id = empresas.Find(emp => emp.cuit == cuit).id;
             bool habilitado = gridListadoEmpresas.SelectedRows[0].Cells[4].Value.ToString() == "Sí" ? true : false;
-
+            
             
             if (habilitado)
             {
+
+                if (repo.validarTodasFacturasRendidas(cuit))
+                {
+                    MessageBox.Show("Esa empresa tiene facturas no rendidas. No puede deshabilitarse.", "Error", MessageBoxButtons.OK);
+                    return;
+                }
+
                 gridListadoEmpresas.SelectedRows[0].Cells[4].Value = "No";
                 repo.setHabilitacionEmpresa(id, false);
             }
