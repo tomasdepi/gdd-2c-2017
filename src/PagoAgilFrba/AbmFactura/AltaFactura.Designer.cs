@@ -50,6 +50,7 @@
             this.btnSelectCliente = new System.Windows.Forms.Button();
             this.btnSelectEmpesa = new System.Windows.Forms.Button();
             this.dateAlta = new System.Windows.Forms.Label();
+            this.btnEliminarItem = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridItems)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,7 +76,7 @@
             // 
             // btnAgregarItem
             // 
-            this.btnAgregarItem.Location = new System.Drawing.Point(415, 280);
+            this.btnAgregarItem.Location = new System.Drawing.Point(487, 281);
             this.btnAgregarItem.Name = "btnAgregarItem";
             this.btnAgregarItem.Size = new System.Drawing.Size(124, 23);
             this.btnAgregarItem.TabIndex = 2;
@@ -243,11 +244,22 @@
             this.dateAlta.TabIndex = 20;
             this.dateAlta.Text = "label8";
             // 
+            // btnEliminarItem
+            // 
+            this.btnEliminarItem.Location = new System.Drawing.Point(351, 281);
+            this.btnEliminarItem.Name = "btnEliminarItem";
+            this.btnEliminarItem.Size = new System.Drawing.Size(124, 23);
+            this.btnEliminarItem.TabIndex = 30;
+            this.btnEliminarItem.Text = "Eliminar Item";
+            this.btnEliminarItem.UseVisualStyleBackColor = true;
+            this.btnEliminarItem.Click += new System.EventHandler(this.btnEliminarItem_Click);
+            // 
             // AltaFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(634, 316);
+            this.Controls.Add(this.btnEliminarItem);
             this.Controls.Add(this.dateAlta);
             this.Controls.Add(this.btnSelectEmpesa);
             this.Controls.Add(this.btnSelectCliente);
@@ -301,5 +313,6 @@
         private System.Windows.Forms.Button btnSelectCliente;
         private System.Windows.Forms.Button btnSelectEmpesa;
         private System.Windows.Forms.Label dateAlta;
+        private System.Windows.Forms.Button btnEliminarItem;
     }
 }

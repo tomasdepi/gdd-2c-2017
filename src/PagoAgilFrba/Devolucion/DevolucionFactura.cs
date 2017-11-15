@@ -44,6 +44,12 @@ namespace PagoAgilFrba.Devolucion
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            if (txtFactura.Text == "" || txtMotivo.Text == "")
+            {
+                MessageBox.Show("Debe ingresar todos los campos.", "Alerta", MessageBoxButtons.OK);
+                return;
+            }
+
             Entities.Devolucion devolucion = new Entities.Devolucion();
             devolucion.motivo = txtMotivo.Text;
             devolucion.idEntidad = Int32.Parse(txtFactura.Text);

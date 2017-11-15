@@ -33,9 +33,9 @@ namespace PagoAgilFrba.Devolucion
             Entities.Devolucion devolucion = new Entities.Devolucion();
             devolucion.motivo = txtMotivo.Text;
 
-            if(txtMotivo.Text == "")
+            if(txtMotivo.Text == "" || txtIdRendicion.Text == "")
             {
-                MessageBox.Show("Debe ingresar el motivo de la devolucion", "Alerta", MessageBoxButtons.OK);
+                MessageBox.Show("Debe ingresar todos los campos", "Alerta", MessageBoxButtons.OK);
                 return;
             }
 

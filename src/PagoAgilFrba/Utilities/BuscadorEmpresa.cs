@@ -47,6 +47,8 @@ namespace PagoAgilFrba.Utilities
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            if (gridListadoEmpresa.SelectedRows.Count == 0) return;
+
             if(gridListadoEmpresa.SelectedRows[0].Cells[3].Value.ToString() == "No")
             {
                 MessageBox.Show("Esa empresa no esta habilitada, no puede ser seleccionada para operar.", "Alerta", MessageBoxButtons.OK);

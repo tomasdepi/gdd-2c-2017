@@ -134,6 +134,13 @@ namespace PagoAgilFrba.AbmFactura
             txtEmpresa.Text = buscador.cuit.ToString();
         }
 
+        private void btnEliminarItem_Click(object sender, EventArgs e)
+        {
+            if (gridItems.SelectedRows.Count <= 0)
+                return;
 
+            DataGridViewRow row = gridItems.SelectedRows[0];
+            gridItems.Rows.Remove(row);
+        }
     }
 }

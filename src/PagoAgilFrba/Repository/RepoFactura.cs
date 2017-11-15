@@ -121,7 +121,7 @@ namespace PagoAgilFrba.Repository
         {
             Factura factura = new Factura();
 
-            var query = "SELECT TOP 1 * FROM PIZZA.Factura WHERE fact_numero = @numFactura ";
+            var query = "SELECT TOP 1 *, (SELECT sum(item_monto * item_cantidad) FROM PIZZA.Item_factura where item_numFacutura = fact_numero) importe FROM PIZZA.Factura WHERE fact_numero = @numFactura ";
 
             this.Command = new SqlCommand(query, this.Connector);
             this.Command.Parameters.Add("@numFactura", SqlDbType.Int).Value = numFactura;
