@@ -57,8 +57,16 @@ namespace PagoAgilFrba
 
             if (sucursales.Count == 0)
             {
-                MessageBox.Show("Este usurio no tiene sucursales asignadas, no puede usar el sistema PagoAgil, la sesion se cerrara automaticamentes","Error",MessageBoxButtons.OK);
+                MessageBox.Show("Este usurio no tiene sucursales asignadas o bien ninguna esta habilitada en este momento, no puede usar el sistema PagoAgil, la sesion se cerrara automaticamentes","Error",MessageBoxButtons.OK);
                 this.Close();
+                return;
+            }
+
+            if (roles.Count == 0)
+            {
+                MessageBox.Show("Este usurio no tiene roles asignados o bien ninguno esta habilitado en este momento, la sesion se cerrara automaticamente", "Error", MessageBoxButtons.OK);
+                this.Close();
+                return;
             }
 
             foreach (Sucursal suc in sucursales)
