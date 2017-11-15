@@ -4,6 +4,7 @@ using PagoAgilFrba.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -60,7 +61,13 @@ namespace PagoAgilFrba.AbmFactura
         {
             if(gridItems.Rows.Count <= 0)
             {
-                MessageBox.Show("Debe agregar al menos un item", "Error", MessageBoxButtons.OK);
+                MessageBox.Show("Debe agregar al menos un item.", "Alerta", MessageBoxButtons.OK);
+                return;
+            }
+
+            if(txtNumFactura.Text == "")
+            {
+                MessageBox.Show("Debe completar el Numero de Factura.", "Alerta", MessageBoxButtons.OK);
                 return;
             }
 
@@ -69,7 +76,7 @@ namespace PagoAgilFrba.AbmFactura
             fact.numero = Int32.Parse(txtNumFactura.Text);
             fact.cliente = Int32.Parse(txtCliente.Text);
             fact.empresa = txtEmpresa.Text;
-            fact.alta = dateAlta.Value.Date;
+            fact.alta = Convert.ToDateTime(dateAlta.Text);
             fact.vencimiento = dateVencimiento.Value.Date;
 
             foreach(DataGridViewRow row in gridItems.Rows)
@@ -93,7 +100,10 @@ namespace PagoAgilFrba.AbmFactura
         {
             txtMonto.KeyPress += onlyNumbers;
             txtCantidad.KeyPress += onlyNumbers;
+            txtNumFactura.KeyPress += onlyNumbers;
             gridItems.AllowUserToAddRows = false;
+            dateAlta.Text = ConfigurationManager.AppSettings["fechaSistema"];
+            dateVencimiento.MinDate = DateTime.Now.Date;
         }
 
         private void onlyNumbers(object sender, KeyPressEventArgs e)
@@ -123,5 +133,7 @@ namespace PagoAgilFrba.AbmFactura
             buscador.lanzarBuscadorEmpresa();
             txtEmpresa.Text = buscador.cuit.ToString();
         }
+
+
     }
 }

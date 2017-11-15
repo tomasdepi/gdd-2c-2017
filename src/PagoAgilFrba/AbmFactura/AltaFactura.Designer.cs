@@ -37,7 +37,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtNumFactura = new System.Windows.Forms.TextBox();
-            this.dateAlta = new System.Windows.Forms.DateTimePicker();
             this.dateVencimiento = new System.Windows.Forms.DateTimePicker();
             this.gridItems = new System.Windows.Forms.DataGridView();
             this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,6 +49,7 @@
             this.txtCliente = new System.Windows.Forms.TextBox();
             this.btnSelectCliente = new System.Windows.Forms.Button();
             this.btnSelectEmpesa = new System.Windows.Forms.Button();
+            this.dateAlta = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridItems)).BeginInit();
             this.SuspendLayout();
             // 
@@ -135,13 +135,6 @@
             this.txtNumFactura.Size = new System.Drawing.Size(200, 20);
             this.txtNumFactura.TabIndex = 10;
             this.txtNumFactura.TextChanged += new System.EventHandler(this.txtNumFactura_TextChanged);
-            // 
-            // dateAlta
-            // 
-            this.dateAlta.Location = new System.Drawing.Point(119, 130);
-            this.dateAlta.Name = "dateAlta";
-            this.dateAlta.Size = new System.Drawing.Size(200, 20);
-            this.dateAlta.TabIndex = 11;
             // 
             // dateVencimiento
             // 
@@ -241,11 +234,21 @@
             this.btnSelectEmpesa.UseVisualStyleBackColor = true;
             this.btnSelectEmpesa.Click += new System.EventHandler(this.btnSelectEmpesa_Click);
             // 
+            // dateAlta
+            // 
+            this.dateAlta.AutoSize = true;
+            this.dateAlta.Location = new System.Drawing.Point(116, 136);
+            this.dateAlta.Name = "dateAlta";
+            this.dateAlta.Size = new System.Drawing.Size(35, 13);
+            this.dateAlta.TabIndex = 20;
+            this.dateAlta.Text = "label8";
+            // 
             // AltaFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(634, 316);
+            this.Controls.Add(this.dateAlta);
             this.Controls.Add(this.btnSelectEmpesa);
             this.Controls.Add(this.btnSelectCliente);
             this.Controls.Add(this.label7);
@@ -254,7 +257,6 @@
             this.Controls.Add(this.txtMonto);
             this.Controls.Add(this.gridItems);
             this.Controls.Add(this.dateVencimiento);
-            this.Controls.Add(this.dateAlta);
             this.Controls.Add(this.txtNumFactura);
             this.Controls.Add(this.txtEmpresa);
             this.Controls.Add(this.txtCliente);
@@ -286,7 +288,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtNumFactura;
-        private System.Windows.Forms.DateTimePicker dateAlta;
         private System.Windows.Forms.DateTimePicker dateVencimiento;
         private System.Windows.Forms.DataGridView gridItems;
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
@@ -299,5 +300,6 @@
         private System.Windows.Forms.TextBox txtCliente;
         private System.Windows.Forms.Button btnSelectCliente;
         private System.Windows.Forms.Button btnSelectEmpesa;
+        private System.Windows.Forms.Label dateAlta;
     }
 }
