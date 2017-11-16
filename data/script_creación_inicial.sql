@@ -363,7 +363,7 @@ CREATE TABLE [pizza].[Rol_por_funcionalidad](
 ) ON [PRIMARY]
 
 
--TABLA FUNCIONALIDAD
+--TABLA FUNCIONALIDAD
 GO
 CREATE TABLE [pizza].[Funcionalidad](
 	[func_id] [int] NOT NULL,
@@ -442,16 +442,19 @@ CREATE PROCEDURE [pizza].[Migracion_rendicion]
 AS
 BEGIN
 	
-	INSERT INTO Rendicion(rend_fecha, rend_cantFacturas, rend_importeComision, rend_empresa, rend_porcentComision, rend_devuelta)
-	SELECT cast(cast(year(Rendicion_Fecha)as varchar) + '-01-' + cast(month(Rendicion_Fecha)as varchar)  as datetime), count(Nro_Factura), sum(ItemRendicion_importe), Empresa_Cuit, 0, 0 FROM gd_esquema.Maestra
-	where Rendicion_Nro is not null
-	group by year(Rendicion_Fecha), month(Rendicion_Fecha), Empresa_Cuit
+	SET IDENTITY_INSERT PIZZA.Rendicion ON
+	
+	INSERT INTO Rendicion(rend_id, rend_fecha, rend_cantFacturas, rend_importeComision, rend_empresa, rend_porcentComision, rend_devuelta)
+	SELECT DISTINCT Rendicion_Nro, Rendicion_Fecha, 1, ItemRendicion_Importe, Empresa_Cuit, ROUND((ItemRendicion_Importe/Factura_Total*100), 2), 0
+		FROM GD2C2017.gd_esquema.Maestra
+		WHERE Rendicion_Nro IS NOT NULL
+
+	SET IDENTITY_INSERT PIZZA.Rendicion OFF
 	
 
 	INSERT INTO Factura_por_rendicion(factRend_rendicion, factRend_factura)
-	SELECT rend_id, Nro_Factura FROM PIZZA.Rendicion
-	JOIN gd_esquema.Maestra ON year(Rendicion_Fecha) = year(rend_fecha) AND month(Rendicion_Fecha) = month(rend_fecha) 
-	where rend_fecha is not null AND Rendicion_Nro is not null
+	SELECT Rendicion_Nro, Nro_Factura FROM GD2C2017.gd_esquema.Maestra
+	where Rendicion_Nro is not null
 
 END
 GO
