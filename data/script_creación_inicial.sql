@@ -444,8 +444,8 @@ BEGIN
 	
 	SET IDENTITY_INSERT PIZZA.Rendicion ON
 	
-	INSERT INTO Rendicion(rend_id, rend_fecha, rend_cantFacturas, rend_importeComision, rend_empresa, rend_porcentComision, rend_devuelta)
-	SELECT DISTINCT Rendicion_Nro, Rendicion_Fecha, 1, ItemRendicion_Importe, Empresa_Cuit, ROUND((ItemRendicion_Importe/Factura_Total*100), 2), 0
+	INSERT INTO Rendicion(rend_id, rend_fecha, rend_cantFacturas, rend_importeComision, rend_empresa, rend_porcentComision, rend_totalRendicion, rend_devuelta)
+	SELECT DISTINCT Rendicion_Nro, Rendicion_Fecha, 1, ItemRendicion_Importe , Empresa_Cuit, ROUND((ItemRendicion_Importe/Factura_Total*100), 2), Factura_Total, 0
 		FROM GD2C2017.gd_esquema.Maestra
 		WHERE Rendicion_Nro IS NOT NULL
 

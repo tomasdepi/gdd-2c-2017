@@ -93,6 +93,18 @@ namespace PagoAgilFrba.Rendicion
         private void btnAceptar_Click(object sender, EventArgs e)
         {
 
+            if(txtEmpresa.Text == "")
+            {
+                MessageBox.Show("Debe seleccionar una empresa.", "Alerta", MessageBoxButtons.OK);
+                return;
+            }
+
+            if (gridFacturas.Rows.Count == 0)
+            {
+                MessageBox.Show("Para realizar la rendicion debe cargar al menos una factura valida.", "Alerta", MessageBoxButtons.OK);
+                return;
+            }
+
             var mes = comboMes.SelectedIndex + 1;
             var anio = Int32.Parse(numericAnio.Value.ToString());
 
