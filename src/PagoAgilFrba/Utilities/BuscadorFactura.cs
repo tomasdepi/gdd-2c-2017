@@ -74,8 +74,11 @@ namespace PagoAgilFrba.Utilities
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (gridFacturas.SelectedRows.Count <= 0)
+            if (gridFacturas.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Seleccione la fila de la factura que desea.", "Error", MessageBoxButtons.OK);
                 return;
+            }
 
             int numFactura = Int32.Parse(gridFacturas.SelectedRows[0].Cells[0].Value.ToString());
             int importe = Int32.Parse(gridFacturas.SelectedRows[0].Cells[3].Value.ToString());

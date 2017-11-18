@@ -129,7 +129,7 @@ namespace PagoAgilFrba.Repository
 
         public List<Entities.Rendicion> buscarRendiciones(string CuitEmpresa)
         {
-            var query = "SELECT rend_id, rend_empresa, rend_fecha FROM PIZZA.Rendicion WHERE rend_empresa = @empresa";
+            var query = "SELECT rend_id, rend_empresa, rend_fecha FROM PIZZA.Rendicion WHERE rend_empresa = @empresa AND rend_devuelta = 0";
 
             this.Command = new SqlCommand(query, this.Connector);
             this.Command.Parameters.Add("@empresa", SqlDbType.VarChar).Value = CuitEmpresa;

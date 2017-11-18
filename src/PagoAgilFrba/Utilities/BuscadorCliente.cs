@@ -72,6 +72,13 @@ namespace PagoAgilFrba.Utilities
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            if(gridListadoClientes.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Seleccione la fila del cliente que desea.", "Error", MessageBoxButtons.OK);
+                return;
+            }
+
+
             var habilitado = gridListadoClientes.SelectedRows[0].Cells[5].Value.ToString();
 
             if(habilitado == "No")

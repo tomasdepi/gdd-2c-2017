@@ -55,6 +55,13 @@ namespace PagoAgilFrba.Rendicion
 
             facturas = repo.getFacturasARendir(anio, mes, txtEmpresa.Text);
             totalRendicion = 0;
+
+            if(facturas.Count == 0)
+            {
+                MessageBox.Show("No se encontraron facturas.", "Alerta", MessageBoxButtons.OK);
+                return;
+            }
+
             foreach(Factura factura in facturas)
             {
                 gridAddFactura(factura);
