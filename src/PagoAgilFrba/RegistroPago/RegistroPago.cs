@@ -107,6 +107,11 @@ namespace PagoAgilFrba.RegistroPago
                 return;
             }
 
+            if (gridFacturas.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("Debe seleccionar una factura.", "Alerta", MessageBoxButtons.OK);
+            }
+
             Pago pago = new Pago();
             pago.cliente = Int32.Parse(txtCliente.Text);
             pago.importeTotal = Int32.Parse(lblImporteTotal.Text);
