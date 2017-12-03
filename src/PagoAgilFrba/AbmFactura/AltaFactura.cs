@@ -74,8 +74,15 @@ namespace PagoAgilFrba.AbmFactura
             if (txtCliente.Text == "")
             {
                 MessageBox.Show("Debe completar el número de cliente.", "Alerta", MessageBoxButtons.OK);
+                return;
             }
-    
+
+            if (txtEmpresa.Text == "")
+            {
+                MessageBox.Show("Debe completar Cuit de la empresa.", "Alerta", MessageBoxButtons.OK);
+                return;
+            }
+
             Factura fact = new Factura();
             List <ItemFactura> items = new List<ItemFactura>();
             fact.numero = Int32.Parse(txtNumFactura.Text);
