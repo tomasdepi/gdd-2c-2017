@@ -39,7 +39,10 @@ namespace PagoAgilFrba.Devolucion
             buscador.lanzarBuscadorFactura();
 
             if (!(buscador.factura.numero.ToString() == "0"))
-                txtFactura.Text = buscador.factura.numero.ToString();
+                if(buscador.factura.pagada == false)
+                    MessageBox.Show("No puede devolver una factura que no esta pagada.","Alerta", MessageBoxButtons.OK);
+                else
+                    txtFactura.Text = buscador.factura.numero.ToString();
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
