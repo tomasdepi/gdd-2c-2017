@@ -107,9 +107,9 @@ namespace PagoAgilFrba.RegistroPago
                 return;
             }
 
-            if (gridFacturas.SelectedRows.Count <= 0)
+            if (gridFacturas.Rows.Count == 0)
             {
-                MessageBox.Show("Debe seleccionar una factura.", "Alerta", MessageBoxButtons.OK);
+                MessageBox.Show("Debe haber al menos una factura para pagars.", "Alerta", MessageBoxButtons.OK);
                 return;
             }
 
