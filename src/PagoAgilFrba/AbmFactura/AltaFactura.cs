@@ -88,7 +88,13 @@ namespace PagoAgilFrba.AbmFactura
             fact.numero = Int32.Parse(txtNumFactura.Text);
             fact.cliente = Int32.Parse(txtCliente.Text);
             fact.empresa = txtEmpresa.Text;
-            fact.alta = Convert.ToDateTime(dateAlta.Text);
+            try {
+                fact.alta = Convert.ToDateTime(dateAlta.Text);
+            } catch
+            {
+                fact.alta = Convert.ToDateTime(ConfigurationManager.AppSettings["FechaSistemaProvisional"]);
+            }
+            
             fact.vencimiento = dateVencimiento.Value.Date;
 
             foreach(DataGridViewRow row in gridItems.Rows)

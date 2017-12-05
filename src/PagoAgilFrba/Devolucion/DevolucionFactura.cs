@@ -57,7 +57,13 @@ namespace PagoAgilFrba.Devolucion
             devolucion.motivo = txtMotivo.Text;
             devolucion.idEntidad = Int32.Parse(txtFactura.Text);
             devolucion.tipoEntidad = "Factura";
-            devolucion.fecha = Convert.ToDateTime(ConfigurationManager.AppSettings["FechaSistema"]);
+            try { 
+                devolucion.fecha = Convert.ToDateTime(ConfigurationManager.AppSettings["FechaSistema"]);
+            }
+            catch
+            {
+                devolucion.fecha = Convert.ToDateTime(ConfigurationManager.AppSettings["FechaSistemaProvisional"]);
+            }
 
             repo.altaDevolucion(devolucion);
 

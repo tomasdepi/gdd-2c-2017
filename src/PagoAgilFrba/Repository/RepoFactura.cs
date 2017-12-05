@@ -103,8 +103,18 @@ namespace PagoAgilFrba.Repository
 
         private Factura crearFactura(SqlDataReader data)
         {
+
+            DateTime fechaSistema;
+
+            try
+            {
+                fechaSistema = Convert.ToDateTime(ConfigurationManager.AppSettings["FechaSistema"].ToString());
+            }catch
+            {
+                fechaSistema = Convert.ToDateTime(ConfigurationManager.AppSettings["FechaSistemaProvicional"].ToString());
+            }
            
-            DateTime fechaSistema = Convert.ToDateTime(ConfigurationManager.AppSettings["FechaSistema"].ToString());
+
             Factura factura = new Factura();
             factura.numero = Int32.Parse(data["fact_numero"].ToString());
             factura.cliente = Int32.Parse(data["fact_cliente"].ToString());
