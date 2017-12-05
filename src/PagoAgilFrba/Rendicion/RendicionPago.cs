@@ -52,6 +52,12 @@ namespace PagoAgilFrba.Rendicion
 
             var mes = comboMes.SelectedIndex + 1;
             var anio = Int32.Parse(numericAnio.Value.ToString());
+            if (repo.validarExistenciaRendicion(anio, mes, txtEmpresa.Text))
+            {
+                MessageBox.Show("Ya se realizo la rendicion para ese mes y esa empresa", "Error", MessageBoxButtons.OK);
+                return;
+            }
+            
 
             facturas = repo.getFacturasARendir(anio, mes, txtEmpresa.Text);
             totalRendicion = 0;
