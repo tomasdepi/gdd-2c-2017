@@ -114,7 +114,7 @@ namespace PagoAgilFrba.AbmFactura
             txtCantidad.KeyPress += onlyNumbers;
             txtNumFactura.KeyPress += onlyNumbers;
             gridItems.AllowUserToAddRows = false;
-            dateAlta.Text = ConfigurationManager.AppSettings["fechaSistema"];
+            dateAlta.Text = ConfigurationManager.AppSettings["FechaSistema"];
             dateVencimiento.MinDate = DateTime.Now.Date;
         }
 

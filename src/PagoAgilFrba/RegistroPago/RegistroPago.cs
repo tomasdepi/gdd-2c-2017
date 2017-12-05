@@ -117,7 +117,7 @@ namespace PagoAgilFrba.RegistroPago
             pago.cliente = Int32.Parse(txtCliente.Text);
             pago.importeTotal = Int32.Parse(lblImporteTotal.Text);
             pago.sucursal = Int32.Parse(lblSucursal.Text);
-            pago.fecha = Convert.ToDateTime(ConfigurationManager.AppSettings["fechaSistema"]);
+            pago.fecha = Convert.ToDateTime(ConfigurationManager.AppSettings["FechaSistema"]);
             pago.formaPago = comboFormaPago.Items[comboFormaPago.SelectedIndex].ToString();
 
             var pagoId = repo.altaPago(pago);

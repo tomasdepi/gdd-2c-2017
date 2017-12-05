@@ -40,7 +40,7 @@ namespace PagoAgilFrba.Utilities
 
             List<Factura> facturas = repo.getFacturas(numFactura, cliente, paga);
 
-            DateTime fechaSistema = Convert.ToDateTime(ConfigurationManager.AppSettings["fechaSistema"].ToString());
+            DateTime fechaSistema = Convert.ToDateTime(ConfigurationManager.AppSettings["FechaSistema"].ToString());
 
             foreach (Factura fact in facturas)
             {
