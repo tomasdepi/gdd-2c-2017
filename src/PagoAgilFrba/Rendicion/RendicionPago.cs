@@ -17,7 +17,7 @@ namespace PagoAgilFrba.Rendicion
     {
 
         RepoRendicion repo;
-        int totalRendicion;
+        float totalRendicion;
         List<Factura> facturas;
 
         public RendicionPago()
