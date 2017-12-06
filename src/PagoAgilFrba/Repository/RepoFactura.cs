@@ -176,6 +176,32 @@ namespace PagoAgilFrba.Repository
 
             return items;
         }
+        public int getNumFactura(int numFactura)
+        {
+            int resultado; 
+
+            var query = "SELECT top 1 * FROM Pizza.Factura WHERE fact_numero= @numFactura";
+           
+            this.Command = new SqlCommand(query, this.Connector);
+            this.Command.Parameters.Add("@numFactura", SqlDbType.Int).Value = numFactura;
+           
+            this.Connector.Open();
+           
+            SqlDataReader data = this.Command.ExecuteReader();
+            if (data.Read())
+            {
+                resultado=1;
+                
+            }
+            else
+            {
+                resultado = 0;
+            }
+       
+            this.Connector.Close();
+            return resultado;
+            
+        }
 
         public void deleteItems(int numFactura)
         {
@@ -188,5 +214,6 @@ namespace PagoAgilFrba.Repository
             this.Connector.Close();
         }
 
+        
     }
 }

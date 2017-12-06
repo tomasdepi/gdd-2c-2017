@@ -36,9 +36,9 @@ namespace PagoAgilFrba.Repository
         {
             var query = "INSERT INTO PIZZA.Factura_por_pago (factPago_pago, factPago_factura) VALUES ";
 
-            foreach(int numFactura in numFacturas)
+            foreach (int numFactura in numFacturas)
             {
-                query += "("+idPago+","+numFactura+"),";
+                query += "(" + idPago + "," + numFactura + "),";
             }
             query = query.Remove(query.Count() - 1);
 
@@ -48,7 +48,7 @@ namespace PagoAgilFrba.Repository
             this.Command.ExecuteNonQuery();
             this.Connector.Close();
 
-            foreach(int numFactura in numFacturas)
+            foreach (int numFactura in numFacturas)
             {
                 this.updateFacturaPagada(numFactura);
             }
@@ -70,13 +70,13 @@ namespace PagoAgilFrba.Repository
         {
             var query = "select top 1 pago_id from PIZZA.Pago order by pago_id desc";
             this.Command = new SqlCommand(query, this.Connector);
-            
+
             this.Connector.Open();
 
             SqlDataReader data = this.Command.ExecuteReader();
             data.Read();
             int pagoId = Int32.Parse(data["pago_id"].ToString());
-            
+
             this.Connector.Close();
 
             return pagoId;

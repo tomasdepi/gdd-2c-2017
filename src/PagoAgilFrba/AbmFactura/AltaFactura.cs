@@ -3,9 +3,10 @@ using PagoAgilFrba.Repository;
 using PagoAgilFrba.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.ComponentModel;
 using System.Configuration;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -82,7 +83,14 @@ namespace PagoAgilFrba.AbmFactura
                 MessageBox.Show("Debe completar Cuit de la empresa.", "Alerta", MessageBoxButtons.OK);
                 return;
             }
-
+            int facturaNumero = Int32.Parse(txtNumFactura.Text);
+            int resultado = repo.getNumFactura(facturaNumero);
+            if (resultado == 1)
+            {
+                MessageBox.Show("Debe elegir otro número de factura, ese ya existe en el sistema.", "Alerta", MessageBoxButtons.OK);
+                return;
+            }
+        
             Factura fact = new Factura();
             List <ItemFactura> items = new List<ItemFactura>();
             fact.numero = Int32.Parse(txtNumFactura.Text);
